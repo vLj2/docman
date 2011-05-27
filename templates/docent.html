@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+
+{% load truncatewords_by_chars %}
+
+{% block title %}{{docent.name}}{% endblock %}
+
+{% block content %}
+
+<h1><a href="{% url docent docent.pk %}">{{docent.name}}</a> <span style="font-weight:normal;margin-left:20px;vertical-align:middle;text-shadow:none;font-size:small"><span class="docentMail" style="font-weight:normal;"><a style="font-weight:normal;" href="mailto:{{docent.email}}">{{docent.email}}</a></span></span></h1>
+
+<div class="documentBox">
+<div class="course" style="width:540px">Kurse dieses Dozenten</div>
+<ul>
+{% if courses.count > 0 %}
+	{% for c in courses %}
+		<li style="background-image:url({{ MEDIA_URL}}img/student.png)"><a href="{% url course c.pk %}">{{c.name}}</a></li>
+	{% endfor %}
+{% else %}
+	<li class="info">Dieser Dozent h&auml;lt keine Kurse.</li>
+{% endif %}
+</ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+
+{% load truncatewords_by_chars %}
+
+{% block title %}Tagcloud{% endblock %}
+
+{% block content %}
+
+<h1>Tagcloud</h1>
+
+<div class="documentBox">
+	{% if cloud %}
+	<div class="tagcloud">
+		{% for item in cloud %}
+	 		<span style="font-size:{{ item.font_size }}em;"><a class="tag" href="{% url tags item %}">{{item}}</a></span>
+		{% endfor %}
+	</div>
+	{% else %}
+		<div style="text-align:center;margin:50px;">Hier gibt es nicht's zu sehen!</div>
+	{% endif %}		
+</div>
+{% endblock %}

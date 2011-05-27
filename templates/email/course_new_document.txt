@@ -1,0 +1,5 @@
+Hallo {{user.first_name}},
+
+es gibt ein neues Dokument von {{author.first_name}} {{author.last_name}} im Kurs {{course.name}}, den du abonniert hast.
+
+Direkt zum Dokument: {{domain}}{% url document document.pk%}

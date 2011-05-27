@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+
+{% load truncatewords_by_chars %}
+
+{% block title %}{{user.first_name}} {{user.last_name}}{% endblock %}
+
+{% block content %}
+
+<h1>{{user.get_profile.profile|safe}} <span style="font-weight:normal;margin-left:20px;vertical-align:middle;text-shadow:none;font-size:small"><span class="docentMail" style="font-weight:normal;"><a style="font-weight:normal;" href="mailto:{{user.email}}">{{user.email}}</a></span></span></h1>
+
+<div class="documentBox">
+<div class="course" style="width:540px">Zuletzt hochgeladene Dokumente</div>
+<ul>
+{% if documents.count > 0 %}
+	{% for d in documents %}
+		<div class="fileInfo" style="margin-top: 3px;font-size:x-small">{{d.getLatestRevision.file.size|filesizeformat}} - vor {{d.getLatestRevision.pub_date|timesince}}</div>
+		<li style="background-image:url({{ MEDIA_URL}}img/fileicons/{{d.getLatestRevision.type|default:"file"}}.png)" class="file {{d.getLatestRevision.type}}"><a href="{% url document d.pk %}">{{d.name|truncatewords_by_chars:65}}</a>
+		</li>
+	{% endfor %}
+{% else %}
+	<li class="info">Bisher wurden keine Dokumente von diesem Benutzer hochgeladen.</li>
+{% endif %}
+</ul>
+</div>
+
+<div class="documentBox" style="margin-top:10px">
+<div class="course" style="width:540px">Zuletzt kommentierte Dokumente</div>
+<ul>
+{% if cdocuments.count > 0 %}
+	{% for d in cdocuments %}
+		<div class="fileInfo" style="margin-top: 3px;font-size:x-small">{{d.document.getLatestRevision.file.size|filesizeformat}} - vor {{d.document.getLatestRevision.pub_date|timesince}}</div>
+		<li style="background-image:url({{ MEDIA_URL}}img/fileicons/{{d.document.getLatestRevision.type|default:"file"}}.png)" class="file {{d.getLatestRevision.type}}"><a href="{% url document d.document.pk %}">{{d.document.name|truncatewords_by_chars:65}}</a>
+		</li>
+	{% endfor %}
+{% else %}
+	<li class="info">Bisher hat der Benutzer keine Kommentare geschrieben.</li>
+{% endif %}
+</ul>
+</div>
+
+{% endblock %}

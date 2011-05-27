@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>DocMan &bull; {% block title %} proudly powered by Django :){% endblock %}</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link type="text/css" href="/media/css/redmond/jquery-ui-1.8.11.custom.css" rel="stylesheet" />	
+		<link href="/media/css/base.css" media="all" rel="stylesheet" type="text/css" />
+		<link href="/media/css/jquery.sb.css" media="all" rel="stylesheet" type="text/css" />
+		<link href="/media/css/uploadify.css" type="text/css" rel="stylesheet" />
+	    <script src="/media/js/jquery-latest.js" type="text/javascript"></script>
+		<script type="text/javascript" src="/media/js/swfobject.js"></script>	    
+		<script type="text/javascript" src="/media/js/jquery.cookie.js"></script>	    
+		<script type="text/javascript" src="/media/js/jquery.sb.min.js"></script>
+		<script type="text/javascript" src="/media/js/jquery.uploadify.v2.1.4.min.js"></script>
+		<script src="/media/js/jquery-ui-1.8.11.custom.min.js" type="text/javascript"></script>	    
+	    <script src="/media/js/main.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="/media/js/jquery.raty.min.js"></script>
+
+		<!-- this plugin srsly sucks! -->
+		<!--<script src='/media/js/jquery.MetaData.js' type="text/javascript" language="javascript"></script>
+		<script src='/media/js/jquery.rating.js' type="text/javascript" language="javascript"></script>
+		<link href='/media/css/jquery.rating.css' type="text/css" rel="stylesheet"/>-->
+		
+	    
+	    
+	</head>
+<body> 
+  <div id="wrapper"> 
+    <!-- HEADER with logo and navigation --> 
+    <div id="header"> 
+      <div onclick="$(location).attr('href','/');" id="logo"></div>
+		{% if request.user.is_authenticated or user.is_authenticated %}
+		
+		<div id="semesterswitch">
+		 	<select id="semesterSwitch" class="round_sb">
+		 		<option {% if user.get_profile.semester == -1 %}selected {% endif %}value="all">Alle Semester</option>
+		 		<option {% if user.get_profile.semester == 1 %}selected {% endif %}value="1">1. Semester</option>
+		 		<option {% if user.get_profile.semester == 2 %}selected {% endif %}value="2">2. Semester</option>
+		 		<option {% if user.get_profile.semester == 3 %}selected {% endif %}value="3">3. Semester</option>
+		 		<option {% if user.get_profile.semester == 4 %}selected {% endif %}value="4">4. Semester</option>
+		 		<option {% if user.get_profile.semester == 5 %}selected {% endif %}value="5">5. Semester</option>
+		 		<option {% if user.get_profile.semester == 6 %}selected {% endif %}value="6">6. Semester</option>
+		 	</select>
+		</div>		
+		
+		<div id="navigation">
+      	<ul>
+	        <li><a href="/">&Uuml;bersicht</a></li>
+	        <li><a href="/search">Volltextsuche</a></li>
+	        <li><a href="{% url tags-cloud %}">Tagcloud</a></li>	        
+	        <li><a href="{% url account %}">Account</a></li>
+	        <li><a href="{% url logout %}">&raquo; Logout</a></li>
+	        <li class="clear loader"><img src="{{ MEDIA_URL }}img/loader.gif">&nbsp;</li>	        
+		</ul>		
+		</div>
+		{% endif %}
+
+	
+		{% if messages %}
+		<div class="messages">
+			<ul class="messages">
+	    {% for message in messages %}
+	    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+	    {% endfor %}
+			</ul>
+		</div>
+		{% endif %}		
+    
+    </div> 
+    
+    <!-- CONTENT --> 
+    <div id="content"> 
+	{% block content %}{% endblock %}
+    </div>  
+    
+    <!-- FOOTER with copyright --> 
+    <div id="footer"> 
+        <span id="ssl">SSL-gesicherte Verbindung</span><br />
+	&copy; 2011 DocMan (Alle Rechte vorbehalten) - <a href="{% url about %}">&Uuml;ber DocMan</a>
+    </div> 
+  </div> 
+</body>
+</html>

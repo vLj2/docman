@@ -1,0 +1,63 @@
+{% extends "core/base.html" %}
+
+{% block title %}Volltextsuche{% endblock %}
+
+{% block content %}
+
+{{request.path}}
+
+<h1>Volltextsuche</h1>
+<p style="margin-top: -10px;">Bitte gib einen Suchbegriff ein, um die Suche zu starten.</p>
+<div class="courseBox">
+
+<form method="get" action=".">
+  <table>
+  <tr>
+  <th style="width:120px;text-align:left;">Suchbegriff:</th>
+  <td class="search">{{form.q}}</td>
+  <td><input class="find" type="submit" value=""></td>
+  </tr>
+  </table>
+</form>
+</div>
+
+
+
+
+{% if query %}
+<div class="category">Suchergebnisse</div>
+<div style="margin-top:10px;" class="documentBox">
+<ul>
+{% for result in page.object_list %}
+{% if result.object.pk %}
+<li style="background-image:url({{ MEDIA_URL}}img/fileicons/{{result.object.getLatestRevision.type|default:"file"}}.png)" class="file {{result.object.getLatestRevision.type}}"><a href="{% url document result.object.pk %}">{{result.object.name}}</a> <span style="color:rgb(200,200,200)">({{result.object.course.getSemester}})</span>
+</li>
+<li class="fileInfo">Hochgeladen von {{result.object.author.get_profile.profile|safe}} - vor {{result.object.getLatestRevision.pub_date|timesince}} aktualisiert</li>
+{% endif %}
+{% empty %}
+	<li class="info">Leider keine Suchergebnisse gefunden.</li>
+{% endfor %}
+{% endif %}
+</ul>
+</div>
+{% if page.has_previous or page.has_next %}
+
+<div class="pagination">
+	<span class="step-left">
+  	{% if page.has_previous %}
+    	<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">&laquo;</a>
+		{% endif %}
+
+    <span class="current">
+			Seite {{ page.number }} von {{ page.paginator.num_pages }}
+		</span>
+
+    <span class="step-right">
+			{% if page.has_next %}
+      	<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">&raquo;</a>
+      {% endif %}
+    </span>
+</div>
+{% endif %}
+
+{% endblock %}

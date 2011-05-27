@@ -1,0 +1,44 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<h1>Willkommen bei DocMan.</h1>
+
+<p>Bitte melde dich mit deinen Benutzerdaten an:</p>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	if ($.browser.msie) {
+		$('#stopIe').show();
+	}
+});
+</script>
+
+<div id="stopIe" style="display:none">
+HALT STOP! Du nutzt den Internet Explorer - Schande &uuml;ber dein Haupt. DocMan wurde mit allen aktuellen Webbrowsern getestet, deshalb kann dir leider niemand versprechen, ob auch im Internet Explorer alles richtig funktioniert. Benutzung auf eigene Gefahr!
+</div>
+
+{% if error %}
+<div class="message error">{{error|safe}}</div>
+{% endif %}
+
+<form method="post" action="{% url login %}">
+	{% csrf_token %}
+	<input type="hidden" name="next" value="{{ next|default:"/" }}" />	
+	
+	<input class="login" name="username" type="text" />
+	<input class="login" name="password" type="password" />
+	
+	<input type="submit" class="login" value=" " />
+</form>
+
+<p class="note">Hinweis: DocMan ist ein geschlossenes System. Bei Login-Problemen wende dich bitte an support@docman.me</p>
+
+<div id="poweredBy">
+<p>DocMan wurde realisiert mit Hilfe von:</p>
+<a class="noimg" href="http://djangoproject.com"><img src="{{MEDIA_URL}}img/djangopowered126x54.gif" /></a>
+<a class="noimg" href="http://piratesolutions.org"><img class="ps" src="{{MEDIA_URL}}img/pslogo.jpg" /></a>
+<a class="noimg" href="http://cherokee-project.com"><img class="cherokee" src="{{MEDIA_URL}}img/powered_by_cherokee-2.gif" /></a>
+<a class="noimg" href="http://panic.com/coda"><img class="coda" src="{{MEDIA_URL}}img/made_with_coda_left.png" /></a>
+</div>
+{% endblock %}

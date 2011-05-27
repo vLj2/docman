@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+
+{% load truncatewords_by_chars %}
+
+{% block title %}Tag: {{tag.name}}{% endblock %}
+
+{% block content %}
+
+<h1>Tag: {{tag.name}}</h1>
+
+<div class="documentBox">
+<div class="course" style="width:540px">Dokumente</div>
+<ul>
+{% if documents.object_list.count > 0 %}
+	{% for d in documents.object_list %}
+		<div class="fileInfo" style="right: 230px">{{d.getLatestRevision.file.size|filesizeformat}}</div>
+		<li style="background-image:url({{ MEDIA_URL}}img/fileicons/{{d.getLatestRevision.type|default:"file"}}.png)" class="file {{d.getLatestRevision.type}}"><a href="{% url document d.pk %}">{{d.name|truncatewords_by_chars:65}}</a>
+		</li>
+		<li class="fileInfo"><a href="{%url course d.course.pk%}">{{d.course.name}}</a> - vor {{d.getLatestRevision.pub_date|timesince}} aktualisiert</li>
+	{% endfor %}
+{% else %}
+	<li class="info">Bisher wurden keine Dokumente hochgeladen.</li>
+{% endif %}
+</ul>
+</div>
+
+{% if documents.paginator.num_pages > 1 %}
+<div class="pagination">
+	<span class="step-left">
+  	{% if documents.has_previous %}
+    	<a href="{% url tags tag.name%}?p={{ documents.previous_page_number }}">&laquo;</a>
+		{% endif %}
+
+    <span class="current">
+			Seite {{ documents.number }} von {{ documents.paginator.num_pages }}
+		</span>
+
+    <span class="step-right">
+			{% if documents.has_next %}
+      	<a href="{% url tags tag.name%}?p={{ documents.next_page_number }}">&raquo;</a>
+      {% endif %}
+    </span>
+</div>
+{% endif %}
+
+{% endblock %}

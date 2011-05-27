@@ -1,0 +1,4 @@
+settings_local.py
+media/hdd/*
+*.pyc
+whoosh_index

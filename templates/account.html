@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<h1>Dein Account, {{request.user.first_name}}</h1>
+
+
+<div class="courseSmall">Passwort &auml;ndern</div>
+
+<div id="commentForm"> 
+<form action="{% url account %}" method="post" id="commentform" name="commentform"> 
+{%csrf_token%}
+<table>
+<tr><th style="text-align:left;">Neues Password:</th><td><input name="password" id="password" type="password" /></td></tr>
+<tr><th style="text-align:left;">..wiederholen:</th><td><input name="password_repeat" id="password_repeat" type="password" /></td></tr>
+</table>
+<br />
+<input type="submit" value="Speichern" />
+</form> 
+</div> 
+
+
+{% endblock %}

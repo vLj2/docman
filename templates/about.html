@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<h1>&Uuml;ber DocMan</h1>
+
+
+<div class="courseSmall">Impressum (V.i.S.d.P.)</div>
+<p style="font-size:small;">F&uuml;r den Inhalt der auf dieser Plattform hochgeladenen Dokumente kann keine Haftung &uuml;bernommen werden - der jeweilige Uploader ist f&uuml;r das Dokument und dessen Inhalt verantwortlich. Das Copyright des Autors bleibt unangetastet.</p>
+<p style="font-size:small;">Timo Josten<br />Lichtstr. 67<br />40235 Düsseldorf<br />+49 151 21264585<br />
+<a href="mailto:tj@piratesolutions.org">tj@piratesolutions.org</a></p>
+
+<div class="courseSmall">Technische Realisierung</div>
+<p style="font-size:small">Diese Software wurde entwickelt mit Hilfe von und durch:</p>
+<table style="font-size:small;width:60%" cellspacing="10">
+<tr style="vertical-align:middle;">
+<td style="vertical-align:middle;"><a class="noimg" href="http://djangoproject.com"><img src="{{MEDIA_URL}}img/djangopowered126x54.gif" /></a></td>
+<td style="vertical-align:middle;">&laquo;Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.&raquo;</td>
+</tr>
+
+<tr style="vertical-align:middle;">
+<td style="vertical-align:middle;"><a class="noimg" href="http://piratesolutions.org"><img class="ps" src="{{MEDIA_URL}}img/pslogo.jpg" /></a></td>
+<td style="vertical-align:middle;">Technische Realisierung und Hosting</td>
+</tr>
+
+<tr style="vertical-align:middle;">
+<td style="vertical-align:middle;"><a class="noimg" href="http://cherokee-project.com"><img class="cherokee" src="{{MEDIA_URL}}img/powered_by_cherokee-2.gif" /></a></td>
+<td style="vertical-align:middle;">&laquo;Cherokee is a very fast, flexible and easy to configure Web Server.&raquo;</td>
+</tr>
+</table>
+
+
+<div class="courseSmall">Statistik</div>
+<p style="font-size:small;">Bisher werden mit Hilfe von DocMan {{documents}} Dokumente verwaltet, welche insgesamt {{space|filesizeformat}} Speicherplatz ben&ouml;tigen.</p>
+
+
+{% endblock %}

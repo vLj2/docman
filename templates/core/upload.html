@@ -1,0 +1,57 @@
+{% block uploadContainer %}
+<div id="uploadContainer" style="display:none">
+	<div class="cancelButton"></div>
+	<div class="uploadContainers" id="uploadContainer-tab1" style="display:none;">
+		<h2>Neues Dokument hochladen</h2>
+		<p>Bitte w&auml;hle eine Datei zum Hochladen aus.</p>
+		
+		<div id="uploadResponse" class="message" style="display:none"></div>
+		
+		<form method="post" action="javascript:void(0);">
+		<input type="hidden" name="courseId" value="{{course.pk}}" />
+		<table>
+		<tr>	
+		<td><input id="fileUpload" name="fileUpload" type="file" /></td>
+		</tr>
+		</table>
+		</form>
+		</div>
+	<div class="uploadContainers" id="uploadContainer-tab2" style="display:none;">
+		<h2>Informationen eingeben</h2>
+		<div id="successResponse" class="message" style="display:none"></div>		
+		<p>Bitte f&uuml;lle der Vollst&auml;ndigkeit halber noch schnell folgende Felder aus.</p>
+		<form method="post" name="uploadDetails" action="javascript:void(0);">
+		{% csrf_token %}
+		<input type="hidden" name="documentId" value="" />
+		<table>
+		<tr>
+		<th>Name:</th>
+		<td><input name="name" type="text" /><br /></td>
+		</tr>		
+		<tr>	
+		<th>Tags:</th>
+		<td><input name="tags" type="text" /><br />
+		<small>Beliebig viele Schlagw&ouml;rter mit Leerzeichen trennen.</small></td>
+		</tr>
+		<tr>	
+		<th>Beschreibung:<br />
+		<small style="font-weight:normal">(Optional)</small></th>
+		<td><textarea name="desc"></textarea>
+		</td>
+		</tr>		
+		<tr>	
+		<td><input type="submit" value="" /></td><td style="vertical-align:middle;">Fertig? Speichern nicht vergessen!</td>
+		</tr>		
+		</table>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+<!-- testing -->
+<!--<form enctype="multipart/form-data" action="/upload/" method="POST">
+Choose a file to upload: <input name="Filedata" type="file" /><br />
+<input name="courseId" value="1">
+<input name="sessionId" value="{{request.user.session_key}}">
+<input type="submit" value="Upload File" />
+</form>-->

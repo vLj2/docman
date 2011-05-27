@@ -1,0 +1,47 @@
+{% extends "core/base.html" %}
+
+{% load truncatewords_by_chars %}
+{% load call_method %}
+
+
+{% block title %}&Uuml;bersicht{% endblock %}
+
+{% block content %}
+<div style="display:none"><h1>&Uuml;bersicht</h1>
+<p style="margin-top: -10px;">Willkommen bei DocMan, der kollaborativen Dokumentverwaltung.</p></div>
+{% if categories %}
+	{% for cat in categories %}
+		<div class="category">{{cat.name}}</div>
+		<div class="courseBox">	
+		{% if cat|args:request.user.get_profile.semester|call:"getCourses" %}
+			{% for c in cat|args:request.user.get_profile.semester|call:"getCourses" %}
+				<div class="documentBox">
+				<div class="course" onclick="$(location).attr('href','{% url course c.pk %}');">{{c.name}} <span class="docentName">bei {{c.docent.name}}</span>
+				
+				{% if c|args:request.user.pk|call:"get_subscription" %}
+				<div class="courseSubscription"></div>
+				{% endif %}
+				
+				</div>
+				<ul>
+				{% if c.getLastDocuments %}
+					{% for d in c.getLastDocuments %}
+						<div class="fileInfo" style="margin-top: 3px;font-size:x-small">{{d.getLatestRevision.file.size|filesizeformat}} - vor {{d.getLatestRevision.pub_date|timesince}}</div>
+						<li style="background-image:url({{ MEDIA_URL}}img/fileicons/{{d.getLatestRevision.type|default:"file"}}.png)" class="file {{d.getLatestRevision.type}}"><a href="{% url document d.pk %}">{{d.name|truncatewords_by_chars:40}}</a></li>
+					{% endfor %}
+				{% else %}
+					<li class="info">Bisher wurden keine Dokumente hochgeladen.</li>
+				{% endif %}
+				</ul>
+				</div>
+			{% endfor %}
+		{% else %}
+			<p>Keine Kurse in dieser Kategorie (f&uuml;r dieses Semester) vorhanden.</p>
+		{% endif %}		
+		</div>		
+	{% endfor %}
+{% else %}
+	<p>Keine Kategorien vorhanden!</p>
+{% endif %}
+
+{% endblock %}

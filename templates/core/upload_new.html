@@ -1,0 +1,20 @@
+{% block uploadContainer %}
+<div id="uploadContainer" style="display:none">
+	<div class="cancelButton"></div>
+	<div class="uploadContainers" id="uploadContainer-tab1" style="display:none;">
+		<h2>Neue Version hochladen</h2>
+		<p>Bitte w&auml;hle eine Datei zum Hochladen aus.</p>
+		
+		<div id="uploadResponse" class="message" style="display:none"></div>
+		
+		<form method="post" action="javascript:void(0);">
+		<input type="hidden" name="courseId" value="{{course.pk}}" />
+		<table>
+		<tr>	
+		<td><input id="updatedFileUpload" name="fileUpload" type="file" /></td>
+		</tr>
+		</table>
+		</form>
+		</div>
+</div>
+{% endblock %}

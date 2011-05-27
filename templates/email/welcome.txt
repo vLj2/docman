@@ -1,0 +1,8 @@
+Hallo {{user.first_name}},
+
+dein Account bei DocMan wurde erfolgreich angelegt! Deine Benutzerdaten lauten wie folgt:
+
+Benutzername: {{user.username}}
+Passwort: {{password}}
+
+Direkt zu DocMan: {{domain}}
