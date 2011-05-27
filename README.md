@@ -19,6 +19,11 @@ Due to the possibility of full text search and indexing of pdf documents content
 * [pyPdf](http://pybrary.net/pyPdf/) -- `easy_install pyPdf`
 * [haystack](http://haystacksearch.org/) -- `easy_install haystack`
 
+Icon copyright
+--------------
+
+Icons powered by iconfinder.com, most of them free for commercial use.
+
 Copying
 -------
 
