@@ -19,6 +19,33 @@ Due to the possibility of full text search and indexing of pdf documents content
 * [pyPdf](http://pybrary.net/pyPdf/) -- `easy_install pyPdf`
 * [haystack](http://haystacksearch.org/) -- `easy_install haystack`
 
+Setup
+-----
+
+First, create a file named `settings_local.py` with the following contents:
+
+`DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+MEDIA_ROOT = '/path/to/media/'
+TEMPLATE_DIRS = (
+	"/path/to/templates",
+)
+HAYSTACK_WHOOSH_PATH = '/path/to/whoosh_index'
+DATABASES = {
+	'default': {
+    	'NAME': 'database',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'HOST': '',
+	}
+}
+DEFAULT_FROM_EMAIL = "DocMan <no-reply@docman>"
+SECRET_KEY = 'YOUR SECRET KEY'`
+
+Then, it is just a regular django application setup: `manage.py syncdb`, `manage.py runserver`, and you should be done.
+
 Icon copyright
 --------------
 
