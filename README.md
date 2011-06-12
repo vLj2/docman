@@ -12,6 +12,9 @@ Requirements
 
 Due to the possibility of full text search and indexing of pdf documents content, there are some special requirements:
 
+* [python-django](http://djangoproject.org) -- at least Django 1.3
+* [mysql-python](http://sourceforge.net/projects/mysql-python/) -- `easy_install mysql-python`
+* [python-dateutil](http://labix.org/python-dateutil) -- `easy_install python-dateutil`
 * [django-registration](http://code.google.com/p/django-registration/) -- `easy_install django-registration`
 * [whoosh](https://bitbucket.org/mchaput/whoosh/wiki/Home) -- `easy_install Whoosh`
 * [django-ratings](https://github.com/dcramer/django-ratings) -- `easy_install django-ratings`
