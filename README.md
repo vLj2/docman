@@ -49,6 +49,15 @@ First, create a file named `settings_local.py` with the following contents:
 
 Then, it is just a regular django application setup: `manage.py syncdb`, `manage.py runserver`, and you should be done.
 
+Rebuild full text search index
+------------------------------
+
+To rebuild your search index, please run the following command:
+
+	python manage.py rebuild_index --noinput 2>&1 >/dev/null &
+
+The best idea is to run this via crond to rebuild the index once or twice per hour.
+
 Icon copyright
 --------------
 
