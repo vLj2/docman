@@ -20,7 +20,7 @@ Due to the possibility of full text search and indexing of pdf documents content
 * [django-ratings](https://github.com/dcramer/django-ratings) -- `easy_install django-ratings`
 * [django-tagging](http://code.google.com/p/django-tagging/) -- `easy_install django-tagging`
 * [pyPdf](http://pybrary.net/pyPdf/) -- `easy_install pyPdf`
-* [haystack](http://haystacksearch.org/) -- `easy_install haystack`
+* [django-haystack](http://haystacksearch.org/) -- `easy_install django-haystack`
 
 Setup
 -----
