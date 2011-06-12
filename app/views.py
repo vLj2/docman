@@ -56,7 +56,10 @@ def get_directory_size(directory):
   
 @login_required
 def semester_view(request, semester_id):
-	profile = get_object_or_404(UserProfile, Q(user=request.user))
+	try:
+		profile = UserProfile.objects.get(Q(user=request.user))
+	except:
+		return HttpResponseRedirect(reverse("default"))
 	if (str(semester_id) == 'all'):
 		profile.semester = -1
 		profile.save()

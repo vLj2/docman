@@ -45,6 +45,7 @@ class Category(models.Model):
 		return self.name
 		
 	def getCourses(self, semester_id=-1):
+		if type(semester_id) == str: semester_id=-1
 		if (semester_id > 0):
 			return Course.objects.filter(Q(category=self), Q(semester=semester_id) | Q(semester=-1)).order_by('name')
 		else:
@@ -127,10 +128,11 @@ class DocumentComment(models.Model):
 # SIGNALS AND LISTENERS
 from django.contrib.auth.models import User
 from django.db.models import signals
-from django.dispatch import dispatcher
+from django.dispatch import dispatcher, receiver
 
 # User
-def user_post_save(sender, instance, signal, *args, **kwargs):
+@receiver(models.signals.post_save, sender=User)
+def user_post_save(sender, instance, created, **kwargs):
 	# check for profile
 	try:
 		p = UserProfile.objects.get(user=instance)
@@ -138,7 +140,7 @@ def user_post_save(sender, instance, signal, *args, **kwargs):
 	except:
 		print "user has no profile - create it and write welcome email if email address already set"
 		if instance.email and instance.first_name:
-			p = UserProfile(user=instance, welcome_email=True)
+			p = UserProfile(user=instance, welcome_email=True, semester=-1)
 			p.save()
 			password = User.objects.make_random_password(10)
 			docmail.docmail(instance.email, "Willkommen bei DocMan!", "welcome", Context({ 'user': instance, 'password': password, 'domain': DOMAIN }));			
@@ -146,4 +148,3 @@ def user_post_save(sender, instance, signal, *args, **kwargs):
 			instance.set_password(password)
 			instance.save()
 	
-models.signals.post_save.connect(user_post_save, sender=User)
