@@ -21,17 +21,17 @@
     <!-- HEADER with logo and navigation --> 
     <div id="header"> 
       <div onclick="$(location).attr('href','/');" id="logo"></div>
-		{% if request.user.is_authenticated or user.is_authenticated %}
+		{% if user.is_authenticated %}
 		
 		<div id="semesterswitch">
-		 	<select id="semesterSwitch" class="round_sb">
-		 		<option {% if user.get_profile.semester == -1 %}selected {% endif %}value="all">Alle Semester</option>
-		 		<option {% if user.get_profile.semester == 1 %}selected {% endif %}value="1">1. Semester</option>
-		 		<option {% if user.get_profile.semester == 2 %}selected {% endif %}value="2">2. Semester</option>
-		 		<option {% if user.get_profile.semester == 3 %}selected {% endif %}value="3">3. Semester</option>
-		 		<option {% if user.get_profile.semester == 4 %}selected {% endif %}value="4">4. Semester</option>
-		 		<option {% if user.get_profile.semester == 5 %}selected {% endif %}value="5">5. Semester</option>
-		 		<option {% if user.get_profile.semester == 6 %}selected {% endif %}value="6">6. Semester</option>
+			<select id="semesterSwitch" class="round_sb">
+				<option {% if user.get_profile.semester == -1 %}selected="selected" {% endif %}value="all">Alle Semester</option>
+				<option {% if user.get_profile.semester ==  1 %}selected="selected" {% endif %}value="1">1. Semester</option>
+				<option {% if user.get_profile.semester ==  2 %}selected="selected" {% endif %}value="2">2. Semester</option>
+				<option {% if user.get_profile.semester ==  3 %}selected="selected" {% endif %}value="3">3. Semester</option>
+				<option {% if user.get_profile.semester ==  4 %}selected="selected" {% endif %}value="4">4. Semester</option>
+				<option {% if user.get_profile.semester ==  5 %}selected="selected" {% endif %}value="5">5. Semester</option>
+				<option {% if user.get_profile.semester ==  6 %}selected="selected" {% endif %}value="6">6. Semester</option>
 		 	</select>
 		</div>		
 		
