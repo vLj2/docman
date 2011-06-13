@@ -67,7 +67,8 @@
     
     <!-- FOOTER with copyright --> 
     <div id="footer"> 
-        <span id="ssl">SSL-gesicherte Verbindung</span><br />
+	{% if request.is_secure %}<span id="ssl">SSL-gesicherte Verbindung</span><br />{% else %}
+		<span id="no-ssl">Unsichere Verbindung</span><br />{% endif %}
 	&copy; 2011 DocMan (Alle Rechte vorbehalten) - <a href="{% url about %}">&Uuml;ber DocMan</a>
     </div> 
   </div> 
