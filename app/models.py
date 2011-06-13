@@ -11,6 +11,11 @@ from django.utils.encoding import smart_str, smart_unicode
 import re
 from app import docmail
 from django.template import Context
+# SIGNALS AND LISTENERS
+from django.contrib.auth.models import User
+from django.db.models import signals
+from django.dispatch import dispatcher, receiver
+
 
 def get_upload_path(instance, filename):
 	if instance.document.course.shell_name:
@@ -21,7 +26,7 @@ def get_upload_path(instance, filename):
 class UserProfile(models.Model):
 	user = models.ForeignKey(User, unique=True)
 	welcome_email = models.BooleanField(default=False)
-	semester = models.IntegerField()
+	semester = models.IntegerField(default=-1)
 	
 	def profile(self):
 		if self.user.is_staff:
@@ -29,7 +34,38 @@ class UserProfile(models.Model):
 		else:
 			icon = 'student'
 		return '<span class="profileLink %s"><a href="/user/%d/">%s %s</a></span>' % (icon, self.user.pk, self.user.first_name, self.user.last_name)
+
+	@staticmethod
+	@receiver(models.signals.post_save, sender=User)
+	def user_post_save(sender, instance, created, **kwargs):
+		user = instance
+		# check for profile
+		try:
+			p = user.get_profile()
+			## user already has a profile
+		except:
+			## user has no profile - create it
+			p = UserProfile.create(user)
+		if not p.welcome_email and user.email and user.first_name:
+			## write welcome email
+			password = User.objects.make_random_password(10)
+			docmail.docmail(user.email, "Willkommen bei DocMan!", "welcome", Context({ 'user': user, 'password': password, 'domain': DOMAIN }));
+			#user.email_user("Willkommen bei DocMan!", "Hallo %s, willkommen bei DocMan.\n\nDein Account wurde angelegt, und du kannst dich ab sofort mit folgenden Daten einloggen:\n\nhttp://www.docman.me\nBenutzername: %s\nPasswort: %s\n\nViel Spass!" % (user.first_name, user.username, password))
+			p.welcome_email=True
+			p.save()
+			user.set_password(password)
+			user.save()
 	
+	@staticmethod
+	def create(user):
+		try:
+			p = user.get_profile()
+		except:
+			print "user has no profile - create it"
+			p = UserProfile(user=user)
+			p.save()
+		return p
+
 
 class Docent(models.Model):
 	name = models.CharField(max_length=255)
@@ -123,28 +159,5 @@ class DocumentComment(models.Model):
 	author = models.ForeignKey(User)
 	text = models.TextField()
 	document = models.ForeignKey(Document)
-	
-	
-# SIGNALS AND LISTENERS
-from django.contrib.auth.models import User
-from django.db.models import signals
-from django.dispatch import dispatcher, receiver
 
-# User
-@receiver(models.signals.post_save, sender=User)
-def user_post_save(sender, instance, created, **kwargs):
-	# check for profile
-	try:
-		p = UserProfile.objects.get(user=instance)
-		print "user already has a profile"
-	except:
-		print "user has no profile - create it and write welcome email if email address already set"
-		if instance.email and instance.first_name:
-			p = UserProfile(user=instance, welcome_email=True, semester=-1)
-			p.save()
-			password = User.objects.make_random_password(10)
-			docmail.docmail(instance.email, "Willkommen bei DocMan!", "welcome", Context({ 'user': instance, 'password': password, 'domain': DOMAIN }));			
-			#instance.email_user("Willkommen bei DocMan!", "Hallo %s, willkommen bei DocMan.\n\nDein Account wurde angelegt, und du kannst dich ab sofort mit folgenden Daten einloggen:\n\nhttp://www.docman.me\nBenutzername: %s\nPasswort: %s\n\nViel Spass!" % (instance.first_name, instance.username, password))
-			instance.set_password(password)
-			instance.save()
-	
+

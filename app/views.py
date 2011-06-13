@@ -57,14 +57,14 @@ def get_directory_size(directory):
 @login_required
 def semester_view(request, semester_id):
 	try:
-		profile = UserProfile.objects.get(Q(user=request.user))
+		profile = request.user.get_profile()
 	except:
-		return HttpResponseRedirect(reverse("default"))
+		profile = UserProfile.create(request.user)
 	if (str(semester_id) == 'all'):
 		profile.semester = -1
 		profile.save()
 	elif (int(semester_id) <= 6 and int(semester_id) >= 1):
-		profile.semester = semester_id
+		profile.semester = int(semester_id)
 		profile.save()
 	else:
 		messages.add_message(request, messages.ERROR, 'Ung&uuml;ltiges Semester ausgew&auml;hlt!')
