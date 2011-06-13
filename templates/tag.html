@@ -1,25 +1,26 @@
 {% extends "core/base.html" %}
+{% load i18n %}
 
 {% load truncatewords_by_chars %}
 
-{% block title %}Tag: {{tag.name}}{% endblock %}
+{% block title %}{% trans "Tag" %}: {{tag.name}}{% endblock %}
 
 {% block content %}
 
 <h1>Tag: {{tag.name}}</h1>
 
 <div class="documentBox">
-<div class="course" style="width:540px">Dokumente</div>
+<div class="course" style="width:540px">{% trans "Documents" %}</div>
 <ul>
 {% if documents.object_list.count > 0 %}
 	{% for d in documents.object_list %}
 		<div class="fileInfo" style="right: 230px">{{d.getLatestRevision.file.size|filesizeformat}}</div>
 		<li style="background-image:url({{ MEDIA_URL}}img/fileicons/{{d.getLatestRevision.type|default:"file"}}.png)" class="file {{d.getLatestRevision.type}}"><a href="{% url document d.pk %}">{{d.name|truncatewords_by_chars:65}}</a>
 		</li>
-		<li class="fileInfo"><a href="{%url course d.course.pk%}">{{d.course.name}}</a> - vor {{d.getLatestRevision.pub_date|timesince}} aktualisiert</li>
+		<li class="fileInfo"><a href="{%url course d.course.pk%}">{{d.course.name}}</a> - {% blocktrans with since=d.getLatestRevision.pub_date|timesince%}updated {{since}} ago{% endblocktrans %}</li>
 	{% endfor %}
 {% else %}
-	<li class="info">Bisher wurden keine Dokumente hochgeladen.</li>
+	<li class="info">{% trans "No documents have been uploaded so far." %}</li>
 {% endif %}
 </ul>
 </div>
@@ -32,7 +33,7 @@
 		{% endif %}
 
     <span class="current">
-			Seite {{ documents.number }} von {{ documents.paginator.num_pages }}
+			{% trans "Page" %}{{ documents.number }} {% trans "of" %} {{ documents.paginator.num_pages }}
 		</span>
 
     <span class="step-right">

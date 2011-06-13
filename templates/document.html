@@ -1,4 +1,5 @@
 {% extends "core/base.html" %}
+{% load i18n %}
 
 {% block title %}{{document.name}}{% endblock %}
 
@@ -25,15 +26,15 @@ Du bist hier: <a href="/">{{category.name}}</a>
 <tr style="vertical-align:top">
 	<td style="width:50%">
 	<div class="fileInfo2">
-	Hochgeladen von: {{document.author.get_profile.profile|safe}}</div>
-	<div class="fileInfo2">Aktuelle Revision: <span style="background-repeat:no-repeat;padding-left:20px;background-image:url({{ MEDIA_URL}}img/fileicons/{{document.getLatestRevision.type|default:"file"}}.png)">{{document.getLatestRevision.file.size|filesizeformat}} - vor {{document.getLatestRevision.pub_date|timesince}}</span></div>
-	<div class="fileInfo2"><div style="float:left;margin-right: 5px;">Bewertung:</div>
+	{% trans "Uploaded by" %}: {{document.author.get_profile.profile|safe}}</div>
+	<div class="fileInfo2">{% trans "Current revision" %}: <span style="background-repeat:no-repeat;padding-left:20px;background-image:url({{ MEDIA_URL}}img/fileicons/{{document.getLatestRevision.type|default:"file"}}.png)">{{document.getLatestRevision.file.size|filesizeformat}} - {% blocktrans with since=document.getLatestRevision.pub_date|timesince %}{{since}} ago{% endblocktrans %}</span></div>
+	<div class="fileInfo2"><div style="float:left;margin-right: 5px;">{% trans "Rating" %}:</div>
 	<div class="rating"></div>
 	<br />
 	</div>	
 	
 	{% if revisions.count > 0 %}
-	<div class="courseSmall">Revisionen</div>
+	<div class="courseSmall">{% trans "Revisions" %}</div>
 		<ul>
 		{% for revision in revisions %}
 		<li style="background-image:url({{ MEDIA_URL}}img/fileicons/{{revision.type|default:"file"}}.png)" class="file {{revision.type}}">{{revision.pub_date|date:"D, d.m.Y - H:i:s \U\h\r"}} <div onclick="$(location).attr('href','{% url download document.pk %}?rev={{revision.pk}}');" class="downloadSmall">.{{revision.get_extension}}</div> <div onclick="$(location).attr('href','{% url download document.pk %}?rev={{revision.pk}}&zipped=true');" class="zipSmall downloadSmall ">(.zip)</div>
@@ -42,18 +43,18 @@ Du bist hier: <a href="/">{{category.name}}</a>
 		</ul>
 	{% endif %}
 	
-	<div class="courseSmall">Beschreibung</div>
+	<div class="courseSmall">{% trans "Description" %}</div>
 	<div id="documentDescClean" style="display:none;">{{document.desc}}</div>
 	<div id="documentDesc">
   {% if document.desc %}
    <div class="desc">{{document.desc|urlize|linebreaksbr}}</div>
 	{% else %}
-		<p class="info">Bisher wurde keine Beschreibung gespeichert.</p>
+		<p class="info">{% trans "No description stored for this document." %}</p>
 	{% endif %}	
 	</div>
 
 	
-	<div class="courseSmall">Tags</div>
+	<div class="courseSmall">{% trans "Tags" %}</div>
   {% if cloud %}
 	<div class="taglist">  
     	{% for tag in cloud %}
@@ -63,46 +64,46 @@ Du bist hier: <a href="/">{{category.name}}</a>
 			{% endfor %}
 	</div>		
 	{% else %}
-		<p class="info">Bisher wurden keine Tags gespeichert.</li>
+		<p class="info">{% trans "No tags assigned to this document." %}</li>
 	{% endif %}
 	</td>
 	<td style="width:50%">
 	
 	<table style="margin-left: 40px">
 	<tr>
-		<td rowspan="2" style="width:70px;"><div class="download" onclick="$(location).attr('href','{% url download document.pk %}');">Download</div></td>
+		<td rowspan="2" style="width:70px;"><div class="download" onclick="$(location).attr('href','{% url download document.pk %}');">{% trans "Download" %}</div></td>
 		<td rowspan="2" style="width:64px;"><div class="download zipped" onclick="$(location).attr('href','{% url download document.pk %}?zipped=true');">(.zip)</div></td>		
-		<td style="width:24px;">{% if document|args:request.user.pk|call:"get_subscription" %}<div class="unsubscribe" onclick="$(location).attr('href','{% url unsubscribe document.pk %}');">Abbestellen</div>{% else %}<div class="subscribe" onclick="$(location).attr('href','{% url subscribe document.pk %}');">Abonnieren</div>{% endif %}</td>
-		<td style="width:24px;">{% if request.user.is_staff or request.user == document.author %}<div class="uploadNew" onclick="uploadNew();">Aktualisieren</div>{% endif %}</td>
+		<td style="width:24px;">{% if document|args:request.user.pk|call:"get_subscription" %}<div class="unsubscribe" onclick="$(location).attr('href','{% url unsubscribe document.pk %}');">{% trans "Unsubscribe" %}</div>{% else %}<div class="subscribe" onclick="$(location).attr('href','{% url subscribe document.pk %}');">{% trans "Subscribe" %}</div>{% endif %}</td>
+		<td style="width:24px;">{% if request.user.is_staff or request.user == document.author %}<div class="uploadNew" onclick="uploadNew();">{% trans "Refresh" %}</div>{% endif %}</td>
 	</tr>
 	<tr>
-		<td style="width:24px;">{% if request.user.is_staff or request.user == document.author %}<div class="edit" onclick="editMode();">Bearbeiten</div>{% endif %}</td>
-		<td style="width:24px;">{% if request.user.is_staff or request.user == document.author %}<div class="remove" onclick="if(confirm('Sicher, dass du das Dokument und alle Kommentare dazu l&ouml;schen willst?')) $(location).attr('href','{% url delete-doc document.pk %}');">L&ouml;schen</div>{% endif %}</td>
+		<td style="width:24px;">{% if request.user.is_staff or request.user == document.author %}<div class="edit" onclick="editMode();">{% trans "Edit" %}</div>{% endif %}</td>
+		<td style="width:24px;">{% if request.user.is_staff or request.user == document.author %}<div class="remove" onclick="if(confirm('{% trans "Are you sure, you want to delete the document and all its comments?" %}')) $(location).attr('href','{% url delete-doc document.pk %}');">{% trans "Delete" %}</div>{% endif %}</td>
 	</tr>		
 	</table>
 	</td>
 	</tr>
 </table>
 
-<div class="category">Kommentare</div>
+<div class="category">{% trans "Comments" %}</div>
 <div class="courseBox" style="width:80%">
 {% for comment in comments %}
-<div class="fileInfo2">{{comment.author.get_profile.profile|safe}} vor {{comment.pub_date|timesince}} {% if request.user.is_staff or request.user == comment.author %} - <span class="deleteComment" onclick="$(location).attr('href','{% url comment-delete comment.pk %}');">L&ouml;schen</span>{% endif %}</div>
+<div class="fileInfo2">{{comment.author.get_profile.profile|safe}} {% blocktrans with since=comment.pub_date|timesince %}{{since}} ago{% endblocktrans %} {% if request.user.is_staff or request.user == comment.author %} - <span class="deleteComment" onclick="$(location).attr('href','{% url comment-delete comment.pk %}');">{% trans "Delete" %}</span>{% endif %}</div>
 <div class="commentText">{{comment.text|escape|linebreaks|urlize}}</div> 
 {% empty %}
-<p class="info">Bisher wurden keine Kommentare zu diesem Dokument verfasst.</p>
+<p class="info">{% trans "No comments have been written for this document." %}</p>
 {% endfor %}
 </div>
 </div>
 
-<div class="courseSmall">Neuer Kommentar</div>
+<div class="courseSmall">{% trans "New comment" %}</div>
 
 <div id="commentForm"> 
 <form action="{% url comment-save document.pk %}" method="post" id="commentform" name="commentform"> 
 {%csrf_token%}
 <textarea name="comment" id="comment" cols="40" rows="10" ></textarea> 
 <br />
-<input type="submit" value="Speichern" />
+<input type="submit" value="{% trans "Save" %}" />
 </form> 
 </div> 
 

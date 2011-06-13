@@ -1,8 +1,9 @@
 {% extends "core/base.html" %}
+{% load i18n %}
 
 {% block content %}
-<h1>Whoops - Fehler 404!</h1>
+<h1>{% trans "Oops - Error 404!" %}</h1>
 <div class="e404">
-Die aufgerufene Seite oder das angeforderte Objekt existiert leider nicht.
+{% trans "You tried to access a site that does not exist." %}
 </div>
 {% endblock %}

@@ -15,6 +15,8 @@ from django.template import Context
 from django.contrib.auth.models import User
 from django.db.models import signals
 from django.dispatch import dispatcher, receiver
+# Internationalization
+from django.utils.translation import ugettext as _
 
 
 def get_upload_path(instance, filename):
@@ -49,8 +51,7 @@ class UserProfile(models.Model):
 		if not p.welcome_email and user.email and user.first_name:
 			## write welcome email
 			password = User.objects.make_random_password(10)
-			docmail.docmail(user.email, "Willkommen bei DocMan!", "welcome", Context({ 'user': user, 'password': password, 'domain': DOMAIN }));
-			#user.email_user("Willkommen bei DocMan!", "Hallo %s, willkommen bei DocMan.\n\nDein Account wurde angelegt, und du kannst dich ab sofort mit folgenden Daten einloggen:\n\nhttp://www.docman.me\nBenutzername: %s\nPasswort: %s\n\nViel Spass!" % (user.first_name, user.username, password))
+			docmail.docmail(user.email, _("Welcome to DocMan!"), "welcome", Context({ 'user': user, 'password': password, 'domain': DOMAIN }));
 			p.welcome_email=True
 			p.save()
 			user.set_password(password)
@@ -97,9 +98,9 @@ class Course(models.Model):
 	
 	def getSemester(self):
 		if self.semester >= 1:
-			return "%d. Semester" % self.semester
+			return _("%d. Term") % self.semester
 		else:
-			return "Alle Semester"
+			return _("All Terms")
 
 	def get_subscription(self, subscriber):
 		try:

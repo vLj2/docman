@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -25,23 +26,23 @@
 		
 		<div id="semesterswitch">
 			<select id="semesterSwitch" class="round_sb">
-				<option {% if user.get_profile.semester == -1 %}selected="selected" {% endif %}value="all">Alle Semester</option>
-				<option {% if user.get_profile.semester ==  1 %}selected="selected" {% endif %}value="1">1. Semester</option>
-				<option {% if user.get_profile.semester ==  2 %}selected="selected" {% endif %}value="2">2. Semester</option>
-				<option {% if user.get_profile.semester ==  3 %}selected="selected" {% endif %}value="3">3. Semester</option>
-				<option {% if user.get_profile.semester ==  4 %}selected="selected" {% endif %}value="4">4. Semester</option>
-				<option {% if user.get_profile.semester ==  5 %}selected="selected" {% endif %}value="5">5. Semester</option>
-				<option {% if user.get_profile.semester ==  6 %}selected="selected" {% endif %}value="6">6. Semester</option>
+				<option {% if user.get_profile.semester == -1 %}selected="selected" {% endif %}value="all">{% trans "All Terms" %}</option>
+				<option {% if user.get_profile.semester ==  1 %}selected="selected" {% endif %}value="1">{% trans "1st Term" %}</option>
+				<option {% if user.get_profile.semester ==  2 %}selected="selected" {% endif %}value="2">{% trans "2nd Term" %}</option>
+				<option {% if user.get_profile.semester ==  3 %}selected="selected" {% endif %}value="3">{% trans "3rd Term" %}</option>
+				<option {% if user.get_profile.semester ==  4 %}selected="selected" {% endif %}value="4">{% trans "4th Term" %}</option>
+				<option {% if user.get_profile.semester ==  5 %}selected="selected" {% endif %}value="5">{% trans "5th Term" %}</option>
+				<option {% if user.get_profile.semester ==  6 %}selected="selected" {% endif %}value="6">{% trans "6th Term" %}</option>
 		 	</select>
 		</div>		
 		
 		<div id="navigation">
       	<ul>
-	        <li><a href="/">&Uuml;bersicht</a></li>
-	        <li><a href="/search">Volltextsuche</a></li>
-	        <li><a href="{% url tags-cloud %}">Tagcloud</a></li>	        
-	        <li><a href="{% url account %}">Account</a></li>
-	        <li><a href="{% url logout %}">&raquo; Logout</a></li>
+	        <li><a href="/">{% trans "Overview" %}</a></li>
+	        <li><a href="/search">{% trans "Full Text Search" %}</a></li>
+	        <li><a href="{% url tags-cloud %}">{% trans "Tag Cloud" %}</a></li>	        
+	        <li><a href="{% url account %}">{% trans "My Account" %}</a></li>
+	        <li><a href="{% url logout %}">&raquo; {% trans "Logout" %}</a></li>
 	        <li class="clear loader"><img src="{{ MEDIA_URL }}img/loader.gif">&nbsp;</li>	        
 		</ul>		
 		</div>
@@ -67,9 +68,9 @@
     
     <!-- FOOTER with copyright --> 
     <div id="footer"> 
-	{% if request.is_secure %}<span id="ssl">SSL-gesicherte Verbindung</span><br />{% else %}
-		<span id="no-ssl">Unsichere Verbindung</span><br />{% endif %}
-	&copy; 2011 DocMan (Alle Rechte vorbehalten) - <a href="{% url about %}">&Uuml;ber DocMan</a>
+	{% if request.is_secure %}<span id="ssl">{% trans "SSL encrypted connection" %}</span><br />{% else %}
+		<span id="no-ssl">{% trans "Insecure connection" %}</span><br />{% endif %}
+	&copy; 2011 DocMan ({% trans "All rights reserved." %}) - <a href="{% url about %}">{% trans "About DocMan" %}</a>
     </div> 
   </div> 
 </body>
