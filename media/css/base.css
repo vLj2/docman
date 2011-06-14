@@ -12,6 +12,17 @@ div#wrapper {
 div#header {
 }
 
+div.passwordReset {
+	font-size:small;
+	text-align:right;
+	width: 625px;
+	margin-top: 5px;
+	color: rgb(110,110,110);
+}
+div.passwordReset a{
+	text-decoration: underline;
+}
+
 div#header div#logo {
 	width:250px;
 	height: 80px;

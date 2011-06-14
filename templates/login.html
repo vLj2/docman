@@ -33,6 +33,10 @@ $(document).ready(function(){
 	<input type="submit" class="login" value=" " />
 </form>
 
+{% url password_reset as pwreset %}
+<div class="passwordReset">
+{% blocktrans %}<a href="{{pwreset}}">Forgot your password?</a>{% endblocktrans %}
+</div>
 <p class="note">{% blocktrans %} Please note: You cannot sign up for DocMan on your own. Please contact {{ support_email }} in case of problems.{% endblocktrans %}</p>
 
 <div id="poweredBy">

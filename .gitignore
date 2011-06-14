@@ -1,3 +1,4 @@
+*.DStore
 settings_local.py
 media/hdd/*
 *.pyc

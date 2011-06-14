@@ -2,7 +2,6 @@ from django.conf.urls.defaults import *
 from django.contrib import auth
 from django.conf import settings
 
-
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -39,9 +38,12 @@ urlpatterns += patterns('docman.app.views',
 	url(r'^docent/(?P<docent_id>(\w+))/', 'docent_view', name='docent'),		
 	url(r'^save-comment/(?P<document_id>(\w+))/', 'save_comment_view', name='comment-save'),		
 	url(r'^delete-comment/(?P<comment_id>(\w+))/', 'delete_comment_view', name='comment-delete'),		
-	url(r'^rate/(?P<document_id>(\w+))/', 'rate_document_view', name='rate-document'),		
+	url(r'^rate/(?P<document_id>(\w+))/', 'rate_document_view', name='rate-document'),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
-	#url(r'^logout/$', 'logout', {'template_name':'login.html'}, name='logout'),	
+	url(r'^password_reset/$', 'password_reset', {'template_name':'registration/password_reset.html'}, name='password_reset'),
+	(r'^password_reset/done/$', 'password_reset_done'),
+	url(r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'password_reset_confirm', name='password_reset_confirm'),
+	(r'^reset/done/$', 'password_reset_complete'),
 )

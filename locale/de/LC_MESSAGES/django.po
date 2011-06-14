@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-14 02:37+0200\n"
+"POT-Creation-Date: 2011-06-14 10:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -411,7 +411,12 @@ msgstr ""
 "niemand versprechen, ob auch im Internet Explorer alles richtig "
 "funktioniert. Benutzung auf eigene Gefahr!"
 
-#: templates/login.html:36
+#: templates/login.html:38
+#, python-format
+msgid "<a href=\"%(pwreset)s\">Forgot your password?</a>"
+msgstr "Du hast dein <a href=\"%(pwreset)s\">Password vergessen?</a>"
+
+#: templates/login.html:40
 #, python-format
 msgid ""
 " Please note: You cannot sign up for DocMan on your own. Please contact "
@@ -420,7 +425,7 @@ msgstr ""
 "Hinweis: DocMan ist ein geschlossenes System. Bei Login-Problemen wende dich "
 "bitte an %(support_email)s."
 
-#: templates/login.html:39
+#: templates/login.html:43
 msgid "DocMan was realized using:"
 msgstr "DocMan wurde realisiert mit Hilfe von:"
 
