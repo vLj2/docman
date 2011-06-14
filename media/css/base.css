@@ -739,12 +739,17 @@ a.noimg {
 	padding-left: inherit;
 }
 
-span#ssl {
+span#ssl, span#no-ssl {
 	margin: auto;
 	width: 175px;
 	font-size: small;
-	background-image: url(../img/ssl.png);
 	background-position: left center;
 	background-repeat: no-repeat;
 	padding-left: 20px;
+}
+span#ssl {
+	background-image: url(../img/ssl.png);
+}
+span#no-ssl {
+	background-image: url(../img/no-ssl.png);
 }

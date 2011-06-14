@@ -9,8 +9,6 @@ ADMINS = (
 	('Timo Josten', 'tj@unkreativ.org'),
 )
 
-DOMAIN = 'http://docman.me'
-
 MANAGERS = ADMINS
 
 # Local time zone for this installation. Choices can be found here:
