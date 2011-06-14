@@ -1,9 +1,11 @@
 {% extends "core/base.html" %}
+{% load i18n %}
+{% load value_from_settings %}
 
 {% block content %}
-<h1>Willkommen bei DocMan.</h1>
+<h1>{% trans "Welcome to DocMan." %}</h1>
 
-<p>Bitte melde dich mit deinen Benutzerdaten an:</p>
+<p>{% trans "Please login with your username and password:" %}</p>
 
 
 <script type="text/javascript">
@@ -15,7 +17,7 @@ $(document).ready(function(){
 </script>
 
 <div id="stopIe" style="display:none">
-HALT STOP! Du nutzt den Internet Explorer - Schande &uuml;ber dein Haupt. DocMan wurde mit allen aktuellen Webbrowsern getestet, deshalb kann dir leider niemand versprechen, ob auch im Internet Explorer alles richtig funktioniert. Benutzung auf eigene Gefahr!
+{% trans "Stop! You are browsing via Internet Explorer. This website has only been tested with all up to date web browsers, so we cannot guarantee it will work with Internet Explorer. Use at your own risk!" %}
 </div>
 
 {% if error %}
@@ -32,14 +34,16 @@ HALT STOP! Du nutzt den Internet Explorer - Schande &uuml;ber dein Haupt. DocMan
 	<input type="submit" class="login" value=" " />
 </form>
 
+{% url password_reset as pwreset %}
 <div class="passwordReset">
-Du hast dein <a href="{% url password_reset %}">Password vergessen?</a>
+{% blocktrans %}<a href="{{pwreset}}">Forgot your password?</a>{% endblocktrans %}
 </div>
 
-<p class="note">Hinweis: DocMan ist ein geschlossenes System. Bei Login-Problemen wende dich bitte an support@docman.me</p>
+{% value_from_settings SUPPORT_EMAIL as support_email %}
+<p class="note">{% blocktrans %} Please note: You cannot sign up for DocMan on your own. Please contact {{ support_email }} in case of problems.{% endblocktrans %}</p>
 
 <div id="poweredBy">
-<p>DocMan wurde realisiert mit Hilfe von:</p>
+<p>{% trans "DocMan was realized using:" %}</p>
 <a class="noimg" href="http://djangoproject.com"><img src="{{MEDIA_URL}}img/djangopowered126x54.gif" /></a>
 <a class="noimg" href="http://piratesolutions.org"><img class="ps" src="{{MEDIA_URL}}img/pslogo.jpg" /></a>
 <a class="noimg" href="http://cherokee-project.com"><img class="cherokee" src="{{MEDIA_URL}}img/powered_by_cherokee-2.gif" /></a>

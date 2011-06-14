@@ -1,16 +1,17 @@
 {% extends "core/base.html" %}
+{% load i18n %}
 {% block content %}
 
-<h1>&Uuml;ber DocMan</h1>
+<h1>{% trans "About DocMan" %}</h1>
 
 
-<div class="courseSmall">Impressum (V.i.S.d.P.)</div>
-<p style="font-size:small;">F&uuml;r den Inhalt der auf dieser Plattform hochgeladenen Dokumente kann keine Haftung &uuml;bernommen werden - der jeweilige Uploader ist f&uuml;r das Dokument und dessen Inhalt verantwortlich. Das Copyright des Autors bleibt unangetastet.</p>
-<p style="font-size:small;">Timo Josten<br />Lichtstr. 67<br />40235 Düsseldorf<br />+49 151 21264585<br />
-<a href="mailto:tj@piratesolutions.org">tj@piratesolutions.org</a></p>
+<div class="courseSmall">{% trans "Imprint" %}</div>
+<p style="font-size:small;">{% trans "The operator of this DocMan website cannot be taken responsible for uploaded files. The respective uploader is resonsible for the uploaded files and their content. The Copyrights of the original authors remains unchanged." %}</p>
+<p style="font-size:small;">{{ imprint.name }}<br />{{ imprint.address1 }}<br />{{ imprint.address2 }}<br />{{ imprint.phone }}<br />
+<a href="mailto:{{ imprint.email }}">{{ imprint.email }}</a></p>
 
-<div class="courseSmall">Technische Realisierung</div>
-<p style="font-size:small">Diese Software wurde entwickelt mit Hilfe von und durch:</p>
+<div class="courseSmall">{% trans "Technical Details" %}</div>
+<p style="font-size:small">{% trans "This software has been developed with the help of:" %}</p>
 <table style="font-size:small;width:60%" cellspacing="10">
 <tr style="vertical-align:middle;">
 <td style="vertical-align:middle;"><a class="noimg" href="http://djangoproject.com"><img src="{{MEDIA_URL}}img/djangopowered126x54.gif" /></a></td>
@@ -19,7 +20,7 @@
 
 <tr style="vertical-align:middle;">
 <td style="vertical-align:middle;"><a class="noimg" href="http://piratesolutions.org"><img class="ps" src="{{MEDIA_URL}}img/pslogo.jpg" /></a></td>
-<td style="vertical-align:middle;">Technische Realisierung und Hosting</td>
+<td style="vertical-align:middle;">{% trans "Technical Implementation" %}</td>
 </tr>
 
 <tr style="vertical-align:middle;">
@@ -31,12 +32,13 @@
 <div class="courseSmall">Download</div>
 <table style="font-size:small;width:60%" cellspacing="10">
 <tr style="vertical-align:middle;">
-<td style="vertical-align:middle;"><a class="noimg" href="http://github.com/tjosten/docman"><img src="{{MEDIA_URL}}img/github.png" /></a></td><td style="vertical-align:middle;">docman ist ein Open Source-Projekt und kann bei github heruntergeladen werden.</td>
+<td style="vertical-align:middle;"><a class="noimg" href="http://github.com/tjosten/docman"><img src="{{MEDIA_URL}}img/github.png" /></a></td><td style="vertical-align:middle;">
+  {% trans "DocMan is an open source project and can be downloaded at GitHub." %}</td>
 </tr>
 </table>
 
-<div class="courseSmall">Statistik</div>
-<p style="font-size:small;">Bisher werden mit Hilfe von DocMan {{documents}} Dokumente verwaltet, welche insgesamt {{space|filesizeformat}} Speicherplatz ben&ouml;tigen.</p>
+<div class="courseSmall">{% trans "Statistics" %}</div>
+<p style="font-size:small;">{% blocktrans with space=stats.space|filesizeformat number=stats.count %}Until now, a total number of {{number}} documents have been uploaded to DocMan, that take up {{space}} of file system storage.{% endblocktrans %}</p>
 
 
 {% endblock %}

@@ -1,9 +1,10 @@
+{% load i18n %}
 {% block uploadContainer %}
 <div id="uploadContainer" style="display:none">
 	<div class="cancelButton"></div>
 	<div class="uploadContainers" id="uploadContainer-tab1" style="display:none;">
-		<h2>Neue Version hochladen</h2>
-		<p>Bitte w&auml;hle eine Datei zum Hochladen aus.</p>
+		<h2>{% trans "Upload new version" %}</h2>
+		<p>{% trans "Please select a file to upload." %}</p>
 		
 		<div id="uploadResponse" class="message" style="display:none"></div>
 		

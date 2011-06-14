@@ -1,0 +1,677 @@
+# This is the German Translation for DocMan (https://github.com/tjosten/docman)
+# Copyright (C) 2011 Timo Josten, Philipp Klaus
+# This file is distributed under the same license as the DocMan package.
+# Philipp Klaus <philipp.klaus@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DocMan v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-14 14:58+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Philipp Klaus <philipp.klaus@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: app/models.py:54
+msgid "Welcome to DocMan!"
+msgstr "Willkommen bei DocMan!"
+
+#: app/models.py:101
+#, python-format
+msgid "%d. Term"
+msgstr "%d. Semester"
+
+#: app/models.py:103 templates/core/base.html:29
+msgid "All Terms"
+msgstr "Alle Semester"
+
+#: app/views.py:73
+msgid "Invalid Term selected."
+msgstr "Ungültiges Semester ausgewählt!"
+
+#: app/views.py:96
+msgid "Successfully subscribed to notifications for this course."
+msgstr "Die Benachrichtigungen für diesen Kurs wurden erfolgreich aktiviert!"
+
+#: app/views.py:104
+msgid "You unsubscribed from notifications for this course."
+msgstr "Die Benachrichtigungen für diesen Kurs wurden erfolgreich abbestellt!"
+
+#: app/views.py:112
+msgid "Successfully subscribed to notifications for this document."
+msgstr "Die Benachrichtigungen für das Dokument wurden erfolgreich aktiviert!"
+
+#: app/views.py:120
+msgid "You unsubscribed from notifications for this document."
+msgstr "Die Benachrichtigungen für das Dokument wurden erfolgreich abbestellt!"
+
+#: app/views.py:130
+msgid "Couldn't load the document"
+msgstr "Das Dokument konnte nicht geladen werden!"
+
+#: app/views.py:134
+msgid "Invalid rating"
+msgstr "Ungültige Bewertung"
+
+#: app/views.py:151
+msgid "The passwords don't match."
+msgstr "Die Passwörter stimmen nicht überein!"
+
+#: app/views.py:155
+msgid "Your password must be at least 5 characters long!"
+msgstr "Das Passwort muss mindestens 5 Zeichen lang sein!"
+
+#: app/views.py:161
+msgid "Your password has been changed!"
+msgstr "Das Passwort wurde geändert!"
+
+#: app/views.py:188
+msgid "Username or password invalid."
+msgstr "Der Benutzername oder das Passwort ist ungültig."
+
+#: app/views.py:194
+msgid "This account has been deactivated."
+msgstr "Der Account wurde deaktiviert."
+
+#: app/views.py:244 app/views.py:358
+msgid "Couln't load the document!"
+msgstr "Das Dokument konnte nicht geladen werden!"
+
+#: app/views.py:248 app/views.py:366
+msgid "You aren't the owner of this document!"
+msgstr "Das Dokument gehört nicht dir!"
+
+#: app/views.py:259
+msgid "Data is missing!"
+msgstr "Keine Daten übergeben!"
+
+#: app/views.py:362
+msgid "Please enter a name!"
+msgstr "Bitte einen Namen angeben!"
+
+#: app/views.py:396
+msgid "The document has been deleted successfully!"
+msgstr "Das Dokument wurde erfolgreich gelöscht!"
+
+#: app/views.py:424
+msgid "The comment has been deleted."
+msgstr "Der Kommentar wurde gelöscht."
+
+#: app/views.py:427
+msgid "You aren't the author of this comment!"
+msgstr "Der Kommentar gehört nicht dir!"
+
+#: app/views.py:436
+msgid "There are no documents in this category."
+msgstr "Es gibt keine Dokumente in dieser Kategorie."
+
+#: app/views.py:467
+msgid "Your comment is too short (or far too long)."
+msgstr "Dein Kommentar ist leider zu kurz (oder viel zu lang)."
+
+#: app/views.py:476
+msgid "Your comment has been saved!"
+msgstr "Dein Kommentar wurde gespeichert!"
+
+#: app/views.py:492
+msgid "There is a problem with the session - please log out and back in!"
+msgstr "Die Session konnte nicht aufgelöst werden - bitte erneut einloggen!"
+
+#: app/views.py:499
+msgid "Course couldn't be loaded - please try again!"
+msgstr "Kurs konnte nicht geladen werden - bitte erneut versuchen!"
+
+#: app/views.py:505
+msgid "Document couln't be loaded - please try again!"
+msgstr "Dokument konnte nicht geladen werden - bitte erneut versuchen!"
+
+#: app/views.py:512
+msgid "The file is too big!"
+msgstr "Die Datei ist zu groß!"
+
+#: app/views.py:515
+#, python-format
+msgid "The file type %s is not supported."
+msgstr "Der Dateityp %s wird nicht unterstützt!"
+
+#: app/views.py:518 app/views.py:536 app/views.py:546
+msgid "An unexpected error occured while uploading the file."
+msgstr "Beim Hochladen ist ein unerwarteter Fehler aufgetreten!"
+
+#: app/views.py:617
+msgid "The Document has ben uploaded successfully."
+msgstr "Das Dokument wurde erfolgreich hochgeladen!"
+
+#: templates/404.html:5
+msgid "Oops - Error 404!"
+msgstr "Whoops - Fehler 404!"
+
+#: templates/404.html:7
+msgid "You tried to access a site that does not exist."
+msgstr ""
+"Die aufgerufene Seite oder das angeforderte Objekt existiert leider nicht."
+
+#: templates/500.html:9 templates/500.html.py:12
+msgid ""
+"The execution of DocMan unexpectedly failed. The administrator will be "
+"informed."
+msgstr ""
+"Die Ausführung der Anwendung wurde unerwartet abgebrochen. Der Administrator "
+"wurde informiert."
+
+#: templates/about.html:5 templates/core/base.html:73
+msgid "About DocMan"
+msgstr "Über DocMan"
+
+#: templates/about.html:8
+msgid "Imprint"
+msgstr "Impressum"
+
+#: templates/about.html:9
+msgid ""
+"The operator of this DocMan website cannot be taken responsible for uploaded "
+"files. The respective uploader is resonsible for the uploaded files and "
+"their content. The Copyrights of the original authors remains unchanged."
+msgstr ""
+"Für den Inhalt der auf dieser Plattform hochgeladenen Dokumente kann keine "
+"Haftung übernommen werden - der jeweilige Uploader ist für das Dokument und "
+"dessen Inhalt verantwortlich. Das Copyright des Autors bleibt unangetastet."
+
+#: templates/about.html:13
+msgid "Technical Details"
+msgstr "Technische Details"
+
+#: templates/about.html:14
+msgid "This software has been developed with the help of:"
+msgstr "Diese Software wurde entwickelt mit Hilfe von und durch:"
+
+#: templates/about.html:23
+msgid "Technical Implementation"
+msgstr "Technische Umsetzung"
+
+#: templates/about.html:36
+msgid "DocMan is an open source project and can be downloaded at GitHub."
+msgstr ""
+"DocMan ist ein Open-Source Projekt und kann von GitHub heruntergeladen "
+"werden."
+
+#: templates/about.html:40
+msgid "Statistics"
+msgstr "Statistik"
+
+#: templates/about.html:41
+#, python-format
+msgid ""
+"Until now, a total number of %(number)s documents have been uploaded to "
+"DocMan, that take up %(space)s of file system storage."
+msgstr ""
+"Bisher werden mit Hilfe von DocMan %(number)s Dokumente verwaltet, welche "
+"insgesamt %(space)s Speicherplatz benötigen."
+
+#: templates/account.html:6
+msgid "Your account, "
+msgstr "Dein Account, "
+
+#: templates/account.html:9
+msgid "Change password"
+msgstr "Passwort ändern"
+
+#: templates/account.html:15 templates/registration/password_reset.html:11
+msgid "New Password"
+msgstr "Neues Passwort"
+
+#: templates/account.html:16
+#: templates/registration/password_reset_confirm.html:18
+msgid "..repeat:"
+msgstr "..wiederholen:"
+
+#: templates/account.html:19 templates/document.html:106
+#: templates/registration/password_reset_confirm.html:21
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/course.html:15
+msgid "Upload new file"
+msgstr "Neues Dokument hochladen"
+
+#: templates/course.html:16
+msgid "Download all documents"
+msgstr "Alle Dokumente herunterladen"
+
+#: templates/course.html:18
+msgid "Unsubscribe this Course"
+msgstr "Kurs abbestellen"
+
+#: templates/course.html:20
+msgid "Subscribe this Course"
+msgstr "Kurs abonnieren"
+
+#: templates/course.html:26 templates/document.html:15
+msgid "You are here"
+msgstr "Du bist hier"
+
+#: templates/course.html:31
+msgid "Lecturer"
+msgstr "Dozent"
+
+#: templates/course.html:32
+msgid "Term"
+msgstr "Semester"
+
+#: templates/course.html:35 templates/tag.html:13
+msgid "Documents"
+msgstr "Dokumente"
+
+#: templates/course.html:43
+#, python-format
+msgid "Uploaded by %(uploader)s - updated %(since)s ago"
+msgstr "Hochgeladen von %(uploader)s - vor %(since)s aktualisiert"
+
+#: templates/course.html:46 templates/default.html:34
+msgid "Until now no documents have been uploaded."
+msgstr "Bisher wurden keine Dokumente hochgeladen."
+
+#: templates/course.html:59 templates/tag.html:36
+#: templates/search/search.html:53
+msgid "Page"
+msgstr "Seite"
+
+#: templates/course.html:59 templates/tag.html:36
+#: templates/search/search.html:53
+msgid "of"
+msgstr "von"
+
+#: templates/default.html:8 templates/default.html.py:11
+#: templates/core/base.html:41
+msgid "Overview"
+msgstr "Überblick"
+
+#: templates/default.html:12
+msgid "Welcome to DocMan, the collaborative document management system."
+msgstr "Willkommen bei DocMan, der kollaborativen Dokumentverwaltung."
+
+#: templates/default.html:20
+msgid "held by"
+msgstr "bei"
+
+#: templates/default.html:40
+msgid "No courses in this category (for this term)."
+msgstr "Keine Kurse in dieser Kategorie (für dieses Semester) vorhanden."
+
+#: templates/default.html:45
+msgid "No Categories set up yet."
+msgstr "Keine Kategorien vorhanden!"
+
+#: templates/docent.html:13
+msgid "Courses held by this Lecturer"
+msgstr "Kurse dieses Dozenten"
+
+#: templates/docent.html:20
+msgid "No courses are assigned to this lecturer."
+msgstr "Dieser Dozent hält keine Kurse."
+
+#: templates/document.html:29 templates/search/search.html:36
+msgid "Uploaded by"
+msgstr "Hochgeladen von"
+
+#: templates/document.html:30
+msgid "Current revision"
+msgstr "Aktuelle Revision"
+
+#: templates/document.html:30 templates/document.html.py:91
+#: templates/user.html:17 templates/user.html.py:32
+#, python-format
+msgid "%(since)s ago"
+msgstr "vor %(since)s"
+
+#: templates/document.html:31
+msgid "Rating"
+msgstr "Bewertung"
+
+#: templates/document.html:37
+msgid "Revisions"
+msgstr "Revisionen"
+
+#: templates/document.html:46 templates/core/upload.html:38
+msgid "Description"
+msgstr "Beschreibung"
+
+#: templates/document.html:52
+msgid "No description stored for this document."
+msgstr "Bisher wurde keine Beschreibung gespeichert."
+
+#: templates/document.html:57 templates/core/upload.html:33
+msgid "Tags"
+msgstr "Stichwörter"
+
+#: templates/document.html:67
+msgid "No tags assigned to this document."
+msgstr "Bisher wurden keine Stichwörter gespeichert."
+
+#: templates/document.html:74
+msgid "Download"
+msgstr "Download"
+
+#: templates/document.html:76
+msgid "Unsubscribe"
+msgstr "Abbestellen"
+
+#: templates/document.html:76
+msgid "Subscribe"
+msgstr "Abonnieren"
+
+#: templates/document.html:77
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: templates/document.html:80
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: templates/document.html:81
+msgid "Are you sure, you want to delete the document and all its comments?"
+msgstr "Sicher, dass du das Dokument und alle Kommentare dazu löschen willst?"
+
+#: templates/document.html:81 templates/document.html.py:91
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/document.html:88
+msgid "Comments"
+msgstr "Kommentare"
+
+#: templates/document.html:94
+msgid "No comments have been written for this document."
+msgstr "Bisher wurden keine Kommentare zu diesem Dokument verfasst."
+
+#: templates/document.html:99
+msgid "New comment"
+msgstr "Neuer Kommentar"
+
+#: templates/login.html:6
+msgid "Welcome to DocMan."
+msgstr "Willkommen bei DocMan."
+
+#: templates/login.html:8
+msgid "Please login with your username and password:"
+msgstr "Bitte melde dich mit deinen Benutzerdaten an:"
+
+#: templates/login.html:20
+msgid ""
+"Stop! You are browsing via Internet Explorer. This website has only been "
+"tested with all up to date web browsers, so we cannot guarantee it will work "
+"with Internet Explorer. Use at your own risk!"
+msgstr ""
+"HALT STOP! Du nutzt den Internet Explorer - Schande über dein Haupt. DocMan "
+"wurde mit allen aktuellen Webbrowsern getestet, deshalb kann dir leider "
+"niemand versprechen, ob auch im Internet Explorer alles richtig "
+"funktioniert. Benutzung auf eigene Gefahr!"
+
+#: templates/login.html:39
+#, python-format
+msgid "<a href=\"%(pwreset)s\">Forgot your password?</a>"
+msgstr "Du hast dein <a href=\"%(pwreset)s\">Password vergessen?</a>"
+
+#: templates/login.html:43
+#, python-format
+msgid ""
+" Please note: You cannot sign up for DocMan on your own. Please contact "
+"%(support_email)s in case of problems."
+msgstr ""
+"Hinweis: DocMan ist ein geschlossenes System. Bei Login-Problemen wende dich "
+"bitte an %(support_email)s."
+
+#: templates/login.html:46
+msgid "DocMan was realized using:"
+msgstr "DocMan wurde realisiert mit Hilfe von:"
+
+#: templates/tag-cloud.html:6 templates/tag-cloud.html.py:10
+msgid "Tagcloud"
+msgstr "Stichwörter"
+
+#: templates/tag-cloud.html:20
+msgid "No tags are assigned yet."
+msgstr "Bisher wurden keine Tags gespeichert."
+
+#: templates/tag.html:6
+msgid "Tag"
+msgstr "Stichwort"
+
+#: templates/tag.html:20 templates/search/search.html:36
+#, python-format
+msgid "updated %(since)s ago"
+msgstr "vor %(since)s aktualisiert"
+
+#: templates/tag.html:23
+msgid "No documents have been uploaded so far."
+msgstr "Bisher wurden keine Dokumente hochgeladen."
+
+#: templates/user.html:13
+msgid "Recently uploaded documents"
+msgstr "Zuletzt hochgeladene Dokumente"
+
+#: templates/user.html:22
+msgid "No documents were uploaded by this user so far."
+msgstr "Bisher wurden keine Dokumente von diesem Benutzer hochgeladen."
+
+#: templates/user.html:28
+msgid "Last documents the user commented on."
+msgstr "Zuletzt kommentierte Dokumente"
+
+#: templates/user.html:37
+msgid "The user has not commented on any document yet."
+msgstr "Bisher hat der Benutzer keine Kommentare geschrieben."
+
+#: templates/core/base.html:30
+msgid "1st Term"
+msgstr "1. Semester"
+
+#: templates/core/base.html:31
+msgid "2nd Term"
+msgstr "2. Semester"
+
+#: templates/core/base.html:32
+msgid "3rd Term"
+msgstr "3. Semester"
+
+#: templates/core/base.html:33
+msgid "4th Term"
+msgstr "4. Semester"
+
+#: templates/core/base.html:34
+msgid "5th Term"
+msgstr "5. Semester"
+
+#: templates/core/base.html:35
+msgid "6th Term"
+msgstr "6. Semester"
+
+#: templates/core/base.html:42 templates/search/search.html:4
+#: templates/search/search.html.py:10
+msgid "Full Text Search"
+msgstr "Volltextsuche"
+
+#: templates/core/base.html:43
+msgid "Tag Cloud"
+msgstr "Stichwörter"
+
+#: templates/core/base.html:44
+msgid "My Account"
+msgstr "Mein Zugang"
+
+#: templates/core/base.html:45
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: templates/core/base.html:71
+msgid "SSL encrypted connection"
+msgstr "SSL-gesicherte Verbindung"
+
+#: templates/core/base.html:72
+msgid "Insecure connection"
+msgstr "Unsichere Verbindung"
+
+#: templates/core/base.html:73
+msgid "All rights reserved."
+msgstr "Alle Rechte vorbehalten."
+
+#: templates/core/upload.html:6
+msgid "Upload new document"
+msgstr "Neues Dokument hochladen"
+
+#: templates/core/upload.html:7 templates/core/upload_new.html:7
+msgid "Please select a file to upload."
+msgstr "Bitte wähle eine Datei zum Hochladen aus."
+
+#: templates/core/upload.html:21
+msgid "Enter Information"
+msgstr "Informationen eingeben"
+
+#: templates/core/upload.html:23
+msgid "Please take your time and fill out the following information."
+msgstr ""
+"Bitte fülle der Vollständigkeit halber noch schnell folgende Felder aus."
+
+#: templates/core/upload.html:29
+msgid "Name"
+msgstr "Name"
+
+#: templates/core/upload.html:35
+msgid "Enter as many tags as you like divided by spaces."
+msgstr "Beliebig viele Schlagwörter mit Leerzeichen trennen."
+
+#: templates/core/upload.html:39
+msgid "optional"
+msgstr "Optional"
+
+#: templates/core/upload.html:44
+msgid "Finished? Don't forget to save!"
+msgstr "Fertig? Speichern nicht vergessen!"
+
+#: templates/core/upload_new.html:6
+msgid "Upload new version"
+msgstr "Neue Version hochladen"
+
+#: templates/registration/password_reset.html:5
+msgid "Forgot your pasword?"
+msgstr "Password vergessen?"
+
+#: templates/registration/password_reset.html:7
+msgid ""
+"In the case you forgot your password, you may enter your email address and "
+"DocMan will send you a link with instructions how to reset your password."
+msgstr ""
+"Falls du dein Passwort vergessen hast, fülle bitte dieses Formular aus und "
+"du wirst weitere Anweisungen per E-Mail erhalten."
+
+#: templates/registration/password_reset.html:11
+msgid "Email address:"
+msgstr "E-Mail Adresse:"
+
+#: templates/registration/password_reset_complete.html:5
+msgid "Successfully changed your password!"
+msgstr "Password erfolgreich geändert!"
+
+#: templates/registration/password_reset_complete.html:8
+#, python-format
+msgid ""
+"Your password has been changed successfully, you may login now on the <u><a "
+"href=\"%(def)s\">homepage</a></u>."
+msgstr ""
+"Dein Passwort wurde erfolgreich geändert. Du kannst dich nun auf der <u><a "
+"href=\"%(def)s\">Startseite</a></u> anmelden."
+
+#: templates/registration/password_reset_confirm.html:6
+msgid "Set a new password"
+msgstr "Neues Passwort erstellen"
+
+#: templates/registration/password_reset_confirm.html:10
+msgid "Enter new password"
+msgstr "Neues Passwort eingeben"
+
+#: templates/registration/password_reset_confirm.html:12
+msgid "Please enter your new password: "
+msgstr "Bitte gib' hier dein neues Passwort ein:"
+
+#: templates/registration/password_reset_confirm.html:17
+msgid "New Password:"
+msgstr "Neues Passwort:"
+
+#: templates/registration/password_reset_confirm.html:27
+msgid "There is a problem"
+msgstr "Fehler aufgetreten"
+
+#: templates/registration/password_reset_confirm.html:30
+#, python-format
+msgid ""
+"Your reset link is incorrect. Please check your email for line breaks in the "
+"link, request a new reset link or write an email to <a href=\"mailto:"
+"%(support_email)s\">%(support_email)s</a>."
+msgstr ""
+"Leider ist dein Reset-Link nicht korrekt. Bitte kontrolliere die E-Mail auf "
+"Zeilenumbrüche im Link, fordere erneut einenReset-Link an oder schreibe eine "
+"E-Mail an <a href=\"mailto:%(support_email)s\">%(support_email)s</a>."
+
+#: templates/registration/password_reset_done.html:5
+msgid "Successfully sent the email!"
+msgstr "E-Mail erfolgreich versendet!"
+
+#: templates/registration/password_reset_done.html:7
+msgid ""
+"In an instant you will receive an email with instructions and a link to "
+"reset your password."
+msgstr ""
+"Du erhältst in dieser Minute eine E-Mail mit weiteren Anweisungen und einem "
+"Link, mit dessen Hilfe du dein Passwort zurücksetzen kannst."
+
+#: templates/registration/password_reset_email.html:3
+#, python-format
+msgid ""
+"Hello %(first_name)s,\n"
+"\n"
+"you requested a new password for DocMan. You can set a new pasword using the "
+"following link.\n"
+"\n"
+"%(protocol)s://%(domain)s%(reset_url)s\n"
+"\n"
+"Your username is %(username)s.\n"
+"\n"
+"If you didn't request a new password please ignore this email or contact "
+"DocMan.\n"
+"\n"
+"Enjoy document management with DocMan!\n"
+msgstr ""
+"Hallo %(first_name)s,\n"
+"\n"
+"Du hast ein neues Passwort angefordert. Mit Hilfe des folgenden Links kannst "
+"du dir selbstständig ein neues Passwort setzen.\n"
+"\n"
+"%(protocol)s://%(domain)s%(reset_url)s\n"
+"\n"
+"Dein Benutzername lautet: %(username)s.\n"
+"\n"
+"Falls du kein neues Passwort angefordert hast, kannst du diese E-Mail "
+"ignorieren oder DocMan kontaktieren.\n"
+"\n"
+"Wir wünschen weiterhin viel Spaß mit DocMan!\n"
+
+#: templates/search/search.html:11
+msgid "Please enter a search key to start the search."
+msgstr "Bitte gib einen Suchbegriff ein, um die Suche zu starten."
+
+#: templates/search/search.html:17
+msgid "Search key"
+msgstr "Suchbegriff"
+
+#: templates/search/search.html:29
+msgid "Search Results"
+msgstr "Suchergebnisse"
+
+#: templates/search/search.html:39
+msgid "Unfortunateley your search did not return any results."
+msgstr "Leider keine Suchergebnisse gefunden."

@@ -1,19 +1,20 @@
 {% extends "core/base.html" %}
+{% load i18n %}
 
-{% block title %}Volltextsuche{% endblock %}
+{% block title %}{% trans "Full Text Search" %}{% endblock %}
 
 {% block content %}
 
 {{request.path}}
 
-<h1>Volltextsuche</h1>
-<p style="margin-top: -10px;">Bitte gib einen Suchbegriff ein, um die Suche zu starten.</p>
+<h1>{% trans "Full Text Search" %}</h1>
+<p style="margin-top: -10px;">{% trans "Please enter a search key to start the search." %}</p>
 <div class="courseBox">
 
 <form method="get" action=".">
   <table>
   <tr>
-  <th style="width:120px;text-align:left;">Suchbegriff:</th>
+  <th style="width:120px;text-align:left;">{% trans "Search key" %}:</th>
   <td class="search">{{form.q}}</td>
   <td><input class="find" type="submit" value=""></td>
   </tr>
@@ -25,17 +26,17 @@
 
 
 {% if query %}
-<div class="category">Suchergebnisse</div>
+<div class="category">{% trans "Search Results" %}</div>
 <div style="margin-top:10px;" class="documentBox">
 <ul>
 {% for result in page.object_list %}
 {% if result.object.pk %}
 <li style="background-image:url({{ MEDIA_URL}}img/fileicons/{{result.object.getLatestRevision.type|default:"file"}}.png)" class="file {{result.object.getLatestRevision.type}}"><a href="{% url document result.object.pk %}">{{result.object.name}}</a> <span style="color:rgb(200,200,200)">({{result.object.course.getSemester}})</span>
 </li>
-<li class="fileInfo">Hochgeladen von {{result.object.author.get_profile.profile|safe}} - vor {{result.object.getLatestRevision.pub_date|timesince}} aktualisiert</li>
+<li class="fileInfo">{% trans "Uploaded by" %} {{result.object.author.get_profile.profile|safe}} - {% blocktrans with since=result.object.getLatestRevision.pub_date|timesince %}updated {{since}} ago{% endblocktrans %}</li>
 {% endif %}
 {% empty %}
-	<li class="info">Leider keine Suchergebnisse gefunden.</li>
+	<li class="info">{% trans "Unfortunateley your search did not return any results." %}</li>
 {% endfor %}
 {% endif %}
 </ul>
@@ -49,7 +50,7 @@
 		{% endif %}
 
     <span class="current">
-			Seite {{ page.number }} von {{ page.paginator.num_pages }}
+			{% trans "Page" %} {{ page.number }} {% trans "of" %} {{ page.paginator.num_pages }}
 		</span>
 
     <span class="step-right">

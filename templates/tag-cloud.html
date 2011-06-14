@@ -1,12 +1,13 @@
 {% extends "core/base.html" %}
+{% load i18n %}
 
 {% load truncatewords_by_chars %}
 
-{% block title %}Tagcloud{% endblock %}
+{% block title %}{% trans "Tagcloud" %}{% endblock %}
 
 {% block content %}
 
-<h1>Tagcloud</h1>
+<h1>{% trans "Tagcloud" %}</h1>
 
 <div class="documentBox">
 	{% if cloud %}
@@ -16,7 +17,7 @@
 		{% endfor %}
 	</div>
 	{% else %}
-		<div style="text-align:center;margin:50px;">Hier gibt es nicht's zu sehen!</div>
+		<div style="text-align:center;margin:50px;">{% trans "No tags are assigned yet." %}</div>
 	{% endif %}		
 </div>
 {% endblock %}

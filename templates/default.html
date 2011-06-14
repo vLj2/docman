@@ -1,14 +1,15 @@
 {% extends "core/base.html" %}
+{% load i18n %}
 
 {% load truncatewords_by_chars %}
 {% load call_method %}
 
 
-{% block title %}&Uuml;bersicht{% endblock %}
+{% block title %}{% trans "Overview" %}{% endblock %}
 
 {% block content %}
-<div style="display:none"><h1>&Uuml;bersicht</h1>
-<p style="margin-top: -10px;">Willkommen bei DocMan, der kollaborativen Dokumentverwaltung.</p></div>
+<div style="display:none"><h1>{% trans "Overview" %}</h1>
+<p style="margin-top: -10px;">{% trans "Welcome to DocMan, the collaborative document management system." %}</p></div>
 {% if categories %}
 	{% for cat in categories %}
 		<div class="category">{{cat.name}}</div>
@@ -16,7 +17,7 @@
 		{% if cat|args:request.user.get_profile.semester|call:"getCourses" %}
 			{% for c in cat|args:request.user.get_profile.semester|call:"getCourses" %}
 				<div class="documentBox">
-				<div class="course" onclick="$(location).attr('href','{% url course c.pk %}');">{{c.name}} <span class="docentName">bei {{c.docent.name}}</span>
+				<div class="course" onclick="$(location).attr('href','{% url course c.pk %}');">{{c.name}} <span class="docentName">{% trans "held by" %} {{c.docent.name}}</span>
 				
 				{% if c|args:request.user.pk|call:"get_subscription" %}
 				<div class="courseSubscription"></div>
@@ -30,18 +31,18 @@
 						<li style="background-image:url({{ MEDIA_URL}}img/fileicons/{{d.getLatestRevision.type|default:"file"}}.png)" class="file {{d.getLatestRevision.type}}"><a href="{% url document d.pk %}">{{d.name|truncatewords_by_chars:40}}</a></li>
 					{% endfor %}
 				{% else %}
-					<li class="info">Bisher wurden keine Dokumente hochgeladen.</li>
+					<li class="info">{% trans "Until now no documents have been uploaded." %}</li>
 				{% endif %}
 				</ul>
 				</div>
 			{% endfor %}
 		{% else %}
-			<p>Keine Kurse in dieser Kategorie (f&uuml;r dieses Semester) vorhanden.</p>
+			<p>{% trans "No courses in this category (for this term)." %}</p>
 		{% endif %}		
 		</div>		
 	{% endfor %}
 {% else %}
-	<p>Keine Kategorien vorhanden!</p>
+	<p>{% trans "No Categories set up yet." %}</p>
 {% endif %}
 
 {% endblock %}

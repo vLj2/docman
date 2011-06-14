@@ -12,7 +12,7 @@ import urlparse
 from datetime import datetime
 import os
 import socket
-from docman.settings import APP_URL, MEDIA_ROOT, CONTENT_TYPES, MAX_UPLOAD_SIZE, DOMAIN, DEFAULT_FROM_EMAIL
+from docman.settings import APP_URL, MEDIA_ROOT, CONTENT_TYPES, MAX_UPLOAD_SIZE, DOMAIN, DEFAULT_FROM_EMAIL, IMPRINT
 from dateutil import relativedelta
 from docman.app.models import *
 from django.utils.translation import ugettext as _
@@ -41,12 +41,15 @@ from django.utils.encoding import smart_str, smart_unicode
 from django.contrib.auth import logout
 from app import docmail
 from django.template import Context
+# Internationalization
+from django.utils.translation import ugettext as _
 
 
 def is_valid_email(email):
-    return True if email_re.match(email) else False
-    
+	return True if email_re.match(email) else False
+	
 def get_directory_size(directory):
+	print directory
 	dir_size = 0
 	for (path, dirs, files) in os.walk(directory):
 		for file in files:
@@ -67,16 +70,17 @@ def semester_view(request, semester_id):
 		profile.semester = int(semester_id)
 		profile.save()
 	else:
-		messages.add_message(request, messages.ERROR, 'Ung&uuml;ltiges Semester ausgew&auml;hlt!')
+		messages.add_message(request, messages.ERROR, _('Invalid Term selected.') )
 		return HttpResponseRedirect(reverse("default"))				
 	return HttpResponseRedirect(reverse("default"))				
 
 @login_required
 def about_view(request):
-	documents = Document.objects.filter().count
-	space = get_directory_size(MEDIA_ROOT+'hdd')
+	stats = { 'space' : get_directory_size(MEDIA_ROOT+'/hdd'), 'count': len(Document.objects.all()) }
+	print stats
+	imprint = IMPRINT
 	return render_to_response("about.html", locals(), context_instance=RequestContext(request))	
-    
+	
 @login_required
 def user_view(request, user_id):
 	user = get_object_or_404(User, Q(pk=user_id))
@@ -89,7 +93,7 @@ def subscribe_course_view(request, course_id):
 	course = get_object_or_404(Course, Q(pk=course_id))
 	course.subscribers.add(request.user)
 	course.save()
-	messages.add_message(request, messages.SUCCESS, 'Die Benachrichtigungen f&uuml;r diesen Kurs wurden erfolgreich aktiviert!')
+	messages.add_message(request, messages.SUCCESS, _('Successfully subscribed to notifications for this course.'))
 	return HttpResponseRedirect(reverse("course", args=[course.pk]))	
 	
 @login_required
@@ -97,7 +101,7 @@ def unsubscribe_course_view(request, course_id):
 	course = get_object_or_404(Course, Q(pk=course_id))
 	course.subscribers.remove(request.user)
 	course.save()
-	messages.add_message(request, messages.SUCCESS, 'Die Benachrichtigungen f&uuml;r diesen Kurs wurden erfolgreich abbestellt!')
+	messages.add_message(request, messages.SUCCESS, _('You unsubscribed from notifications for this course.'))
 	return HttpResponseRedirect(reverse("course", args=[course.pk]))	
 
 @login_required
@@ -105,7 +109,7 @@ def subscribe_document_view(request, document_id):
 	document = get_object_or_404(Document, Q(pk=document_id))
 	document.subscribers.add(request.user)
 	document.save()
-	messages.add_message(request, messages.SUCCESS, 'Die Benachrichtigungen f&uuml;r das Dokument wurden erfolgreich aktiviert!')
+	messages.add_message(request, messages.SUCCESS, _('Successfully subscribed to notifications for this document.'))
 	return HttpResponseRedirect(reverse("document", args=[document.pk]))	
 	
 @login_required
@@ -113,7 +117,7 @@ def unsubscribe_document_view(request, document_id):
 	document = get_object_or_404(Document, Q(pk=document_id))
 	document.subscribers.remove(request.user)
 	document.save()
-	messages.add_message(request, messages.SUCCESS, 'Die Benachrichtigungen f&uuml;r das Dokument wurden erfolgreich abbestellt!')
+	messages.add_message(request, messages.SUCCESS, _('You unsubscribed from notifications for this document.'))
 	return HttpResponseRedirect(reverse("document", args=[document.pk]))	
  
 @login_required
@@ -123,18 +127,18 @@ def rate_document_view(request, document_id):
 	try:
 		document = Document.objects.get(Q(pk=document_id))
 	except:
-		response = {'success' : False, 'error' : 'Das Dokument konnte nicht geladen werden!'}
+		response = {'success' : False, 'error' : _("Couldn't load the document")}
 		return HttpResponse(simplejson.dumps(response))	
 
 	if int(rating) < 1 or int(rating) > 5:
-		response = {'success' : False, 'error' : 'Ung&uuml;ltige Bewertung!'}
+		response = {'success' : False, 'error' : _('Invalid rating')}
 		return HttpResponse(simplejson.dumps(response))			
 		
 	document.rating.add(score=rating, user=request.user, ip_address=request.META['REMOTE_ADDR'])
 	
 	response = {'success' : True }
 	return HttpResponse(simplejson.dumps(response))				
-    
+	
 @login_required
 def account_view(request):
 	if not request.POST:
@@ -144,20 +148,20 @@ def account_view(request):
 		repeat = request.POST.get("password_repeat")
 		
 		if len(password) > 0 and (password != repeat):
-			messages.add_message(request, messages.ERROR, 'Die Passw&ouml;rter stimmen nicht &uuml;berein!')
+			messages.add_message(request, messages.ERROR, _("The passwords don't match."))
 			return HttpResponseRedirect(reverse("account", args=[]))
 			
 		if len(password) < 6:
-			messages.add_message(request, messages.ERROR, 'Das Passwort muss mindestens 5 Zeichen lang sein!')
+			messages.add_message(request, messages.ERROR, _("Your password must be at least 5 characters long!"))
 			return HttpResponseRedirect(reverse("account", args=[]))
 			
 		request.user.set_password(password)
 		request.user.save()
 
-		messages.add_message(request, messages.SUCCESS, 'Das Passwort wurde ge&auml;ndert!')
+		messages.add_message(request, messages.SUCCESS, _('Your password has been changed!'))
 		return HttpResponseRedirect(reverse("account", args=[]))
 		
-    
+	
 @login_required
 def logout_view(reqeust):
 	logout(reqeust)
@@ -171,10 +175,6 @@ def login_view(request):
 		password = request.POST.get("password")
 		error = False
 		
-		#if not is_valid_email(email):
-		#	error = "Die E-Mail Adresse ist in einem ung&uuml;ltigen Format."
-		#	return render_to_response("login.html", locals(), context_instance=RequestContext(request))
-		
 		print redirect_to
 		
 		if redirect_to.find('.') > 0:
@@ -185,13 +185,13 @@ def login_view(request):
 		user = authenticate(username=username, password=password)
 	
 		if user is None:
-			error = "Der Benutzername oder das Passwort ist ung&uuml;ltig."
+			error = _("Username or password invalid.")
 		else:
 			if user.is_active:
 				login(request, user)
 				return HttpResponseRedirect(redirect_to)
 			else:
-				error = "Dieser Account wurde deaktiviert."
+				error = _("This account has been deactivated.")
 	
 	next = redirect_to
 	return render_to_response("login.html", locals(), context_instance=RequestContext(request))
@@ -241,11 +241,11 @@ def document_edit_view(request, document_id):
 	try:
 		document = Document.objects.get(Q(pk=document_id))
 	except:
-		response = {'success' : False, 'error' : 'Das Dokument konnte nicht geladen werden!'}
+		response = {'success' : False, 'error' : _("Couln't load the document!")}
 		return HttpResponse(simplejson.dumps(response))	
 		
 	if (request.user.is_staff == False and document.author != request.user):
-		response = {'success' : False, 'error' : 'Das Dokument geh&ouml;rt nicht dir!'}
+		response = {'success' : False, 'error' : _("You aren't the owner of this document!")}
 		return HttpResponse(simplejson.dumps(response))	
 	
 	if doEdit == 'tags':
@@ -256,7 +256,7 @@ def document_edit_view(request, document_id):
 	elif doEdit == 'desc':
 		document.desc = desc
 	else:
-		response = {'success' : False, 'error' : 'Keine Daten &uuml;bergeben!'}
+		response = {'success' : False, 'error' : _('Data is missing!')}
 		return HttpResponse(simplejson.dumps(response))
 		
 	document.save()
@@ -343,7 +343,7 @@ def upload_test_view(request):
 	
 	pdf = pyPdf.PdfFileReader(open(revision.file.path, "rb"))
 	for page in pdf.pages:
-	    print page.extractText()
+		print page.extractText()
 
 @login_required
 def file_info_view(request):
@@ -355,15 +355,15 @@ def file_info_view(request):
 	try:
 		document = Document.objects.get(Q(pk=documentId))
 	except:
-		response = {'success' : False, 'error' : 'Das Dokument konnte nicht geladen werden!'}
+		response = {'success' : False, 'error' : _("Couln't load the document!")}
 		return HttpResponse(simplejson.dumps(response))	
 	
 	if not name:
-		response = {'success' : False, 'error' : 'Bitte einen Namen angeben!'}
+		response = {'success' : False, 'error' : _("Please enter a name!")}
 		return HttpResponse(simplejson.dumps(response))
 		
 	if document.author.pk != request.user.pk:
-		response = {'success' : False, 'error' : 'Dieses Dokument wurde nicht von dir hochgeladen!'}
+		response = {'success' : False, 'error' : _("You aren't the owner of this document!")}
 		return HttpResponse(simplejson.dumps(response))	
 	
 	# filter tags
@@ -393,7 +393,7 @@ def document_delete_view(request, document_id):
 				
 	document.delete()
 	
-	messages.add_message(request, messages.SUCCESS, 'Das Dokument wurde erfolgreich gel&ouml;scht!')
+	messages.add_message(request, messages.SUCCESS, _('The document has been deleted successfully!'))
 	return HttpResponseRedirect(reverse("course", args=[course.pk]))
 
 @login_required
@@ -421,10 +421,10 @@ def delete_comment_view(request, comment_id):
 	
 	if (request.user.is_staff == True or comment.author == request.user):
 		comment.delete()
-		messages.add_message(request, messages.SUCCESS, 'Der Kommentar wurde gel&ouml;scht.')
+		messages.add_message(request, messages.SUCCESS, _("The comment has been deleted."))
 		return HttpResponseRedirect(reverse("document", args=[document_id]))				
 	else:
-		messages.add_message(request, messages.ERROR, 'Der Kommentar geh&ouml;rt nicht dir!')
+		messages.add_message(request, messages.ERROR, _("You aren't the author of this comment!"))
 		return HttpResponseRedirect(reverse("document", args=[document_id]))				
 
 @login_required
@@ -433,7 +433,7 @@ def download_course_view(request, course_id):
 	course = get_object_or_404(Course, Q(pk=course_id))
 
 	if len(documents) == 0:
-		messages.add_message(request, messages.INFO, 'Es gibt keine Dokumente in dieser Kategorie.')
+		messages.add_message(request, messages.INFO, _("There are no documents in this category."))
 		return HttpResponseRedirect(reverse("course", args=[course_id]))				
 
 	in_memory = StringIO()
@@ -464,7 +464,7 @@ def save_comment_view(request, document_id):
 	text = request.POST.get('comment')
 	
 	if len(text) < 5 or len(text) > 2000:
-		messages.add_message(request, messages.ERROR, 'Dein Kommentar ist leider zu kurz (oder viel zu lang).')
+		messages.add_message(request, messages.ERROR, _('Your comment is too short (or far too long).'))
 		return HttpResponseRedirect(reverse("document", args=[document.pk]))
 	else:
 		c = DocumentComment(pub_date=datetime.datetime.now(), author=request.user, text=text, document=document)
@@ -472,9 +472,8 @@ def save_comment_view(request, document_id):
 		
 		for subscriber in document.subscribers.all():
 			if subscriber.pk != request.user.pk:		
-		#		subscriber.email_user("[%s] Neuer Kommentar" % document.name, "Hallo %s,\n\nfuer das Dokument %s wurde eine neuer Kommentar von %s %s verfasst:\n\n%s\n\nWeitere Informationen: http://%s/document/%s" % (subscriber.first_name, document.name, request.user.first_name, request.user.last_name, text, settings.DOMAIN, document.pk))		
 				docmail.docmail(subscriber.email, "[%s] Neuer Kommentar" % document.name, "document_new_comment", Context({ 'user': subscriber, 'document': document, 'text': text, 'author' : request.user, 'domain': settings.DOMAIN }));
-		messages.add_message(request, messages.SUCCESS, 'Dein Kommentar wurde gespeichert!')
+		messages.add_message(request, messages.SUCCESS, _('Your comment has been saved!'))
 		return HttpResponseRedirect(reverse("document", args=[document.pk]))		
 	
 		
@@ -490,33 +489,33 @@ def upload_view(request):
 		uid = session.get_decoded().get('_auth_user_id')
 		request.user = User.objects.get(pk=uid)
 	except:
-		response = {'success' : False, 'error' : 'Die Session konnte nicht aufgel&ouml;st werden - bitte erneut einloggen!'}
+		response = {'success' : False, 'error' : _("There is a problem with the session - please log out and back in!")}
 		return HttpResponse(simplejson.dumps(response))
 	
 	if not documentId:
 		try:
 			course = Course.objects.get(Q(pk=courseId))
 		except:
-			response = {'success' : False, 'error' : 'Kurs konnte nicht geladen werden - bitte erneut versuchen!'}
+			response = {'success' : False, 'error' : _("Course couldn't be loaded - please try again!")}
 			return HttpResponse(simplejson.dumps(response))
 	else:
 		try:
 			document = Document.objects.get(Q(pk=documentId))
 		except:
-			response = {'success' : False, 'error' : 'Dokument konnte nicht geladen werden - bitte erneut versuchen!'}
+			response = {'success' : False, 'error' : _("Document couln't be loaded - please try again!")}
 			return HttpResponse(simplejson.dumps(response))		
 		
 	try:
 		content_type = uploadFile.content_type
 		if content_type in CONTENT_TYPES:
 			if uploadFile._size > MAX_UPLOAD_SIZE:
-				response = {'success' : False, 'error' : 'Die Datei ist zu gro&szlig;!'}
+				response = {'success' : False, 'error' : _('The file is too big!')}
 				return HttpResponse(simplejson.dumps(response))
 		else:
-				response = {'success' : False, 'error' : 'Dieser Dateityp wird nicht unterst&uuml;tzt! (%s)' % content_type}
+				response = {'success' : False, 'error' : _('The file type %s is not supported.') % content_type}
 				return HttpResponse(simplejson.dumps(response))
 	except:
-		response = {'success' : False, 'error' : 'Beim Hochladen ist ein unerwarteter Fehler aufgetreten!'}
+		response = {'success' : False, 'error' : _("An unexpected error occured while uploading the file.")}
 		return HttpResponse(simplejson.dumps(response))
 	
 	if not documentId:
@@ -530,12 +529,11 @@ def upload_view(request):
 					
 			for subscriber in course.subscribers.all():
 				if subscriber.pk != request.user.pk:
-					#subscriber.email_user("[%s] Neue Revision" % document.name, "Hallo %s,\n\nfuer das Dokument %s wurde eine neue Revision hochgeladen.\n\nWeitere Informationen: http://%s/document/%s" % (subscriber.first_name, document.name, settings.DOMAIN, document.pk))
 					docmail.docmail(subscriber.email, "[%s] Neues Dokument" % course.name, "course_new_document", Context({ 'user': subscriber, 'document': document, 'author' : request.user, 'course' : course, 'domain': settings.DOMAIN }));
 			
 		except:
 			raise
-			response = {'success' : False, 'error' : 'Beim Hochladen ist ein unerwarteter Fehler aufgetreten!'}
+			response = {'success' : False, 'error' : _("An unexpected error occured while uploading the file.")}
 			return HttpResponse(simplejson.dumps(response))		
 	else:
 		try:
@@ -543,10 +541,9 @@ def upload_view(request):
 			revision.file.save(uploadFile.name, uploadFile)
 			for subscriber in document.subscribers.all():
 				if subscriber.pk != request.user.pk:
-					#subscriber.email_user("[%s] Neue Revision" % document.name, "Hallo %s,\n\nfuer das Dokument %s wurde eine neue Revision hochgeladen.\n\nWeitere Informationen: http://%s/document/%s" % (subscriber.first_name, document.name, settings.DOMAIN, document.pk))
 					docmail.docmail(subscriber.email, "[%s] Neue Revision" % document.name, "document_new_revision", Context({ 'user': subscriber, 'document': document, 'author' : request.user, 'domain': settings.DOMAIN }));
 		except:
-			response = {'success' : False, 'error' : 'Beim Hochladen ist ein unerwarteter Fehler aufgetreten!'}
+			response = {'success' : False, 'error' : _("An unexpected error occured while uploading the file.")}
 			return HttpResponse(simplejson.dumps(response))				
 	
 	command = smart_str(u'file %s' % revision.file.path)
@@ -617,5 +614,5 @@ def upload_view(request):
 		
 	revision.save()
 	
-	response = {'documentName' : document.name, 'documentId' : document.pk, 'success' : True, 'ok' : 'Das Dokument wurde erfolgreich hochgeladen!'}
+	response = {'documentName' : document.name, 'documentId' : document.pk, 'success' : True, 'ok' : _("The Document has ben uploaded successfully.")}
 	return HttpResponse(simplejson.dumps(response))
