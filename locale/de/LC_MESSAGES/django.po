@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-14 01:29+0200\n"
+"POT-Creation-Date: 2011-06-14 02:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,7 +250,7 @@ msgstr "Kurs abbestellen"
 msgid "Subscribe this Course"
 msgstr "Kurs abonnieren"
 
-#: templates/course.html:26
+#: templates/course.html:26 templates/document.html:15
 msgid "You are here"
 msgstr "Du bist hier"
 
@@ -336,7 +336,7 @@ msgstr "Bewertung"
 msgid "Revisions"
 msgstr "Revisionen"
 
-#: templates/document.html:46
+#: templates/document.html:46 templates/core/upload.html:38
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -344,7 +344,7 @@ msgstr "Beschreibung"
 msgid "No description stored for this document."
 msgstr "Bisher wurde keine Beschreibung gespeichert."
 
-#: templates/document.html:57
+#: templates/document.html:57 templates/core/upload.html:33
 msgid "Tags"
 msgstr "Stichwörter"
 
@@ -513,6 +513,43 @@ msgstr "Unsichere Verbindung"
 #: templates/core/base.html:73
 msgid "All rights reserved."
 msgstr "Alle Rechte vorbehalten."
+
+#: templates/core/upload.html:6
+msgid "Upload new document"
+msgstr "Neues Dokument hochladen"
+
+#: templates/core/upload.html:7 templates/core/upload_new.html:7
+msgid "Please select a file to upload."
+msgstr "Bitte wähle eine Datei zum Hochladen aus."
+
+#: templates/core/upload.html:21
+msgid "Enter Information"
+msgstr "Informationen eingeben"
+
+#: templates/core/upload.html:23
+msgid "Please take your time and fill out the following information."
+msgstr ""
+"Bitte fülle der Vollständigkeit halber noch schnell folgende Felder aus."
+
+#: templates/core/upload.html:29
+msgid "Name"
+msgstr "Name"
+
+#: templates/core/upload.html:35
+msgid "Enter as many tags as you like divided by spaces."
+msgstr "Beliebig viele Schlagwörter mit Leerzeichen trennen."
+
+#: templates/core/upload.html:39
+msgid "optional"
+msgstr "Optional"
+
+#: templates/core/upload.html:44
+msgid "Finished? Don't forget to save!"
+msgstr "Fertig? Speichern nicht vergessen!"
+
+#: templates/core/upload_new.html:6
+msgid "Upload new version"
+msgstr "Neue Version hochladen"
 
 #: templates/search/search.html:11
 msgid "Please enter a search key to start the search."
