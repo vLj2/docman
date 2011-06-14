@@ -193,7 +193,6 @@ def login_view(request):
 			else:
 				error = _("This account has been deactivated.")
 	
-	support_email = DEFAULT_FROM_EMAIL
 	next = redirect_to
 	return render_to_response("login.html", locals(), context_instance=RequestContext(request))
 
