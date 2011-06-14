@@ -1,16 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# This is the German Translation for DocMan (https://github.com/tjosten/docman)
+# Copyright (C) 2011 Timo Josten, Philipp Klaus
+# This file is distributed under the same license as the DocMan package.
+# Philipp Klaus <philipp.klaus@gmail.com>, 2011.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: DocMan v1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-14 10:21+0200\n"
+"POT-Creation-Date: 2011-06-14 14:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Philipp Klaus <philipp.klaus@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -79,72 +78,72 @@ msgstr "Der Benutzername oder das Passwort ist ungültig."
 msgid "This account has been deactivated."
 msgstr "Der Account wurde deaktiviert."
 
-#: app/views.py:245 app/views.py:359
+#: app/views.py:244 app/views.py:358
 msgid "Couln't load the document!"
 msgstr "Das Dokument konnte nicht geladen werden!"
 
-#: app/views.py:249 app/views.py:367
+#: app/views.py:248 app/views.py:366
 msgid "You aren't the owner of this document!"
 msgstr "Das Dokument gehört nicht dir!"
 
-#: app/views.py:260
+#: app/views.py:259
 msgid "Data is missing!"
 msgstr "Keine Daten übergeben!"
 
-#: app/views.py:363
+#: app/views.py:362
 msgid "Please enter a name!"
 msgstr "Bitte einen Namen angeben!"
 
-#: app/views.py:397
+#: app/views.py:396
 msgid "The document has been deleted successfully!"
 msgstr "Das Dokument wurde erfolgreich gelöscht!"
 
-#: app/views.py:425
+#: app/views.py:424
 msgid "The comment has been deleted."
 msgstr "Der Kommentar wurde gelöscht."
 
-#: app/views.py:428
+#: app/views.py:427
 msgid "You aren't the author of this comment!"
 msgstr "Der Kommentar gehört nicht dir!"
 
-#: app/views.py:437
+#: app/views.py:436
 msgid "There are no documents in this category."
 msgstr "Es gibt keine Dokumente in dieser Kategorie."
 
-#: app/views.py:468
+#: app/views.py:467
 msgid "Your comment is too short (or far too long)."
 msgstr "Dein Kommentar ist leider zu kurz (oder viel zu lang)."
 
-#: app/views.py:477
+#: app/views.py:476
 msgid "Your comment has been saved!"
 msgstr "Dein Kommentar wurde gespeichert!"
 
-#: app/views.py:493
+#: app/views.py:492
 msgid "There is a problem with the session - please log out and back in!"
 msgstr "Die Session konnte nicht aufgelöst werden - bitte erneut einloggen!"
 
-#: app/views.py:500
+#: app/views.py:499
 msgid "Course couldn't be loaded - please try again!"
 msgstr "Kurs konnte nicht geladen werden - bitte erneut versuchen!"
 
-#: app/views.py:506
+#: app/views.py:505
 msgid "Document couln't be loaded - please try again!"
 msgstr "Dokument konnte nicht geladen werden - bitte erneut versuchen!"
 
-#: app/views.py:513
+#: app/views.py:512
 msgid "The file is too big!"
 msgstr "Die Datei ist zu groß!"
 
-#: app/views.py:516
+#: app/views.py:515
 #, python-format
 msgid "The file type %s is not supported."
 msgstr "Der Dateityp %s wird nicht unterstützt!"
 
-#: app/views.py:519 app/views.py:537 app/views.py:547
+#: app/views.py:518 app/views.py:536 app/views.py:546
 msgid "An unexpected error occured while uploading the file."
 msgstr "Beim Hochladen ist ein unerwarteter Fehler aufgetreten!"
 
-#: app/views.py:618
+#: app/views.py:617
 msgid "The Document has ben uploaded successfully."
 msgstr "Das Dokument wurde erfolgreich hochgeladen!"
 
@@ -222,15 +221,17 @@ msgstr "Dein Account, "
 msgid "Change password"
 msgstr "Passwort ändern"
 
-#: templates/account.html:15
+#: templates/account.html:15 templates/registration/password_reset.html:11
 msgid "New Password"
 msgstr "Neues Passwort"
 
 #: templates/account.html:16
+#: templates/registration/password_reset_confirm.html:18
 msgid "..repeat:"
 msgstr "..wiederholen:"
 
 #: templates/account.html:19 templates/document.html:106
+#: templates/registration/password_reset_confirm.html:21
 msgid "Save"
 msgstr "Speichern"
 
@@ -392,15 +393,15 @@ msgstr "Bisher wurden keine Kommentare zu diesem Dokument verfasst."
 msgid "New comment"
 msgstr "Neuer Kommentar"
 
-#: templates/login.html:5
+#: templates/login.html:6
 msgid "Welcome to DocMan."
 msgstr "Willkommen bei DocMan."
 
-#: templates/login.html:7
+#: templates/login.html:8
 msgid "Please login with your username and password:"
 msgstr "Bitte melde dich mit deinen Benutzerdaten an:"
 
-#: templates/login.html:19
+#: templates/login.html:20
 msgid ""
 "Stop! You are browsing via Internet Explorer. This website has only been "
 "tested with all up to date web browsers, so we cannot guarantee it will work "
@@ -411,12 +412,12 @@ msgstr ""
 "niemand versprechen, ob auch im Internet Explorer alles richtig "
 "funktioniert. Benutzung auf eigene Gefahr!"
 
-#: templates/login.html:38
+#: templates/login.html:39
 #, python-format
 msgid "<a href=\"%(pwreset)s\">Forgot your password?</a>"
 msgstr "Du hast dein <a href=\"%(pwreset)s\">Password vergessen?</a>"
 
-#: templates/login.html:40
+#: templates/login.html:43
 #, python-format
 msgid ""
 " Please note: You cannot sign up for DocMan on your own. Please contact "
@@ -425,7 +426,7 @@ msgstr ""
 "Hinweis: DocMan ist ein geschlossenes System. Bei Login-Problemen wende dich "
 "bitte an %(support_email)s."
 
-#: templates/login.html:43
+#: templates/login.html:46
 msgid "DocMan was realized using:"
 msgstr "DocMan wurde realisiert mit Hilfe von:"
 
@@ -555,6 +556,109 @@ msgstr "Fertig? Speichern nicht vergessen!"
 #: templates/core/upload_new.html:6
 msgid "Upload new version"
 msgstr "Neue Version hochladen"
+
+#: templates/registration/password_reset.html:5
+msgid "Forgot your pasword?"
+msgstr "Password vergessen?"
+
+#: templates/registration/password_reset.html:7
+msgid ""
+"In the case you forgot your password, you may enter your email address and "
+"DocMan will send you a link with instructions how to reset your password."
+msgstr ""
+"Falls du dein Passwort vergessen hast, fülle bitte dieses Formular aus und "
+"du wirst weitere Anweisungen per E-Mail erhalten."
+
+#: templates/registration/password_reset.html:11
+msgid "Email address:"
+msgstr "E-Mail Adresse:"
+
+#: templates/registration/password_reset_complete.html:5
+msgid "Successfully changed your password!"
+msgstr "Password erfolgreich geändert!"
+
+#: templates/registration/password_reset_complete.html:8
+#, python-format
+msgid ""
+"Your password has been changed successfully, you may login now on the <u><a "
+"href=\"%(def)s\">homepage</a></u>."
+msgstr ""
+"Dein Passwort wurde erfolgreich geändert. Du kannst dich nun auf der <u><a "
+"href=\"%(def)s\">Startseite</a></u> anmelden."
+
+#: templates/registration/password_reset_confirm.html:6
+msgid "Set a new password"
+msgstr "Neues Passwort erstellen"
+
+#: templates/registration/password_reset_confirm.html:10
+msgid "Enter new password"
+msgstr "Neues Passwort eingeben"
+
+#: templates/registration/password_reset_confirm.html:12
+msgid "Please enter your new password: "
+msgstr "Bitte gib' hier dein neues Passwort ein:"
+
+#: templates/registration/password_reset_confirm.html:17
+msgid "New Password:"
+msgstr "Neues Passwort:"
+
+#: templates/registration/password_reset_confirm.html:27
+msgid "There is a problem"
+msgstr "Fehler aufgetreten"
+
+#: templates/registration/password_reset_confirm.html:30
+#, python-format
+msgid ""
+"Your reset link is incorrect. Please check your email for line breaks in the "
+"link, request a new reset link or write an email to <a href=\"mailto:"
+"%(support_email)s\">%(support_email)s</a>."
+msgstr ""
+"Leider ist dein Reset-Link nicht korrekt. Bitte kontrolliere die E-Mail auf "
+"Zeilenumbrüche im Link, fordere erneut einenReset-Link an oder schreibe eine "
+"E-Mail an <a href=\"mailto:%(support_email)s\">%(support_email)s</a>."
+
+#: templates/registration/password_reset_done.html:5
+msgid "Successfully sent the email!"
+msgstr "E-Mail erfolgreich versendet!"
+
+#: templates/registration/password_reset_done.html:7
+msgid ""
+"In an instant you will receive an email with instructions and a link to "
+"reset your password."
+msgstr ""
+"Du erhältst in dieser Minute eine E-Mail mit weiteren Anweisungen und einem "
+"Link, mit dessen Hilfe du dein Passwort zurücksetzen kannst."
+
+#: templates/registration/password_reset_email.html:3
+#, python-format
+msgid ""
+"Hello %(first_name)s,\n"
+"\n"
+"you requested a new password for DocMan. You can set a new pasword using the "
+"following link.\n"
+"\n"
+"%(protocol)s://%(domain)s%(reset_url)s\n"
+"\n"
+"Your username is %(username)s.\n"
+"\n"
+"If you didn't request a new password please ignore this email or contact "
+"DocMan.\n"
+"\n"
+"Enjoy document management with DocMan!\n"
+msgstr ""
+"Hallo %(first_name)s,\n"
+"\n"
+"Du hast ein neues Passwort angefordert. Mit Hilfe des folgenden Links kannst "
+"du dir selbstständig ein neues Passwort setzen.\n"
+"\n"
+"%(protocol)s://%(domain)s%(reset_url)s\n"
+"\n"
+"Dein Benutzername lautet: %(username)s.\n"
+"\n"
+"Falls du kein neues Passwort angefordert hast, kannst du diese E-Mail "
+"ignorieren oder DocMan kontaktieren.\n"
+"\n"
+"Wir wünschen weiterhin viel Spaß mit DocMan!\n"
 
 #: templates/search/search.html:11
 msgid "Please enter a search key to start the search."

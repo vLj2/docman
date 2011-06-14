@@ -46,8 +46,8 @@ from django.utils.translation import ugettext as _
 
 
 def is_valid_email(email):
-    return True if email_re.match(email) else False
-    
+	return True if email_re.match(email) else False
+	
 def get_directory_size(directory):
 	print directory
 	dir_size = 0
@@ -80,7 +80,7 @@ def about_view(request):
 	print stats
 	imprint = IMPRINT
 	return render_to_response("about.html", locals(), context_instance=RequestContext(request))	
-    
+	
 @login_required
 def user_view(request, user_id):
 	user = get_object_or_404(User, Q(pk=user_id))
@@ -138,7 +138,7 @@ def rate_document_view(request, document_id):
 	
 	response = {'success' : True }
 	return HttpResponse(simplejson.dumps(response))				
-    
+	
 @login_required
 def account_view(request):
 	if not request.POST:
@@ -161,7 +161,7 @@ def account_view(request):
 		messages.add_message(request, messages.SUCCESS, _('Your password has been changed!'))
 		return HttpResponseRedirect(reverse("account", args=[]))
 		
-    
+	
 @login_required
 def logout_view(reqeust):
 	logout(reqeust)
@@ -343,7 +343,7 @@ def upload_test_view(request):
 	
 	pdf = pyPdf.PdfFileReader(open(revision.file.path, "rb"))
 	for page in pdf.pages:
-	    print page.extractText()
+		print page.extractText()
 
 @login_required
 def file_info_view(request):
