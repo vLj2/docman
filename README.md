@@ -33,7 +33,9 @@ First, create a file named `settings_local.py` with the following contents:
 	EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 	### The domain will be used mainly in emails to the users:
-	DOMAIN = 'http://docman.me'
+	DOMAIN = 'http://your.docman.domain'
+	### Please note that you must also set the domain on Drupal's admin
+	### interface on http://your.docman.domain/admin/sites/site/1/
 
 	### Adjust this path to the absolute path of the docman media directory:
 	MEDIA_ROOT = '/path/to/docman/media/'
@@ -70,6 +72,8 @@ First, create a file named `settings_local.py` with the following contents:
 	}
 
 	DEFAULT_FROM_EMAIL = "DocMan <no-reply@docman>"
+	### Some functions on the site mention a site administrator with this email address:
+	SUPPORT_EMAIL = "support@your.docman.domain"
 
 	### Seed in hashing algorithms. Set this to a random string - the longer, the better
 	### cf. <https://docs.djangoproject.com/en/dev/ref/settings/#secret-key>
@@ -87,18 +91,18 @@ To rebuild your search index, please run the following command:
 The best idea is to run this via crond to rebuild the index once or twice per hour.
 
 Contribute to the translation
-_____________________________
+-----------------------------
 
 If you want to contribute to the translation, you can improve the current translations
-or start a new translation into a different language. For this, you need xgettext/gettext
+or start a new translation into a different language. To do so, you need xgettext/gettext
 which you can install using `sudo apt-get install gettext` on Ubuntu/Debian systems.  
-Then go the DocMan folder and (re)create the .po file for you language.
-In this example the language code is German (`de`):
+Then go to the DocMan folder and create/update the .po file for you language.
+For German (`de`) the command would be:
 
     cd docman
     django-admin.py makemessages -l de
 
-When you're done translating the strings in the file **locale/*de*/LC_MESSAGES/django.po**,
+When you're done translating the strings in the file *locale/de/LC_MESSAGES/django.po*,
 run `django-admin.py compilemessages` and test if everythign works as expected.
 
 Icon copyright
