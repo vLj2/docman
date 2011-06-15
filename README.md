@@ -79,6 +79,10 @@ First, create a file named `settings_local.py` with the following contents:
 	### cf. <https://docs.djangoproject.com/en/dev/ref/settings/#secret-key>
 	SECRET_KEY = 'YOUR SECRET KEY'
 
+	### Assume that the connection is SSL secured and display this on the bottom of the site.
+	### (even if request.is_secure is not set or set to False)
+	ASSUME_CONNECTION_ENCRYPTED = True
+
 Then, it is just a regular django application setup: `manage.py syncdb`, `manage.py runserver`, and you should be done.
 
 Rebuild full text search index

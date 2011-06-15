@@ -27,8 +27,13 @@ class ValueFromSettings(Node):
 	def __init__(self, settingsvar, asvar):
 		self.arg = Variable(settingsvar)
 		self.asvar = asvar
-	def render(self, context):		
-		ret_val = getattr(settings,str(self.arg))
+	def render(self, context):
+		## We don't want to fail if the setting is not set.
+		try:
+			ret_val = getattr(settings,str(self.arg))
+		except:
+			## so we simply assign None in case of trouble:
+			ret_val = None
 		if self.asvar:
 			context[self.asvar] = ret_val
 			return ''
