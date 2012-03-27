@@ -1,4 +1,4 @@
-docman README
+DocMan README
 =============
 
 docman is a collaborative document management software, powered by Django. (http://djangoproject.org)
