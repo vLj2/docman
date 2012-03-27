@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<title>DocMan - Wartung / Maintenance</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />  
+		
+		<meta name="author" content="DocMan (piratesolutions)" />
+		<meta name="description" content="DocMan - kollaborative Dokumentenverwaltung für Schüler und Studenten. Jetzt kostenlos testen!" />
+		<meta name="keywords" content="DocMan, document, management, dokumenten, verwaltung, documentenverwaltung, collaborative, kollaborativ, schüler, studenten, universität, uni, fh, fachhochschule, hochschule, upload, pdf, word, excel, mehrbenutzer, multiuser, kostenlos, umsonst, frei, open source" />
+
+		<link href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>
+
+		<style type="text/css">
+			body {
+				margin: 0px;
+				padding: 0px;
+				font: 13.34px/1.4 helvetica,arial,sans-serif;
+				color: #3C3C3C;
+			}
+
+			div.container {
+				margin: 25px auto;
+				width: 900px;
+			}
+
+			div.logo {
+				margin: auto;
+				background-image:url(/media/img/docmanlargetrans.png);
+				width:600px;
+				height: 206px;
+			}
+
+			div.itcrew {
+				margin-top: 20px;
+				text-align:center;
+			}
+
+			div.itcrew img {
+				width: 160px;
+			}
+
+			div.speech {
+				width: 700px;
+				text-align:center;
+				font-family: 'Coming Soon', cursive;
+				margin: 40px auto;
+				font-size:28px;
+			}
+
+			div.desc {
+				font-weight:bold;
+				width: 750px;
+				text-align:center;
+				font-family: 'Coming Soon', cursive;
+				margin: 40px auto;
+				font-size:32px;
+			}	
+			
+			div.credits {
+				font-family: 'Coming Soon', cursive;
+				margin: 50px auto;
+				text-align:center;
+				width: 100%;
+			}
+
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="logo"></div>
+
+			<div class="itcrew">
+				<img src="/media/img/maintenance/1.png" alt="Crew Member" />
+				<img src="/media/img/maintenance/2.png" alt="Crew Member" />
+				<img src="/media/img/maintenance/3.png" alt="Crew Member" />
+				<img src="/media/img/maintenance/4.png" alt="Crew Member" />
+			</div>
+
+			<div class="speech">
+				&raquo; Hi. We are the DocMan IT crew and trying to get it back up and running just at this moment. &laquo;
+			</div>
+
+			{% if maintenance.description %}
+			<div class="desc">
+				{{maintenance.description|safe}}
+			</div>
+			{% else %}
+			<div class="desc">
+				This is a scheduled maintenance. Keep calm and get a coffee while we fix stuff.
+			</div>			
+			{% endif %}
+
+			<div class="credits">
+				&copy; 2011-2012 DocMan <br /><a style="font-size:x-small;" href="mailto:support@docman.me">support@docman.me</a>
+			</div>
+		</div>
+	</body>
+</html>

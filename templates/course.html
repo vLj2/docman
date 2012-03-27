@@ -1,0 +1,177 @@
+{% extends "core/base.html" %}
+{% load i18n truncatewords_by_chars call_method upto fileicon %}
+
+{% block title %}{{course.name}}{% endblock %}
+
+{% block headtitle %}
+	<h1>{{course.name}}</h1>
+	<p>{% trans "You are here" %}: <a href="/">{{category.name}}</a> &raquo; {{course.name}}</p>
+{% endblock %}
+
+{% block js %}
+jsCourse = {{course.pk}};
+{% endblock %}
+
+{% block content %}
+<div id="status"></div> 
+<div id="list"></div>
+
+{% if not internet_explorer_warning %}
+<div id="dropZone">
+	{% trans "Drop your file here" %}
+</div> 
+{% else %}
+<div id="IEdropZone">{% trans "Click to upload" %}</div> 
+{% endif %}
+
+{% if internet_explorer_warning %}
+<div class="overlay" id="IEoverlay" style="display:none;">
+	<div class="oContent"><h3></h3><p></p>
+	<div class="progress"></div>	
+	<div class="progressbar"></div>
+	<div class="progressDetail"></div>
+	
+	<div class="uploadDetails" style="display:none;">
+		<form action="{% url ie-upload %}" name="IEuploadDetails" method="post" enctype="multipart/form-data">	
+			<fieldset>
+				{% csrf_token %}
+				<input type="hidden" name="course_id" value="{{course.pk}}" />
+				<div style="float:inherit;">
+				<label for="documentFile">{% trans "Select File.." %}</label>
+				<input tabindex="1" id="documentFile" name="file" type="file" />
+				</div>
+				<div>
+				<label for="documentName">{% trans "Document Name" %}</label>
+				<input tabindex="2" id="documentName" name="name" type="text" maxlength="255" />
+				<small>{% trans "Leave empty for filename" %}</small>
+				</div>
+				<div class="right">
+				<label for="documentTags">{% trans "Tags" %}</label>
+				<input tabindex="3" id="documentTags" name="tags" type="text" /><small>{% trans "Seperate tags with commas (,)" %}</small>
+				</div>
+				<label for="documentDesc">{% trans "Description" %}</label>
+				<textarea tabindex="4" id="documentDesc" name="desc"></textarea>
+				<input type="submit" value="{% trans "Upload file" %}" /> {% trans "or <a href='javascript:void(0)' id='resetIEUploadWindow'>close</a>" %}<img class="loader" src="{{MEDIA_URL}}img/new/loader_fafafa.gif" alt="{% trans "Loading.." %}" /> 
+				{% if not request.user.get_profile.is_lecturer %}
+				<div class="lecturerVisible"><input type="checkbox" name="is_lecturer_visible" /> {% trans "Visible for lecturers?" %}</div>
+				{% endif %}
+			</fieldset>
+		</form>		
+	</div>
+	
+	</div>
+	<div class="oOverlay"></div>
+</div>
+{% endif %}
+
+<div class="overlay modal fade" id="overlay" style="display:none;">
+	<div class="oContent"><h3></h3><p></p>
+	<div class="progress"></div>	
+	<div class="progressbar"></div>
+	<div class="progressDetail"></div>
+	
+	<div class="uploadDetails" style="display:none;">
+		<form action="javascript:void(0);" name="uploadDetails">	
+			<fieldset>
+				{% csrf_token %}
+				<input type="hidden" name="documentId" value="" />
+				<div>
+				<label for="documentName">{% trans "Document Name" %}</label>
+				<input tabindex="1" id="documentName" name="name" type="text" maxlength="255" />
+				</div>
+				<div class="right">
+				<label for="documentTags">{% trans "Tags" %}</label>
+				<input tabindex="2" id="documentTags" name="tags" type="text" /><small>{% trans "Seperate tags with commas (,)" %}</small>
+				</div>
+				<label for="documentDesc">{% trans "Description" %}</label>
+				<textarea tabindex="3" id="documentDesc" name="desc"></textarea>
+				<input type="submit" value="{% trans "Save Details" %}" /> {% trans "or <a href='javascript:void(0)' id='resetUploadWindow'>close</a>" %}<img class="loader" src="{{MEDIA_URL}}img/new/loader_fafafa.gif" alt="{% trans "Loading.." %}" /> 
+				{% if not request.user.get_profile.is_lecturer %}
+				<div class="lecturerVisible"><input type="checkbox" checked name="is_lecturer_visible" /> {% trans "Visible for lecturers?" %}</div>
+				{% endif %}
+			</fieldset>
+		</form>		
+	</div>
+	
+	</div>
+	<div class="oOverlay"></div>
+</div>
+
+
+{% if not request.user.get_profile.is_lecturer %}<br />
+<div id="courseToolkit">
+<strong>{% trans "Course options" %}</strong>
+<a class="download" href="{% url download-all course.pk %}">{% trans "Download all documents" %}</a>
+{% if course|args:request.user.pk|call:"get_subscription" %}
+<a class="unsubscribe" href="{% url unsubscribe-course course.pk %}">{% trans "Unsubscribe this Course" %}</a>
+{% else %}
+<a class="subscribe" href="{% url subscribe-course course.pk %}">{% trans "Subscribe this Course" %}</a>
+{% endif %}
+</div>
+{% endif %}
+
+<div id="courseInfo" {% if request.user.get_profile.is_lecturer %}style="top: 245px;"{%endif%}>
+	<strong>{% trans "Course information" %}</strong>
+	<div><span class="lecturer"><a href="{% url docent course.docent.pk %}">{{course.docent.name}}</a></span>  {% if course.docent.email %} <a href="mailto:{{course.docent.email}}"></a>{%endif%}
+	<br />
+	<span class="term">{{course.getSemester}}</span>
+	{% if request.user.get_profile.is_lecturer %}<br />
+	<span class="scopes">{% for scope in course.get_scopes %}
+		<a href="{% url scope-info scope.pk %}">{{scope}}</a>
+	{% if forloop.last%}{%else%}, {%endif%}{% endfor %}</span>
+	{% endif %}
+	</div>
+</div>
+
+<!-- strange fix -->
+&nbsp;
+
+<h2>{% trans "Documents" %}</h2>
+<div class="documentList" style="margin-top: 15px;width:80%;">
+<ul class="divided">
+	{% if documents.object_list.count > 0 %}
+		{% for d in documents.object_list %}
+			<li style="background-image:url({{d.getLatestRevision.type|fileicon}}.png)" class="{% if forloop.last %}last{% endif %}">
+				<a href="{% url document d.pk %}">{{d.name|truncatewords_by_chars:40}}</a>
+				<span class="fileinfo">
+
+					{% if not d.is_etherpad %}
+						{% blocktrans with uploader=d.author.get_profile.profile|safe since=d.getLatestRevision.pub_date|timesince|upto:',' filesize=d.getLatestRevision.file.size|filesizeformat %}
+							{{filesize}} - {{since}} ago by {{uploader}}
+						{% endblocktrans %}
+					{% else %}
+						{% blocktrans with uploader=d.author.get_profile.profile|safe since=d.getLatestRevision.pub_date|timesince|upto:',' %}
+							{{since}} ago by {{uploader}} 
+						{% endblocktrans %}
+					{% endif %}
+
+				</span>
+				<span class="tools">
+					{% if d|args:request.user.pk|call:"get_subscription" %}
+						<img title="{% trans "You subscribed for updates for this document." %}" alt="{% trans "You subscribed for updates for this document." %}" src="{{MEDIA_URL}}img/icons/feed.png" /> 
+					{% endif %}
+					{% if d.get_comments_count > 0 %}
+						<div class="comments"><a href="{% url document d.pk %}#comments">{{d.get_comments_count}}</a></div>
+					{% endif %}
+					{% if not d.is_etherpad %}
+					<a href="{% url download d.pk %}"><img src="{{MEDIA_URL}}img/icons/disk.png" /></a>
+					<a href="{% url download d.pk %}?zipped=true"><img src="{{MEDIA_URL}}img/icons/compress.png" /></a>
+					{% endif %}
+				</span>
+			</li>
+		{% endfor %}
+	{% else %}
+		<li class="info">{% trans "Until now no documents have been uploaded." %}</li>
+	{% endif %}
+</ul>
+</div>
+
+{% if documents.paginator.num_pages > 1 %}
+<div class="pagination">
+	{% for p in documents.paginator.page_range %}
+		<a class="{% if p == documents.number %}active{% endif %}" href="?p={{p}}">{{p}}</a> 
+	{% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

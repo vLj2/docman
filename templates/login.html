@@ -1,0 +1,98 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+{% load value_from_settings %}
+
+{% block headtitle %}
+	<h1>{% trans "Welcome to DocMan" %}</h1>
+	<p>{% trans "The better collaborative document management solution." %}</p>
+{% endblock %}
+
+{% block content %}
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	if ($.browser.msie) {
+		$('#stopIe').show();
+	}
+});
+</script>
+
+{% if firefox_warning %}
+<div id="firefoxWarning">
+<h3>{% trans "Howdy, mate!"%}</h3>
+<p>{% blocktrans %}We are very sorry to tell you that your browser (Firefox) is unfortunately too old for the technology behind DocMan. Please, visit <a href="http://getfirefox.com">getfirefox.com</a> to get all the great benefits of an up to date Firefox version. Cheers!</p><p>(You will get serious drawbacks when trying to upload files with this browser. Please, do yourself a favor and update!){% endblocktrans %}</p>
+</div>
+{% endif %}
+
+{% if internet_explorer_warning %}
+<div id="ieWarning">
+<h3>{% trans "Howdy, mate!"%}</h3>
+<p>{% blocktrans %}Unfortunately, you are using Internet Explorer. To enjoy the full user experience, please upgrade to a modern browser like <a href="http://getfirefox.com">Firefox</a>, <a href="http://google.com/chrome">Google Chrome</a> or <a href="http://apple.com/safari">Safari</a>. Nevertheless you should be perfectly able to use the main features of DocMan.</p><p>Thanks for your understanding.{% endblocktrans %}</p>
+</div>
+{% endif %}
+
+{% if chrome_warning and is_secure %}
+<div id="chromeWarning">
+<img src="{{MEDIA_URL}}/img/chrome.png" alt="Google Chrome" style="float:left;margin-right:5px;height:30px;" />
+<h3>{% trans "Google Chrome?"%}</h3>
+<p>{% blocktrans %}We are very sorry to tell you that your browser (Google Chrome) has unfortunately a bug with Cherokee's SSL implementation. (See <a href="http://code.google.com/p/cherokee/issues/detail?id=1284">bug report</a>){% endblocktrans %}</p>
+<p>{% blocktrans %}If you are experiencing trouble when trying to log in, please try to <a href="http://docman.me">turn SSL off</a>.{% endblocktrans %}</p><p>{% blocktrans %}We will patch our infrastructure as soon as a fix is available.{% endblocktrans %}</p>
+</div>
+{% endif %}
+
+{% if not latest_news %}
+<div id="securityAdvice">
+<h3>{% trans "Security advice" %}</h3>
+<p>
+{% blocktrans with domain=secure_domain|safe %}Please make sure that the URL of this page starts with <strong>{{domain}}</strong> before typing in your credentials!{% endblocktrans %}
+</p>
+</div>
+{% else %}
+<div id="latestNews">
+<h3 style="background-image:url({{MEDIA_URL}}img/icons/{{latest_news.icon}}.png);">{{latest_news.title}}</h3>
+<p>{{latest_news.text|safe}}</p>
+</div>
+{% endif %}
+
+<div id="loginForm">
+	<h2>
+		{% if error %}
+			<div class="error">
+			{% if error|length < 30 %}
+				{{error|safe}}
+			{% else %}
+				{% trans "An error occurred." %}
+			{% endif %}
+			</div>
+		{% endif %}	
+		{% trans "Login <span>to our all new document management</span>" %}
+	</h2>
+	<div class="content">
+		{% if error %}
+		{% if error|length > 30 %}
+			<p>{{ error|safe }}</p>
+		{% endif %}
+		{% endif %}
+		<form method="post" action="{% url login %}">	
+			<fieldset>
+				{% csrf_token %}
+				{% url password_reset as pwreset %}
+				<input type="hidden" name="next" value="{{ next|default:"/" }}" />	
+				<label for="username">{% trans "Username" %}</label>
+				<input tabindex="1" id="username" name="username" type="text" maxlength="255" />
+				<label for="password">{% trans "Password" %} <span class="small">{% blocktrans %}<a href="{{pwreset}}">(forgot password?)</a>{% endblocktrans %}</span></label>
+				<input tabindex="2" id="password" name="password" type="password" maxlength="255" />								
+				<input type="submit" value="Login" />
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+<div id="poweredBy" style="display:none;">
+<p>{% trans "DocMan was realized using:" %}</p>
+<a class="noimg" href="http://djangoproject.com"><img src="{{MEDIA_URL}}img/djangopowered126x54.gif" /></a>
+<a class="noimg" href="http://cherokee-project.com"><img class="cherokee" src="{{MEDIA_URL}}img/powered_by_cherokee-2.gif" /></a>
+<a class="noimg" href="http://panic.com/coda"><img class="coda" src="{{MEDIA_URL}}img/made_with_coda_left.png" /></a>
+</div>
+{% endblock %}

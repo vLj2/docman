@@ -1,0 +1,13 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "Error 404 - Not found" %}</h1>
+	<p>{% trans "Whoops!" %}</p>
+{% endblock %}
+
+{% block content %}
+<div class="e404">
+{% trans "You tried to access a site that does not exist. We are very sorry about this." %}
+</div>
+{% endblock %}

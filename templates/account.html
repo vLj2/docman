@@ -1,0 +1,104 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "Account" %}</h1>
+	<p>{% trans "Change your password, email address and settings here." %}</p>
+{% endblock %}
+
+{% block content %}
+
+<div id="loginForm" style="margin-left: 0px;float:left;">
+	<h2>
+		{% trans "Change your password <span>it's easy!</span>" %}
+	</h2>
+	<div class="content">
+		<form method="post" action="">	
+			<fieldset>
+				{% csrf_token %}
+				<label for="id_new_password0">{% trans "Current password:" %}</label>
+				<input tabindex="1" id="id_new_password0" name="current" type="password" maxlength="75" />				
+				<label for="id_new_password1">{% trans "New password:" %}</label>
+				<input tabindex="2" id="id_new_password1" name="password" type="password" maxlength="75" />
+				<label for="id_new_password2">{% trans "..repeat, please:" %}</label>
+				<input tabindex="3" id="id_new_password2" name="password_repeat" type="password" maxlength="75" />				
+				<input type="submit" name="changePasswordForm" value="{% trans "Save password" %}"/>
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+
+<div id="loginForm" style="margin-left: 0px;float:right;">
+	<h2>
+		{% trans "Change your email address <span>it's easy, too!</span>" %}
+	</h2>
+	<div class="content">
+		<form method="post" action="">	
+			<fieldset>
+				{% csrf_token %}
+				<label for="id_email_current">{% trans "Current email address:" %}</label>
+				<input tabindex="4" id="id_email_current" name="@ignore" readonly disabled type="text" maxlength="75" value="{{request.user.email}}" />				
+				<label for="id_email_new">{% trans "New email address:" %}</label>
+				<input tabindex="5" id="id_email_new" name="email" type="text" maxlength="75" />
+				<input type="submit" name="changeEmailForm" value="{% trans "Save email address" %}"/><br />
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+<br style="clear:both" />
+
+{% if not request.user.get_profile.is_lecturer %}
+
+<div id="loginForm" style="margin-left: 0px;margin-top: 20px;float:left;">
+	<h2>
+		{% trans "Change your settings <span>to suit your needs!</span>" %}
+	</h2>
+	<div class="content">
+		<form method="post" action="">	
+			<fieldset>
+				{% csrf_token %}
+				<input name="show_latest_uploads" id="show_latest_uploads" value="yes" type="checkbox" {% if request.user.get_profile.show_feed %}checked{% endif %} />
+				<label style="display: inline;" for="show_latest_uploads">{% trans "Show latest uploads on overview?" %}</label>
+				<input type="submit" name="settingsForm" value="{% trans "Save settings" %}"/><br />
+			</fieldset>
+		</form>
+	</div>
+</div>
+
+
+
+<div id="loginForm" style="margin-left: 0px;margin-top: -35px;float:right;">
+	<h2>
+		{% trans "Facebook Connect <span>to add your profile!</span>" %}
+	</h2>
+	<div class="content">
+		{% if request.user.get_profile.facebook_id %}
+			<div style="background-image:url({{request.user.get_profile.facebook_profile_picture_thumbnail}});height:50px;padding-left: 55px;background-repeat:no-repeat;padding-top: 0px;">
+			{% url facebook-deconnect as fbdeconnect %}
+			{%blocktrans%}Your profile is already connected to Facebook. To remove this connection, <a href="{{fbdeconnect}}">click here</a>.{% endblocktrans %}
+			</div>
+		{% else %}
+		<form action="{% url facebook_connect %}?facebook_login=1" method="post">
+		<img src="{{MEDIA_URL}}img/new/facebook-connect-button.png" alt="Facebook Connect" onclick="F.connect(this.parentNode);" style="cursor:pointer;" />
+		</form>
+		{% endif %}
+	</div>
+</div>
+
+<br style="clear:both" />
+
+{% endif %}
+
+<script type="text/javascript">
+	facebookAppId = '{{ FACEBOOK_APP_ID }}';
+	function facebookJSLoaded(){
+		FB.init({appId: facebookAppId, status: false, cookie: true, xfbml: true});
+	}
+	window.fbAsyncInit = facebookJSLoaded;
+	F = new facebookClass(facebookAppId);
+	F.load();
+</script>
+
+{% endblock %}

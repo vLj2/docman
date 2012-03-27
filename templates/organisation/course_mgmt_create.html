@@ -1,0 +1,66 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "Create course "%}</h1>
+	<p>{% trans "Scope Management" %}</p>
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+{% if lecturers.count = 0 %}
+<div class="drawnError">
+<h2>{% trans "Ooops" %}</h2>
+<p>{% blocktrans %}You need to create at least one lecturer in order to create a course.{% endblocktrans %}</p>
+</div>
+{% else %}
+
+<div style="width:25%;padding-top:0px;float:left;" class="well">
+<h3>{% trans "Basic information" %}</h3>
+	<form method="post" action="{% url organisation-course-mgmt-create organisation.id %}">
+	<fieldset>
+		{% csrf_token %}
+		<label for="name">{% trans "Name" %}:</label>
+		<input tabindex="1" id="name" name="name" type="text" maxlength="255" value="{{name}}" />
+
+		<label for="category">{% trans "Category" %}:</label>
+		<select name="category" id="category">
+			<option value=""></option>
+			{% for cate in categories %}
+				<option value="{{cate.pk}}"{%if cate.pk = category.pk %} selected{%endif%}>{{cate.name}}</option>
+			{% endfor %}
+		</select>
+
+		<label for="lecturer">{% trans "Lecturer" %}:</label>
+		<select name="lecturer" id="lecturer">
+			<option value=""></option>
+			{% for lec in lecturers %}
+				<option value="{{lec.pk}}"{%if lec.pk = lecturer.pk %} selected{%endif%}>{{lec.name}}</option>
+			{% endfor %}
+		</select>
+
+		<label for="semester">{% trans "Semester" %}:</label>
+		<select name="semester" id="semester">
+			<option value=""></option>
+			{% for sem in semesters %}
+				<option value="{{sem}}"{%if sem = semester%} selected{%endif%}>{%if sem == -1%}{% trans "All semesters "%}{% else %}{{sem}}{% endif %}</option>
+			{% endfor %}
+		</select>
+		<input type="submit" value="{% trans "Create course" %}" />
+	</fieldset>
+	</form>
+</div>
+
+<div style="width:60%;padding-top:0px;float:right;" class="well">
+	<h3>{% trans "Help" %}</h3>
+	<dl>
+		<dt>{% blocktrans %}Scopes{% endblocktrans %}</dt>
+		<dd>{% blocktrans %}After you created the course, you are able to assign scopes to it.{% endblocktrans %}</dd>
+</div>
+
+{% endif %}
+
+<br style="clear:both;" />
+
+{% endblock %}

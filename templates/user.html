@@ -1,0 +1,98 @@
+{% extends "core/base.html" %}
+{% load i18n truncatewords_by_chars call_method upto fileicon %}
+
+{% block title %}{{user.first_name}} {{user.last_name}}{% endblock %}
+
+{% block headtitle %}
+	{% if user.get_profile.facebook_profile_picture_thumbnail %}
+		<div style="background-image:url({{user.get_profile.facebook_profile_picture_thumbnail}});background-repeat:no-repeat;padding-left: 60px;">
+	{% endif %}
+	<h1>{{user.first_name}} {{user.last_name}} <span style="font-size:small;"><a href="mailto:{{user.email}}">{{user.email}}</a> 
+	&bull; {% blocktrans with logintime=user.last_login|date:"l, d. F Y" logintime2=user.last_login|date:"H:i" %} Last login: {{logintime}} {{logintime2}}{% endblocktrans %}</span>
+	</h1>
+	<p>{% trans "User profile" %}</p>
+	{% if user.get_profile.facebook_profile_picture_thumbnail %}	
+	</div>
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="course" style="margin-left:0px;margin-right:0px;">
+<h2>{% trans "Recently uploaded documents" %}</h2>
+<div class="documentList">
+<ul>
+	{% for doc in documents %}
+		{% if doc.course|args:request.user|call:"hasMatchingScope" %}
+			<li style="background-image:url({{doc.getLatestRevision.type|fileicon}}.png)">
+				<a href="{% url document doc.pk %}">{{doc.name|truncatewords_by_chars:40}}</a>
+				<span class="fileinfo">
+				{% if not doc.is_etherpad %}
+					{% blocktrans with since=doc.getLatestRevision.pub_date|timesince|upto:',' filesize=doc.getLatestRevision.file.size|filesizeformat %}{{filesize}} - {{since}} ago{% endblocktrans %} 
+				{% else %}
+					{% blocktrans with since=doc.getLatestRevision.pub_date|timesince|upto:',' %}{{since}} ago{% endblocktrans %}
+				{% endif %}
+					in <a href="{% url course doc.course.pk %}">{{doc.course.name}}</a>
+					{% if request.user.get_profile.semester != doc.course.semester %}
+						<span style="color:rgb(200,200,200)">({{doc.course.getSemester}})</span>
+					{% endif %}
+				</span>
+				<span class="tools">
+					{% if doc|args:request.user.pk|call:"get_subscription" %}
+						<img title="{% trans "You subscribed for updates for this document." %}" alt="{% trans "You subscribed for updates for this document." %}" src="{{MEDIA_URL}}img/icons/feed.png" /> 
+					{% endif %}
+						{% if doc.get_comments_count > 0 %}
+							<div class="comments"><a href="{% url document doc.pk %}#comments">{{doc.get_comments_count}}</a></div>
+						{% endif %}	
+					{% if not doc.is_etherpad %}		
+					<a href="{% url download doc.pk %}"><img src="{{MEDIA_URL}}img/icons/disk.png" /></a>
+					<a href="{% url download doc.pk %}?zipped=true"><img src="{{MEDIA_URL}}img/icons/compress.png" /></a>
+					{% endif %}
+				</span>
+			</li>
+		{% endif %}
+	{% empty %}	
+		<li class="info">{% trans "No documents were uploaded by this user so far." %}</li>
+	{% endfor %}
+</ul>
+</div>
+</div>
+
+{% if not request.user.get_profile.is_lecturer %}
+
+<div class="course" style="margin-left:0px;margin-right:0px;">
+<h2>{% trans "Last documents the user commented on." %}</h2>
+<div class="documentList">
+<ul>
+	{% for comment in cdocuments %}
+		{% if comment.document.course|args:request.user|call:"hasMatchingScope" %}
+			<li style="background-image:url({{comment.document.getLatestRevision.type|fileicon}}.png)">
+				<a href="{% url document comment.document.pk %}">{{comment.document.name|truncatewords_by_chars:40}}</a>
+				<span class="fileinfo">
+				{% blocktrans with since=comment.document.getLatestRevision.pub_date|timesince|upto:',' filesize=comment.document.getLatestRevision.file.size|filesizeformat %}{{filesize}} - {{since}} ago{% endblocktrans %} in <a href="{% url course comment.document.course.pk %}">{{comment.document.course.name}}</a>
+					{% if request.user.get_profile.semester != comment.document.course.semester %}
+						<span style="color:rgb(200,200,200)">({{comment.document.course.getSemester}})</span>
+					{% endif %}
+				</span>
+				<span class="tools">
+					{% if comment.document|args:request.user.pk|call:"get_subscription" %}
+						<img title="{% trans "You subscribed for updates for this document." %}" alt="{% trans "You subscribed for updates for this document." %}" src="{{MEDIA_URL}}img/icons/feed.png" /> 
+					{% endif %}
+						{% if comment.document.get_comments_count > 0 %}
+							<div class="comments"><a href="{% url document comment.document.pk %}#comments">{{comment.document.get_comments_count}}</a></div>
+						{% endif %}			
+					<a href="{% url download comment.document.pk %}"><img src="{{MEDIA_URL}}img/icons/disk.png" /></a>
+					<a href="{% url download comment.document.pk %}?zipped=true"><img src="{{MEDIA_URL}}img/icons/compress.png" /></a>
+				</span>
+			</li>
+		{% endif %}
+	{% empty %}	
+		<li class="info">{% trans "The user has not commented on any document yet." %}</li>
+	{% endfor %}
+</ul>
+</div>
+</div>
+
+{% endif %}
+
+{% endblock %}

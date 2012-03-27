@@ -1,0 +1,30 @@
+{% load i18n %}
+{% load value_from_settings %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<title>DocMan does not work in your browser :-(</title>
+		<link type="text/css" href="/media/css/new/base.css" rel="stylesheet" />
+		<style type="text/css">
+			div#no {
+				position: relative;
+				width: 50%;
+				left: 25%;
+				text-align:center;
+				top: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="no">
+		<h1>{% trans "We are sorry!" %}</h1>
+		<img src="{{MEDIA_URL}}img/new/sad.png" />
+		<p>{% trans "DocMan does not work properly in Internet Explorer." %}</p>
+		<p>{% blocktrans with safari="http://apple.com/safari" chrome="http://google.com/chrome" firefox="http://mozilla.com" %}
+		Please upgrade to a modern web browser like <br /><a href="{{safari}}">Safari</a>, <a href="{{chrome}}">Google Chrome</a> or <a href="{{firefox}}">Mozilla Firefox</a> in order to use DocMan.
+		{% endblocktrans %}</p><h3>{% trans "Thank you!" %}</h3
+		</div>
+	</body>
+</html>

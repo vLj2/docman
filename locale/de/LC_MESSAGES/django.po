@@ -1,0 +1,2405 @@
+# This is the German Translation for DocMan (https://github.com/tjosten/docman)
+# Copyright (C) 2011 Timo Josten, Philipp Klaus
+# This file is distributed under the same license as the DocMan package.
+# Philipp Klaus <philipp.klaus@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: DocMan v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-03-26 22:17+0200\n"
+"PO-Revision-Date: 2012-03-26 22:17+0100\n"
+"Last-Translator: \n"
+"Language-Team: Timo Josten <tj@unkreativ.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: app/models.py:105
+msgid "Welcome to DocMan!"
+msgstr "Willkommen bei DocMan!"
+
+#: app/models.py:124
+msgid "New DocMan Password"
+msgstr "Neues Passwort bei DocMan"
+
+#: app/models.py:173
+#, python-format
+msgid "%d. Term"
+msgstr "%d. Semester"
+
+#: app/models.py:175
+#: templates/core/base.html:152
+msgid "All Terms"
+msgstr "Alle Semester"
+
+#: app/models.py:350
+msgid "News"
+msgstr "Neuigkeiten"
+
+#: app/views.py:106
+msgid "Your Facebook connection has been deleted!"
+msgstr "Deine Facebook Connection wurde gelöscht!"
+
+#: app/views.py:135
+msgid "An unknown error occurred while trying to delete the pad. Please try again later!"
+msgstr "Beim Löschen des Pads ist ein Fehler aufgetreten. Bitte probier' es später noch einmal!"
+
+#: app/views.py:138
+msgid "The pad has been deleted successfully!"
+msgstr "Das Pad wurde erfolgreich gelöscht!"
+
+#: app/views.py:166
+msgid "An unknown error occurred while trying to read the pad. Please try again later!"
+msgstr "Beim Lesen des Pads ist ein Fehler aufgetreten. Bitte probier' es später noch einmal!"
+
+#: app/views.py:209
+msgid "An unknown error occurred while trying to access the pad. Please try again later!"
+msgstr "Beim Zugriff auf das Pad ist ein Fehler aufgetreten. Bitte probier' es später noch einmal!"
+
+#: app/views.py:232
+msgid "You need to specify a name for the new pad!"
+msgstr "Du musst einen Namen für das neue Pad angeben!"
+
+#: app/views.py:258
+msgid "An unknown error occurred while trying to create a new pad. Please try again later!"
+msgstr "Beim Erstellen des Pads ist ein Fehler aufgetreten. Bitte probier' es später noch einmal!"
+
+#: app/views.py:280
+msgid "An unknown error occurred while trying to upload your file. Please try again later!"
+msgstr "Beim Hochladen des Dokuments ist leider ein unerwarteter Fehler aufgetreten. Bitte versuch' es später noch einmal!"
+
+#: app/views.py:286
+msgid "No File selected!"
+msgstr "Keine Datei ausgewählt!"
+
+#: app/views.py:307
+#: app/views.py:499
+msgid "Course couldn't be loaded - please try again!"
+msgstr "Kurs konnte nicht geladen werden - bitte erneut versuchen!"
+
+#: app/views.py:315
+#: app/views.py:507
+msgid "Document couln't be loaded - please try again!"
+msgstr "Dokument konnte nicht geladen werden - bitte erneut versuchen!"
+
+#: app/views.py:320
+#: app/views.py:512
+msgid "The file is too big!"
+msgstr "Die Datei ist zu groß!"
+
+#: app/views.py:323
+#: app/views.py:341
+#: app/views.py:354
+#: app/views.py:521
+#: app/views.py:539
+#: app/views.py:552
+msgid "An unexpected error occured while uploading the file."
+msgstr "Beim Hochladen ist ein unerwarteter Fehler aufgetreten!"
+
+#: app/views.py:454
+#: app/views.py:645
+#: app/views.py:646
+#, python-format
+msgid "The new revision <strong>%s</strong> has been uploaded successfully."
+msgstr "Die neue Revision <strong>%s</strong> wurde erfolgreich hochgeladen!"
+
+#: app/views.py:457
+#: app/views.py:648
+#, python-format
+msgid "The Document <strong>%s</strong> has been uploaded successfully."
+msgstr "Das Dokument <strong>%s</strong> wurde erfolgreich hochgeladen!"
+
+#: app/views.py:665
+msgid "Invalid Term selected."
+msgstr "Ungültiges Semester ausgewählt!"
+
+#: app/views.py:672
+#: app/views.py:847
+msgid "This is not a valid email address!"
+msgstr "Diese E-Mail Adresse ist leider nicht gültig!"
+
+#: app/views.py:728
+msgid "Successfully subscribed to notifications for this course."
+msgstr "Die Benachrichtigungen für diesen Kurs wurden erfolgreich aktiviert!"
+
+#: app/views.py:738
+msgid "You unsubscribed from notifications for this course."
+msgstr "Die Benachrichtigungen für diesen Kurs wurden erfolgreich abbestellt!"
+
+#: app/views.py:749
+msgid "Successfully subscribed to notifications for this document."
+msgstr "Die Benachrichtigungen für das Dokument wurden erfolgreich aktiviert!"
+
+#: app/views.py:760
+msgid "You unsubscribed from notifications for this document."
+msgstr "Die Benachrichtigungen für das Dokument wurden erfolgreich abbestellt!"
+
+#: app/views.py:772
+msgid "Couldn't load the document"
+msgstr "Das Dokument konnte nicht geladen werden!"
+
+#: app/views.py:776
+msgid "Invalid rating"
+msgstr "Ungültige Bewertung"
+
+#: app/views.py:814
+msgid "Your current password is not correct!"
+msgstr "Dein aktuelles Passwort ist nicht korrekt!"
+
+#: app/views.py:818
+msgid "The passwords don't match!"
+msgstr "Die Passwörter stimmen nicht überein!"
+
+#: app/views.py:822
+msgid "Your password must be at least 5 characters long!"
+msgstr "Das Passwort muss mindestens 5 Zeichen lang sein!"
+
+#: app/views.py:828
+msgid "Your password has been changed!"
+msgstr "Das Passwort wurde geändert!"
+
+#: app/views.py:841
+msgid "Your settings have been changed!"
+msgstr "Deine Einstellungen wurden gespeichert!"
+
+#: app/views.py:853
+msgid "Your email address has been changed!"
+msgstr "Deine E-Mail Adresse wurde geändert!"
+
+#: app/views.py:895
+msgid "Username or password invalid."
+msgstr "Der Benutzername oder das Passwort ist ungültig."
+
+#: app/views.py:907
+msgid "This account has been deactivated."
+msgstr "Der Account wurde deaktiviert."
+
+#: app/views.py:1082
+msgid "You already voted, mate!"
+msgstr "Du hast bereits an der Umfrage teilgenommen!"
+
+#: app/views.py:1098
+msgid "Thanks for your time, mate. You rock!"
+msgstr "Vielen Dank für deine Zeit und deine Hilfe! Du rockst!"
+
+#: app/views.py:1118
+msgid "Couln't load the document!"
+msgstr "Das Dokument konnte nicht geladen werden!"
+
+#: app/views.py:1122
+msgid "Please enter a name!"
+msgstr "Bitte einen Namen angeben!"
+
+#: app/views.py:1126
+msgid "You aren't the owner of this document!"
+msgstr "Das Dokument gehört nicht dir!"
+
+#: app/views.py:1145
+#: app/views.py:1146
+msgid "The file has been successfully amended!"
+msgstr "Das Dokument wurde erfolgreich bearbeitet!"
+
+#: app/views.py:1177
+msgid "The document has been deleted successfully!"
+msgstr "Das Dokument wurde erfolgreich gelöscht!"
+
+#: app/views.py:1196
+msgid "The Revision has been deleted successfully!"
+msgstr "Die Revision wurde erfolgreich gelöscht!"
+
+#: app/views.py:1240
+msgid "The comment has been deleted."
+msgstr "Der Kommentar wurde gelöscht."
+
+#: app/views.py:1243
+msgid "You aren't the author of this comment!"
+msgstr "Der Kommentar gehört nicht dir!"
+
+#: app/views.py:1254
+msgid "There are no documents in this category."
+msgstr "Es gibt keine Dokumente in dieser Kategorie."
+
+#: app/views.py:1295
+msgid "Your comment is too short (or far too long)."
+msgstr "Dein Kommentar ist leider zu kurz (oder viel zu lang)."
+
+#: app/views.py:1304
+msgid "Your comment has been saved!"
+msgstr "Dein Kommentar wurde gespeichert!"
+
+#: app/views.py:1318
+msgid "You selected an invalid issue type!"
+msgstr "Du hast einen ungültiges Problem ausgewählt!"
+
+#: app/views.py:1322
+msgid "Please enter at least 10 characters for issue description!"
+msgstr "Bitte gib' wenigstens 10 Zeichen für die Problembeschreibung an!"
+
+#: app/views.py:1330
+msgid "Thank you very much for your time and issue report!"
+msgstr "Vielen Dank für deine Zeit und deine Hilfe!"
+
+#: organisation_mgmt/views.py:234
+msgid "No courses"
+msgstr "Keine Kurse"
+
+#: organisation_mgmt/views.py:277
+#: organisation_mgmt/views.py:344
+msgid "Minimum length for course names: 5 characters."
+msgstr "Mindestlänge für Kursnamen: 5 Zeichen"
+
+#: organisation_mgmt/views.py:281
+#: organisation_mgmt/views.py:348
+msgid "Please select a valid category."
+msgstr "Bitte wähle eine gültige Kateogrie aus."
+
+#: organisation_mgmt/views.py:285
+#: organisation_mgmt/views.py:352
+msgid "Please select a valid lecturer."
+msgstr "Bitte wähle einen gültigen Dozenten aus."
+
+#: organisation_mgmt/views.py:289
+#: organisation_mgmt/views.py:357
+#: organisation_mgmt/views.py:360
+msgid "Please select a valid semester."
+msgstr "Bitte wähle ein gültiges Semester aus."
+
+#: organisation_mgmt/views.py:298
+msgid "The course has been successfully amended."
+msgstr "Der Kurs wurde erfolgreich bearbeitet!"
+
+#: organisation_mgmt/views.py:339
+msgid "Please select a category and lecturer."
+msgstr "Bitte wähle eine Kategorie und einen Dozenten aus."
+
+#: organisation_mgmt/views.py:367
+msgid "The course has been successfully created."
+msgstr "Der Kurs wurde erfolgreich erstellt."
+
+#: organisation_mgmt/views.py:381
+#: organisation_mgmt/views.py:401
+#: organisation_mgmt/views.py:807
+#: organisation_mgmt/views.py:837
+msgid "This scope does not exist!"
+msgstr "Dieser Geltungsbereich existiert nicht!"
+
+#: organisation_mgmt/views.py:386
+msgid "The scope has been removed from this course."
+msgstr "Der Kurs wurde aus diesem Geltungsbereich entfernt."
+
+#: organisation_mgmt/views.py:389
+msgid "The scope is not connected to this course."
+msgstr "Dieser Kurs ist nicht in diesem Geltungsbereich."
+
+#: organisation_mgmt/views.py:406
+msgid "The scope has been added to this course."
+msgstr "Der Kurs wurde dem Geltungsbereich hinzugefügt."
+
+#: organisation_mgmt/views.py:409
+msgid "The scope is already connected to this course."
+msgstr "Der Kurs ist bereits in diesem Geltungsbereich."
+
+#: organisation_mgmt/views.py:419
+msgid "You need to tick the checkbox in case to delete the course."
+msgstr "Du musst den Haken setzen um den Kurs löschen zu können."
+
+#: organisation_mgmt/views.py:423
+msgid "The course has been successfully deleted."
+msgstr "Der Kurs wurde erfolgreich gelöscht."
+
+#: organisation_mgmt/views.py:441
+msgid "The lecturer has been successfully amended."
+msgstr "Der Dozent wurde erfolgreich bearbeitet."
+
+#: organisation_mgmt/views.py:478
+msgid "Name is a required field."
+msgstr "Name ist ein Pflichtfeld."
+
+#: organisation_mgmt/views.py:483
+#: organisation_mgmt/views.py:711
+#: organisation_mgmt/views.py:777
+msgid "The email address has an invalid format."
+msgstr "Diese E-Mail Adresse ist nicht korrekt."
+
+#: organisation_mgmt/views.py:486
+#: organisation_mgmt/views.py:714
+#: organisation_mgmt/views.py:780
+msgid "This email adress has already been taken!"
+msgstr "Diese E-Mail Adresse ist bereits vergeben."
+
+#: organisation_mgmt/views.py:492
+msgid "The lecturer has been successfully created."
+msgstr "Der Dozent wurde erfolgreich erstellt!"
+
+#: organisation_mgmt/views.py:510
+msgid "You need to tick the checkbox in case to delete the lecturer."
+msgstr "Du musst den Haken setzen um den Dozent löschen zu können."
+
+#: organisation_mgmt/views.py:515
+msgid "The lecturer has been successfully deleted."
+msgstr "Der Dozent wurde erfolgreich gelöscht."
+
+#: organisation_mgmt/views.py:525
+msgid "You need to tick the checkbox in case to delete the scope."
+msgstr "Du musst den Haken setzen um den Geltungsbereich löschen zu können."
+
+#: organisation_mgmt/views.py:529
+msgid "The scope has been successfully deleted."
+msgstr "Der Geltungsbereich wurde erfolgreich gelöscht."
+
+#: organisation_mgmt/views.py:544
+#: organisation_mgmt/views.py:578
+msgid "Minimum length for scope names: 2 characters"
+msgstr "Mindestlänge für Geltungsbereichnamen: 2 Zeichen"
+
+#: organisation_mgmt/views.py:548
+#: organisation_mgmt/views.py:582
+msgid "This scope name has already been taken!"
+msgstr "Dieser Name ist bereits in Verwendung."
+
+#: organisation_mgmt/views.py:554
+msgid "The scope has been successfully created."
+msgstr "Der Geltungsbereich wurde erfolgreich erstellt."
+
+#: organisation_mgmt/views.py:587
+msgid "The scope has been successfully amended."
+msgstr "Der Geltungsbereich wurde erfolgreich bearbeitet."
+
+#: organisation_mgmt/views.py:617
+msgid "An email with a new password has been sent to the lecturer."
+msgstr "Der Dozent hat eine E-Mail mit seinem neuen Passwort erhalten."
+
+#: organisation_mgmt/views.py:620
+msgid "An email with a new password has been sent to the user."
+msgstr "Der Benutzer hat eine E-Mail mit seinem neuen Passwort erhalten."
+
+#: organisation_mgmt/views.py:632
+msgid "The lecturer has been successfully disabled."
+msgstr "Der Dozent wurde erfolgreich deaktiviert."
+
+#: organisation_mgmt/views.py:635
+msgid "The user has been successfully disabled."
+msgstr "Der Benutzer wurde erfolgreich deaktiviert."
+
+#: organisation_mgmt/views.py:647
+msgid "The lecturer has been successfully enabled."
+msgstr "Der Dozent wurde erfolgreich aktiviert."
+
+#: organisation_mgmt/views.py:650
+msgid "The user has been successfully enabled."
+msgstr "Der Benutzer wurde erfolgreich deaktiviert."
+
+#: organisation_mgmt/views.py:660
+msgid "You need to tick the checkbox in case to delete the user."
+msgstr "Du musst den Haken setzen um den Benutzer löschen zu können."
+
+#: organisation_mgmt/views.py:665
+msgid "The user has been successfully deleted."
+msgstr "Der Benutzer wurde erfolgreich gelöscht."
+
+#: organisation_mgmt/views.py:693
+#: organisation_mgmt/views.py:759
+msgid "Minimum length for usernames: 2 characters"
+msgstr "Mindestlänge für Benutzernamen: 2 Zeichen"
+
+#: organisation_mgmt/views.py:696
+#: organisation_mgmt/views.py:762
+msgid "This username has already been taken!"
+msgstr "Dieser Benutzername ist bereits vergeben."
+
+#: organisation_mgmt/views.py:701
+#: organisation_mgmt/views.py:767
+msgid "First name is a required field."
+msgstr "Vorname ist ein Pflichtfeld."
+
+#: organisation_mgmt/views.py:706
+#: organisation_mgmt/views.py:772
+msgid "Last name is a required field."
+msgstr "Nachname ist ein Pflichtfeld."
+
+#: organisation_mgmt/views.py:720
+msgid "The user has been successfully created."
+msgstr "Der Benutzer wurde erfolgreich erstellt."
+
+#: organisation_mgmt/views.py:788
+msgid "The user has been successfully amended."
+msgstr "Der Benutzer wurde erfolgreich bearbeitet."
+
+#: organisation_mgmt/views.py:815
+#: organisation_mgmt/views.py:886
+msgid "The user has been disconnected from this scope."
+msgstr "Der Benutzer wurde aus diesem Geltungsbereich entfernt."
+
+#: organisation_mgmt/views.py:821
+#: organisation_mgmt/views.py:889
+msgid "The user is not connected to this scope."
+msgstr "Der Benutzer gehört nicht zu diesem Geltungsbereich."
+
+#: organisation_mgmt/views.py:844
+#: organisation_mgmt/views.py:871
+msgid "The user is already connected to this scope."
+msgstr "Der Benutzer ist bereits in diesem Geltungsbereich."
+
+#: organisation_mgmt/views.py:851
+#: organisation_mgmt/views.py:875
+msgid "The user has been connected to this scope."
+msgstr "Der Benutzer wurde diesem Geltungsbereich hinzugefügt."
+
+#: organisation_mgmt/views.py:867
+msgid "This user does not exist!"
+msgstr "Dieser Benutzer existiert nicht."
+
+#: organisation_mgmt/views.py:902
+msgid "This course does not exist!"
+msgstr "Dieser Kurs existiert nicht."
+
+#: organisation_mgmt/views.py:906
+msgid "The course is already connected to this scope."
+msgstr "Dieser Kurs gehört bereits zu diesem Geltungsbereich."
+
+#: organisation_mgmt/views.py:910
+msgid "The course has been connected to this scope."
+msgstr "Der Kurs wurde dem Geltungsbereich hinzugefügt."
+
+#: organisation_mgmt/views.py:921
+msgid "The course has been disconnected from this scope."
+msgstr "Der Kurs wurde aus dem Geltungsbereich entfernt."
+
+#: organisation_mgmt/views.py:924
+msgid "The course is not connected to this scope."
+msgstr "Der Kurs gehört nicht zu diesem Geltungsbereich."
+
+#: templates/404.html:5
+msgid "Error 404 - Not found"
+msgstr "Fehler 404 - Nicht gefunden"
+
+#: templates/404.html:6
+#: templates/500.html:6
+#: templates/error-no-organisation.html:6
+msgid "Whoops!"
+msgstr "Whoops!"
+
+#: templates/404.html:11
+msgid "You tried to access a site that does not exist. We are very sorry about this."
+msgstr "Die aufgerufene Seite oder das angeforderte Objekt existiert leider nicht. Das tut uns leid!"
+
+#: templates/500.html:5
+msgid "Error 500 - Application error"
+msgstr "Fehler 500 - Anwendungsfehler"
+
+#: templates/500.html:11
+msgid "Something went terribly wrong. We are on this to fix the issue!"
+msgstr "Etwas ist schrecklich schief gelaufen. Wir arbeiten bestimmt bereits daran, den Fehler zu beheben!"
+
+#: templates/about.html:5
+msgid "About DocMan"
+msgstr "Über DocMan"
+
+#: templates/about.html:6
+msgid "It's beautiful, cool and fun!"
+msgstr "Es ist schön, cool und es macht Spaß!"
+
+#: templates/about.html:11
+msgid "Imprint"
+msgstr "Impressum"
+
+#: templates/about.html:12
+msgid "The operator of this DocMan website cannot be taken responsible for uploaded files. The respective uploader is resonsible for the uploaded files and their content. The Copyrights of the original authors remains unchanged."
+msgstr "Für den Inhalt der auf dieser Plattform hochgeladenen Dokumente kann keine Haftung übernommen werden - der jeweilige Uploader ist für das Dokument und dessen Inhalt verantwortlich. Das Copyright des Autors bleibt unangetastet."
+
+#: templates/about.html:18
+msgid "Technical Details"
+msgstr "Technische Details"
+
+#: templates/about.html:19
+msgid "This software has been developed with the help of:"
+msgstr "Diese Software wurde entwickelt mit Hilfe von und durch:"
+
+#: templates/about.html:28
+msgid "Technical Implementation, Hosting and Support"
+msgstr "Technische Umsetzung, Hosting und Support"
+
+#: templates/about.html:36
+msgid "DocMan is an open source project and can be downloaded at GitHub."
+msgstr "DocMan ist ein Open-Source Projekt und kann von GitHub heruntergeladen werden."
+
+#: templates/about.html:42
+msgid "Statistics"
+msgstr "Statistik"
+
+#: templates/about.html:43
+#, python-format
+msgid "Until now, a total number of %(number)s documents have been uploaded to DocMan, that take up %(space)s of file system storage."
+msgstr "Bisher werden mit Hilfe von DocMan %(number)s Dokumente verwaltet, welche insgesamt %(space)s Speicherplatz benötigen."
+
+#: templates/account.html:5
+#: templates/organisation/lecturer_mgmt_create.html:36
+msgid "Account"
+msgstr "Dein Zugang"
+
+#: templates/account.html:6
+msgid "Change your password, email address and settings here."
+msgstr "Hier kannst du dein Passwort, deine E-Mail Adresse und deine Einstellungen ändern."
+
+#: templates/account.html:13
+msgid "Change your password <span>it's easy!</span>"
+msgstr "Änder' dein Passwort <span>das ist einfach!</span>"
+
+#: templates/account.html:19
+msgid "Current password:"
+msgstr "Aktuelles Passwort:"
+
+#: templates/account.html:21
+#: templates/registration/password_reset_confirm.html:39
+msgid "New password:"
+msgstr "Neues Passwort:"
+
+#: templates/account.html:23
+#: templates/registration/password_reset_confirm.html:41
+msgid "..repeat, please:"
+msgstr "..bitte wiederholen:"
+
+#: templates/account.html:25
+msgid "Save password"
+msgstr "Passwort speichern"
+
+#: templates/account.html:34
+msgid "Change your email address <span>it's easy, too!</span>"
+msgstr ".. deine E-Mail Adresse <span>das ist auch einfach!</span>"
+
+#: templates/account.html:40
+msgid "Current email address:"
+msgstr "Aktuelle E-Mail Adresse:"
+
+#: templates/account.html:42
+msgid "New email address:"
+msgstr "Neue E-Mail Adresse:"
+
+#: templates/account.html:44
+msgid "Save email address"
+msgstr "E-Mail Adresse speichern"
+
+#: templates/account.html:56
+msgid "Change your settings <span>to suit your needs!</span>"
+msgstr "Änder' deine Einstellungen <span>wie es dir gefällt</span>"
+
+#: templates/account.html:63
+msgid "Show latest uploads on overview?"
+msgstr "Zuletzt hochgeladene Dokumente anzeigen?"
+
+#: templates/account.html:64
+msgid "Save settings"
+msgstr "Einstellungen speichern"
+
+#: templates/account.html:74
+msgid "Facebook Connect <span>to add your profile!</span>"
+msgstr "Facebook Connect <span>für dein Profilfoto</span>"
+
+#: templates/account.html:80
+#, python-format
+msgid "Your profile is already connected to Facebook. To remove this connection, <a href=\"%(fbdeconnect)s\">click here</a>."
+msgstr "Dein Profil ist bereits mit Facebook verbunden. <a href=\"%(fbdeconnect)s\">Klick' hier</a>, um die Verbindung aufzulösen."
+
+#: templates/course.html:8
+#: templates/document.html:13
+#: templates/pad.html:13
+msgid "You are here"
+msgstr "Du bist hier"
+
+#: templates/course.html:21
+msgid "Drop your file here"
+msgstr "Hier fallen lassen!"
+
+#: templates/course.html:24
+msgid "Click to upload"
+msgstr "Zum Hochladen klicken"
+
+#: templates/course.html:40
+msgid "Select File.."
+msgstr "Datei auswählen.."
+
+#: templates/course.html:44
+#: templates/course.html.py:79
+#: templates/document.html:62
+msgid "Document Name"
+msgstr "Dokumentname"
+
+#: templates/course.html:46
+msgid "Leave empty for filename"
+msgstr "Leer lassen, um den Dateinamen zu nutzen"
+
+#: templates/course.html:49
+#: templates/course.html.py:83
+#: templates/course.html:112
+#: templates/document.html:66
+#: templates/pad.html:39
+msgid "Tags"
+msgstr "Stichwörter"
+
+#: templates/course.html:50
+#: templates/course.html.py:84
+#: templates/course.html:113
+#: templates/document.html:67
+#: templates/pad.html:40
+msgid "Seperate tags with commas (,)"
+msgstr "Trenne mehrere Tags mit einem Komma (,)"
+
+#: templates/course.html:52
+#: templates/course.html.py:86
+#: templates/course.html:115
+#: templates/document.html:69
+#: templates/pad.html:42
+msgid "Description"
+msgstr "Beschreibung"
+
+#: templates/course.html:54
+#: templates/document.html:35
+msgid "Upload file"
+msgstr "Neues Dokument hochladen"
+
+#: templates/course.html:54
+#: templates/document.html:35
+msgid "or <a href='javascript:void(0)' id='resetIEUploadWindow'>close</a>"
+msgstr "oder <a href='javascript:void(0)' id='resetIEUploadWindow'>schließen</a>"
+
+#: templates/course.html:54
+#: templates/course.html.py:88
+#: templates/course.html:117
+#: templates/default.html:75
+#: templates/document.html:35
+#: templates/document.html.py:71
+#: templates/pad.html:44
+msgid "Loading.."
+msgstr "Lade.."
+
+#: templates/course.html:56
+#: templates/course.html.py:90
+#: templates/document.html:73
+msgid "Visible for lecturers?"
+msgstr "Sichtbar für Dozenten?"
+
+#: templates/course.html:88
+#: templates/document.html:71
+#: templates/pad.html:44
+msgid "Save Details"
+msgstr "Speichern"
+
+#: templates/course.html:88
+msgid "or <a href='javascript:void(0)' id='resetUploadWindow'>close</a>"
+msgstr "oder <a href='javascript:void(0)' id='resetUploadWindow'>schließen</a>"
+
+#: templates/course.html:101
+#: templates/course.html.py:129
+msgid "Create new pad"
+msgstr "Neues Pad erstellen"
+
+#: templates/course.html:101
+msgid "Please fill out the following form to create this pad."
+msgstr "Bitte füll' folgende Felder aus, um das Pad zu erstellen."
+
+#: templates/course.html:108
+#: templates/pad.html:35
+msgid "Pad Name"
+msgstr "Pad-Name:"
+
+#: templates/course.html:117
+msgid "Create pad"
+msgstr "Neues Pad erstellen"
+
+#: templates/course.html:117
+msgid "or <a href='javascript:void(0)' id='resetPadWindow'>close</a>"
+msgstr "oder <a href='javascript:void(0)' id='resetPadWindow'>schließen</a>"
+
+#: templates/course.html:128
+msgid "Course options"
+msgstr "Kurseinstellungen"
+
+#: templates/course.html:130
+msgid "Download all documents"
+msgstr "Dokumente herunterladen"
+
+#: templates/course.html:132
+msgid "Unsubscribe this Course"
+msgstr "Kurs abbestellen"
+
+#: templates/course.html:134
+msgid "Subscribe this Course"
+msgstr "Kurs abonnieren"
+
+#: templates/course.html:140
+msgid "Course information"
+msgstr "Kursinformationen"
+
+#: templates/course.html:155
+#: templates/tags/tag.html:13
+msgid "Documents"
+msgstr "Dokumente"
+
+#: templates/course.html:165
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t%(filesize)s - %(since)s ago by %(uploader)s\n"
+"\t\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t\t\t%(filesize)s - vor %(since)s von %(uploader)s\n"
+"\t\t\t\t\t\t"
+
+#: templates/course.html:169
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t%(since)s ago by %(uploader)s \n"
+"\t\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t\t\tvor %(since)s von %(uploader)s \n"
+"\t\t\t\t\t\t"
+
+#: templates/course.html:177
+#: templates/default.html:112
+#: templates/default.html.py:172
+#: templates/user.html:42
+#: templates/user.html.py:79
+#: templates/search/search.html:65
+#: templates/tags/tag.html:33
+msgid "You subscribed for updates for this document."
+msgstr "Du hast dieses Dokument erfolgreich abonniert!"
+
+#: templates/course.html:190
+#: templates/default.html:124
+#: templates/default.html.py:185
+msgid "Until now no documents have been uploaded."
+msgstr "Bisher wurden keine Dokumente hochgeladen."
+
+#: templates/default.html:4
+#: templates/default.html.py:7
+#: templates/core/base.html:110
+#: templates/organisation/navigation.html:4
+msgid "Overview"
+msgstr "Überblick"
+
+#: templates/default.html:8
+msgid "Welcome to DocMan, the collaborative document management system. All new."
+msgstr "Willkommen bei DocMan, der kollaborativen Dokumentverwaltung. Ganz neu!"
+
+#: templates/default.html:16
+#: templates/login.html:23
+#: templates/login.html.py:30
+msgid "Howdy, mate!"
+msgstr "Hallo, Du!"
+
+#: templates/default.html:17
+msgid "How's going? You are using DocMan for a while now. We would like to ask you a few questions about DocMan. Please, take your time to fill out the following brief survey to help us to make DocMan even better!"
+msgstr "Wie geht's dir? Du benutzt DocMan nun schon seit einer ganzen Weile. Wir würden dir gerne ein paar Fragen zu DocMan stellen. Bitte nimm' dir doch kurz die Zeit um die kurze Umfrage auszufüllen um uns zu helfen, DocMan noch besser zu machen!"
+
+#: templates/default.html:18
+msgid "Note: Please use school grades to rate. Thanks!"
+msgstr "Hinweis: Die Bewertung erfolgt nach dem Schulnotensystem."
+
+#: templates/default.html:26
+msgid "What do you think about DocMan in general?"
+msgstr "Was denkst du allgemein über DocMan?"
+
+#: templates/default.html:38
+msgid "What's your opinion about the drop-to-upload thing?"
+msgstr "Wie ist deine Meinung zum Drop-To-Upload?"
+
+#: templates/default.html:50
+msgid "How's the layout?"
+msgstr "Wie gefällt dir das Layout?"
+
+#: templates/default.html:62
+msgid "Did you sometimes download .zip archives?"
+msgstr "Lädst du manchmal .zip-Archive herunter?"
+
+#: templates/default.html:64
+msgid "no"
+msgstr "nein"
+
+#: templates/default.html:65
+msgid "only once"
+msgstr "nur einmal"
+
+#: templates/default.html:66
+msgid "sometimes"
+msgstr "manchmal"
+
+#: templates/default.html:71
+msgid "Any great, revolutionary ideas?"
+msgstr "Hast du tolle, neue Ideen?"
+
+#: templates/default.html:75
+msgid "Finish survey!"
+msgstr "Umfrage beenden!"
+
+#: templates/default.html:75
+msgid "Thanks, you rock!"
+msgstr "Danke, du rockst!"
+
+#: templates/default.html:89
+msgid "Latest Uploads"
+msgstr "Zuletzt hochgeladene Dokumente"
+
+#: templates/default.html:89
+msgid "Hide latest uploades"
+msgstr "Zuletzt hochgeladene Dokumente ausblenden"
+
+#: templates/default.html:97
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t%(filesize)s - %(since)s ago\n"
+"\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t%(filesize)s - vor %(since)s\n"
+"\t\t\t\t"
+
+#: templates/default.html:101
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t%(since)s ago\n"
+"\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\tvor %(since)s\n"
+"\t\t\t\t"
+
+#: templates/default.html:147
+msgid "held by"
+msgstr "bei"
+
+#: templates/default.html:150
+msgid "You subscribed for updates for this course."
+msgstr "Du hast diesen Kurs erfolgreich abonniert."
+
+#: templates/default.html:161
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t%(filesize)s - %(since)s ago by %(uploader)s\n"
+"\t\t\t\t\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t%(filesize)s - vor %(since)s von %(uploader)s\n"
+"\t\t\t\t\t\t\t\t\t"
+
+#: templates/default.html:165
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\t%(since)s ago by %(uploader)s \n"
+"\t\t\t\t\t\t\t\t\t"
+msgstr ""
+"\n"
+"\t\t\t\t\t\t\t\t\t\tvor %(since)s von %(uploader)s \n"
+"\t\t\t\t\t\t\t\t\t"
+
+#: templates/default.html:192
+msgid "No courses in this category (for this term)."
+msgstr "Keine Kurse in dieser Kategorie (für dieses Semester) vorhanden."
+
+#: templates/default.html:197
+msgid "No Categories set up yet."
+msgstr "Keine Kategorien vorhanden!"
+
+#: templates/docent.html:8
+msgid "Lecturer profile"
+msgstr "Dozentenprofil"
+
+#: templates/docent.html:14
+#: templates/organisation/lecturer_mgmt_create.html:33
+#: templates/organisation/lecturer_mgmt_edit.html:130
+#: templates/organisation/scope_mgmt.html:80
+#: templates/organisation/scope_mgmt_create.html:28
+#: templates/organisation/scope_mgmt_edit.html:76
+msgid "Courses"
+msgstr "Kurse"
+
+#: templates/docent.html:25
+msgid "No courses are assigned to this lecturer."
+msgstr "Dieser Dozent hält keine Kurse."
+
+#: templates/document.html:32
+msgid "Select new revision.."
+msgstr "Neue Revision auswählen.."
+
+#: templates/document.html:55
+msgid "Edit document"
+msgstr "Dokument bearbeiten"
+
+#: templates/document.html:55
+msgid "Please fill out the following form to edit this document."
+msgstr "Bitte füll' folgende Felder aus, um das Dokument zu beschreiben."
+
+#: templates/document.html:71
+#: templates/pad.html:44
+msgid "or <a href='javascript:void(0)' id='resetEditWindow'>close</a>"
+msgstr "oder <a href='javascript:void(0)' id='resetEditWindow'>schließen</a>"
+
+#: templates/document.html:92
+#: templates/get.html:80
+#: templates/get.html.py:112
+msgid "Download"
+msgstr "Download"
+
+#: templates/document.html:93
+msgid "Download <span style='font-size:small'>as .zip</span>"
+msgstr "Download <span style='font-size:small'>als .zip</span>"
+
+#: templates/document.html:97
+#: templates/pad.html:88
+msgid "Other options"
+msgstr "Weitere Optionen"
+
+#: templates/document.html:99
+msgid "Unsubscribe this document"
+msgstr "Abonnement abbestellen"
+
+#: templates/document.html:101
+msgid "Subscribe this document"
+msgstr "Dokument abonnieren"
+
+#: templates/document.html:105
+msgid "Edit this document"
+msgstr "Dokument bearbeiten"
+
+#: templates/document.html:109
+msgid "Are you sure, you want to delete the document and all its comments?"
+msgstr "Sicher, dass du das Dokument und alle Kommentare dazu löschen willst?"
+
+#: templates/document.html:109
+msgid "Delete this document"
+msgstr "Dokument löschen"
+
+#: templates/document.html:114
+msgid "Are you sure, you want to delete the current revision?"
+msgstr "Sicher, dass du die aktuelle Revision löschen willst?"
+
+#: templates/document.html:114
+msgid "Delete current revision"
+msgstr "Aktuelle Revision löschen"
+
+#: templates/document.html:121
+msgid "Drop new revision here"
+msgstr "Hier fallen lassen!"
+
+#: templates/document.html:125
+msgid "Click to upload new revision"
+msgstr "Neue Version hochladen"
+
+#: templates/document.html:129
+#: templates/organisation/course_mgmt_create.html:20
+#: templates/organisation/course_mgmt_edit.html:23
+#: templates/organisation/lecturer_mgmt_create.html:13
+#: templates/organisation/lecturer_mgmt_edit.html:25
+#: templates/organisation/scope_mgmt_create.html:13
+#: templates/organisation/user_mgmt_create.html:13
+#: templates/organisation/user_mgmt_edit.html:23
+msgid "Basic information"
+msgstr "Allgemeine Informationen"
+
+#: templates/document.html:131
+#: templates/pad.html:62
+msgid "Uploaded by:"
+msgstr "Hochgeladen von:"
+
+#: templates/document.html:133
+#: templates/pad.html:64
+msgid "Rating:"
+msgstr "Bewertung:"
+
+#: templates/document.html:136
+msgid "This document is visible for lecturers."
+msgstr "Dieses Dokument ist für Dozenten sichtbar."
+
+#: templates/document.html:142
+msgid "Current revision"
+msgstr "Aktuelle Revision"
+
+#: templates/document.html:144
+#: templates/document.html.py:175
+#: templates/pad.html:63
+#: templates/user.html:33
+#, python-format
+msgid "%(since)s ago"
+msgstr "vor %(since)s"
+
+#: templates/document.html:145
+#: templates/document.html.py:236
+msgid "by"
+msgstr "von"
+
+#: templates/document.html:169
+msgid "Comments "
+msgstr "Kommentare"
+
+#: templates/document.html:175
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/document.html:200
+#: templates/document.html.py:209
+msgid "Preview"
+msgstr "Vorschau"
+
+#: templates/document.html:205
+msgid "Move your mouse over the preview image."
+msgstr "Beweg' deine Maus über das Vorschaubild."
+
+#: templates/document.html:214
+msgid "No preview available"
+msgstr "Keine Vorschau verfügbar"
+
+#: templates/document.html:222
+msgid "Revision history"
+msgstr "Revisionen"
+
+#: templates/document.html:230
+msgid "Are you sure, you want to delete this revision?"
+msgstr "Sicher, dass du diese Revision löschen willst?"
+
+#: templates/error-no-organisation.html:5
+msgid "Application error"
+msgstr "Fehler in der Anwendung"
+
+#: templates/error-no-organisation.html:11
+msgid "We're very sorry, but something went terribly wrong with your account.<br />It seems that you are not connected to any organisation."
+msgstr "Es tut uns Leid! Leider ist etwas mit deinem Account ziemlich schief gelaufen.<br />Es scheint, du bist keiner Organisation zugewiesen."
+
+#: templates/error-no-organisation.html:12
+msgid "Our technical support has already been informed. We will come back to you asap!"
+msgstr "Unser technischer Support wurde bereits informiert und meldet sich schnellstmöglich bei dir."
+
+#: templates/get.html:5
+msgid "Introducing DocMan"
+msgstr "Wir stellen vor: DocMan"
+
+#: templates/get.html:6
+msgid "Collaborative Document Management. All new and Open Source."
+msgstr "Kollaborative Dokumentenverwaltung. Ganz neu und Open Source."
+
+#: templates/get.html:36
+msgid "Get in touch!"
+msgstr "Schau's dir an!"
+
+#: templates/get.html:37
+msgid "DocMan is a new open source software for collaborative document management including the following features (and much more!):"
+msgstr "DocMan ist eine neue Open Source-Software für kollaborative Dokumentenverwaltung mit folgenden Features (und einigen mehr!):"
+
+#: templates/get.html:48
+msgid "Multi user document management (in a web browser!)"
+msgstr "Mehrbenutzer-Dokumentenverwaltung (im Web-Browser!)"
+
+#: templates/get.html:49
+msgid "Supports text, audio, word, powerpoint, excel and every other file format"
+msgstr "Unterstützt Text, Audio, Word, Powerpoint, Excel und jedes erdenkliche andere Dateiformat"
+
+#: templates/get.html:50
+msgid "Drag &amp; Drop upload (supported by Firefox, Safari and Chrome)"
+msgstr "Drag &amp; Drop-Upload (unterstützt von Firefox, Safari und Chrome)"
+
+#: templates/get.html:51
+msgid "Hierarchical organized in semester, categories and courses"
+msgstr "Hierarchisch in Semestern, Kategorien und Kursen organisiert "
+
+#: templates/get.html:52
+#, fuzzy
+msgid "Integrated lecturer profiles including course overview"
+msgstr "Integrierte Dozentenprofile mit Kursübersicht"
+
+#: templates/get.html:53
+msgid "Acccess restricted lecturer accounts optional for each lecturer"
+msgstr "Eingeschränkter Dozenten-Zugang optional pro Dozent"
+
+#: templates/get.html:54
+msgid "Fancy tag cloud generation for easy overview about common topics"
+msgstr "Coole Tag-Cloud für eine schnelle Übersicht der populärsten Themen"
+
+#: templates/get.html:55
+msgid "Full text search and PDF full text indexing!"
+msgstr "Volltextsuche und PDF-Volltextindizierung!"
+
+#: templates/get.html:56
+msgid "Preview image with content of the document (PDF, image and text only)"
+msgstr "Vorschau-Bild mit dem Inhalt des Dokuments  (nur PDF, Bild und Text)"
+
+#: templates/get.html:57
+msgid "Downloads available in original file format or .zip file"
+msgstr "Download der Dokumente im Originalformat oder als .zip-Datei"
+
+#: templates/get.html:58
+msgid "Comments and ratings for every document uploaded"
+msgstr "Kommentare und Bewertungen für jedes hochgeladene Dokument"
+
+#: templates/get.html:59
+msgid "Revisioning system for documents (Restore any revision at any time)"
+msgstr "Revisionierungssystem für die Dokumente (jede Revision kann zu jeder Zeit heruntergeladen werden)"
+
+#: templates/get.html:60
+msgid "Multi language software (English and German translation available yet)"
+msgstr "Mehrsprachige Software (Englisch und Deutsch verfügbar)"
+
+#: templates/get.html:61
+msgid "Email subscriptions for comments, courses and single documents."
+msgstr "E-Mail-Benachrichtigungen für Kommentare, Kurse und einzelne Dokumente"
+
+#: templates/get.html:62
+msgid "<strong>New:</strong> Etherpad Lite integration. Simultaneously edit text documents in your course! Best practice for transcripts."
+msgstr "<strong>Neu:</strong> Etherpad Lite-Integration. Gleichzeitiges Bearbeiten von Text-Dokumenten in deinem Kurs! Perfekt für Mitschriften."
+
+#: templates/get.html:68
+msgid "SSL secured connection during the whole flight!"
+msgstr "SSL-gesicherte Verbindung während der gesamten Nutzung!"
+
+#: templates/get.html:71
+msgid "Got ya?"
+msgstr "Na, interessiert?"
+
+#: templates/get.html:72
+msgid "Nice! As DocMan is available as <a href='http://en.wikipedia.org/wiki/SaaS'>SaaS</a>-solution or for download, you need to decide here. You don't know what we are talking about?"
+msgstr "Super! Da DocMan als <a href='http://en.wikipedia.org/wiki/SaaS'>SaaS</a>-Lösung oder zum Download verfügbar ist, musst du dich hier entscheiden. Du hast keinen Schimmer, wovon wir reden?"
+
+#: templates/get.html:79
+#: templates/get.html.py:119
+msgid "Software as a Service"
+msgstr "Software as a Service"
+
+#: templates/get.html:87
+msgid "<strong>No</strong> IT-knowledge and infrastructure required at all"
+msgstr "Absolut <strong>kein</strong> IT-Wissen und keine Infrastruktur benötigt"
+
+#: templates/get.html:88
+msgid "Always <strong>latest version</strong> of DocMan available, maintained by our service team"
+msgstr "Immer die <strong>aktuellste Version</strong> von DocMan verfügbar, gewartet von unserem Service-Team"
+
+#: templates/get.html:89
+msgid "SSL <strong>secured connection</strong> during the while flight"
+msgstr "<strong>SSL-gesicherte Verbindung</strong> während der gesamten Nutzung!"
+
+#: templates/get.html:90
+msgid "All files <strong>securely stored</strong> on our servers located in Germany"
+msgstr "Alle Dateien <strong>sicher</strong> auf unseren Servern in Deutschland gespeichert"
+
+#: templates/get.html:91
+msgid "Hosting fee depending on required dimension"
+msgstr "Kosten abhängig von der benötigten Größenordnung"
+
+#: templates/get.html:96
+msgid "IT-knowledge and infrastructure strongly <strong>required</strong>"
+msgstr "IT-Wissen und Infrastruktur <strong>zwingend benötigt</strong>"
+
+#: templates/get.html:97
+msgid "Autonomous system. Software and security updates need to be installed by <strong>yourself</strong>"
+msgstr "Selbstständiges System. Software- und Sicherheitsupdates müssen daher <strong>selbst eingepflegt</strong> werden"
+
+#: templates/get.html:98
+msgid "Free (you probably need to pay the infrastructure or have it available anyway)"
+msgstr "Kostenlos (vermutlich entstehen Kosten durch die benötigte Infrastruktur)"
+
+#: templates/get.html:103
+#: templates/get.html.py:104
+msgid "Learn more"
+msgstr "Mehr erfahren"
+
+#: templates/get.html:113
+msgid "<p>DocMan is Open Source software and available for free under the BSD license. (see <a href='https://github.com/tjosten/docman/blob/docman2/COPYING'>COPYING</a>) However, we do not give any kind of <strong>free</strong> support for installing or running DocMan on your infrastructure. Please <a href='mailto:support@docman.me'>drop us a line</a> if you are planning to run DocMan and having trouble. We surely can find a solution for you.</p><p>DocMan is written in Python (Django) and requires several modules and addons to be installed. For more information, please checkout the <a href='https://github.com/tjosten/docman/blob/docman2/README.md'>README</a> file in the DocMan repository:</p>"
+msgstr "<p>DocMan ist Open Source-Software und kostenlos unter der BSD-Lizenz verfügbar. (siehe <a href='https://github.com/tjosten/docman/blob/docman2/COPYING'>COPYING</a>) Wir geben jedoch keinerlei <strong>kostenlosen</strong> Support für die Installation oder den Betrieb von DocMan. Bitte <a href='mailto:support@docman.me'>melde dich bei unserem Support</a> wenn du Schwierigkeiten hast, DocMan einzusetze. Wir finden sicher eine Lösung für dich.</p><p>DocMan ist in Python (Django) geschrieben und benötigt einige Module und Addons. Weitere Informationen findest du in der <a href='https://github.com/tjosten/docman/blob/docman2/README.md'>README</a>-Datei im DocMan-Repository:</p>"
+
+#: templates/get.html:115
+msgid "Go to the DocMan repository on GitHub"
+msgstr "Zum DocMan-Repository auf GitHub"
+
+#: templates/get.html:120
+msgid "<p>We would enjoy to have you aboard. Just fill in your email in the form below. We will come back to you very soon and develop the perfect solution together with you.</p>"
+msgstr "<p>Es würde uns freuen, dich dabei zu haben! Gib' einfach deine E-Mail in das Formular unten ein. Wir melden uns schnellstmöglich und entwickeln zusammen mit dir die perfekte Lösung für dich.</p>"
+
+#: templates/get.html:128
+#: templates/scope_info.html:25
+#: templates/organisation/lecturer_mgmt.html:92
+#: templates/organisation/lecturer_mgmt_create.html:20
+#: templates/organisation/lecturer_mgmt_edit.html:33
+#: templates/organisation/lecturer_mgmt_edit.html:58
+#: templates/organisation/user_mgmt.html:91
+#: templates/organisation/user_mgmt_create.html:26
+#: templates/organisation/user_mgmt_edit.html:37
+msgid "Email address"
+msgstr "E-Mail Adresse:"
+
+#: templates/get.html:129
+msgid "Submit"
+msgstr "Absenden"
+
+#: templates/get.html:136
+msgid "Cheers!"
+msgstr "Perfekt!"
+
+#: templates/get.html:138
+msgid "We will get in touch with you as soon as possible!<br /><br /><em>Thanks, your DocMan team</em>"
+msgstr "Wir melden uns so bald wie möglich bei dir!<br /><br /><em>Danke, dein DocMan-Team</em>"
+
+#: templates/get.html:186
+msgid "DocMan and Joomla!"
+msgstr "DocMan und Joomla!"
+
+#: templates/get.html:187
+msgid "DocMan is in no way affiliated or associated with DOCman for Joomla! DocMan (collaborative document management) is a standalone software written in Python (Django) and available for download or SaaS."
+msgstr "DocMan ist in keiner Weise zugehörig zu DOCman für Joomla! DocMan (collaborative document management) ist eine eigenständige Software, geschrieben in Python (Django) und als Download oder SaaS-Lösung verfügbar."
+
+#: templates/get.html:190
+msgid "Any questions left?"
+msgstr "Noch Fragen?"
+
+#: templates/get.html:191
+msgid "Just drop us a line. We are happy to answer your query:"
+msgstr "Schreib' uns einfach eine E-Mail. Wir freuen uns über jede Anfrage:"
+
+#: templates/issue.html:4
+#: templates/issue.html.py:7
+msgid "Report an issue or malfunction"
+msgstr "Problem oder Fehlfunktion melden"
+
+#: templates/issue.html:8
+msgid "We are very sorry if something went wrong!"
+msgstr "Es tut uns sehr leid, dass etwas schief gelaufen ist!"
+
+#: templates/issue.html:13
+msgid "Whoops. Something went wrong?"
+msgstr "Uuups. Etwas ist schiefgelaufen?"
+
+#: templates/issue.html:15
+msgid "We are very sorry about this, and we do not want it to happen again! Please take a minute and fill out the following form to help us improving the quality of DocMan. Describe the issue or malfunction as precise as possible, please. Thank you very much! "
+msgstr "Es tut uns sehr leid, und wir wollen nicht, dass das nochmal passiert! Bitte nimm' dir eine Minute Zeit und füll' das folgende Formular aus, damit wir mit deiner Hilfe die Qualität von DocMan verbessern können. Beschreib' das Problem oder die Fehlfunktion so genau wie möglich, bitte. Vielen Dank!"
+
+#: templates/issue.html:19
+msgid "Type of issue or malfunction"
+msgstr "Problem oder Fehlfunktion"
+
+#: templates/issue.html:21
+msgid "Upload malfunction"
+msgstr "Fehler beim Hochladen eines Dokuments"
+
+#: templates/issue.html:22
+msgid "Other (please explain!)"
+msgstr "Anderes (bitte erläutern!)"
+
+#: templates/issue.html:25
+msgid "Detailed description"
+msgstr "Genaue Beschreibung"
+
+#: templates/issue.html:28
+msgid "<em>If neccessary:</em> URL where issue appears"
+msgstr "<em>Falls notwendig:</em> URL, bei der das Problem auftritt"
+
+#: templates/issue.html:31
+msgid "Submit report"
+msgstr "Problembericht absenden"
+
+#: templates/issue.html:31
+msgid "We will come back to you in case of questions."
+msgstr "Falls es offene Fragen gibt, melden wir uns bei dir."
+
+#: templates/login.html:6
+msgid "Welcome to DocMan"
+msgstr "Willkommen bei DocMan"
+
+#: templates/login.html:7
+msgid "The better collaborative document management solution."
+msgstr "Die bessere kollaborative Dokumentenverwaltung."
+
+#: templates/login.html:24
+msgid "We are very sorry to tell you that your browser (Firefox) is unfortunately too old for the technology behind DocMan. Please, visit <a href=\"http://getfirefox.com\">getfirefox.com</a> to get all the great benefits of an up to date Firefox version. Cheers!</p><p>(You will get serious drawbacks when trying to upload files with this browser. Please, do yourself a favor and update!)"
+msgstr "Es tut uns sehr leid, aber die von dir verwendete Version von Firefox ist leider zu alt für die Technologie hinter DocMan. Bitte besuch' <a href=\"http://getfirefox.com\">getfirefox.com</a> um deinen Browser auf den aktuellen Stand der Dinge zu bringen (und in den Genuß all' der neuen Features zu gelangen)! Danke!</p><p>(Du wirst merken, dass DocMan mit dieser alten Version von Firefox viel weniger Spaß macht. Tu' dir selbst einen Gefallen und mach' ein Update!)"
+
+#: templates/login.html:31
+msgid "Unfortunately, you are using Internet Explorer. To enjoy the full user experience, please upgrade to a modern browser like <a href=\"http://getfirefox.com\">Firefox</a>, <a href=\"http://google.com/chrome\">Google Chrome</a> or <a href=\"http://apple.com/safari\">Safari</a>. Nevertheless you should be perfectly able to use the main features of DocMan.</p><p>Thanks for your understanding."
+msgstr "Wir haben erkannt, dass du leider den Internet Explorer benutzt. Damit du alle Funktionen uneingeschränkt benutzen kannst, installier' bitte einen modernen Browser wie z.B. <a href=\"http://getfirefox.com\">Firefox</a>, <a href=\"http://google.com/chrome\">Google Chrome</a> oder <a href=\"http://apple.com/safari\">Safari</a>. Nichts desto trotz solltest du die Basisfunktionen von DocMan problemlos nutzen können.</p><p>Danke für dein Verständnis!"
+
+#: templates/login.html:38
+msgid "Google Chrome?"
+msgstr "Google Chrome?"
+
+#: templates/login.html:39
+msgid "We are very sorry to tell you that your browser (Google Chrome) has unfortunately a bug with Cherokee's SSL implementation. (See <a href=\"http://code.google.com/p/cherokee/issues/detail?id=1284\">bug report</a>)"
+msgstr "Es tut uns leid, aber der von dir verwendete Browser (Google Chrome) hat leider ein Problem mit der SSL-Implementation unseres Webservers. (Siehe <a href=\"http://code.google.com/p/cherokee/issues/detail?id=1284\">Bug-Report</a>)"
+
+#: templates/login.html:40
+msgid "If you are experiencing trouble when trying to log in, please try to <a href=\"http://docman.me\">turn SSL off</a>."
+msgstr "Falls du Probleme beim Login hast, <a href=\"http://docman.me\">schalte bitte SSL ab</a>."
+
+#: templates/login.html:40
+msgid "We will patch our infrastructure as soon as a fix is available."
+msgstr "Wir aktualisieren unsere Infrastruktur sobald eine Lösung verfügbar ist."
+
+#: templates/login.html:46
+msgid "Security advice"
+msgstr "Sicherheitshinweis"
+
+#: templates/login.html:48
+#, python-format
+msgid "Please make sure that the URL of this page starts with <strong>%(domain)s</strong> before typing in your credentials!"
+msgstr "Bitte stelle sicher, dass die URL dieser Seite mit <strong>%(domain)s</strong> beginnt, bevor du deine Daten eingibst!"
+
+#: templates/login.html:65
+#: templates/registration/password_reset.html:19
+#: templates/registration/password_reset_confirm.html:23
+msgid "An error occurred."
+msgstr "Fehler aufgetreten."
+
+#: templates/login.html:69
+msgid "Login <span>to our all new document management</span>"
+msgstr "Login <span>zu unserer neuen Dokumentenverwaltung</span>"
+
+#: templates/login.html:82
+#: templates/organisation/lecturer_mgmt_edit.html:49
+#: templates/organisation/user_mgmt_create.html:17
+#: templates/organisation/user_mgmt_edit.html:28
+msgid "Username"
+msgstr "Benutzername"
+
+#: templates/login.html:84
+#: templates/organisation/user_mgmt_create.html:48
+msgid "Password"
+msgstr "Passwort"
+
+#: templates/login.html:84
+#, python-format
+msgid "<a href=\"%(pwreset)s\">(forgot password?)</a>"
+msgstr "<a href=\"%(pwreset)s\">(Passwort vergessen?)</a>"
+
+#: templates/login.html:93
+msgid "No Account yet?"
+msgstr "Noch keinen Account?"
+
+#: templates/login.html:94
+msgid "DocMan is an open source document management software. If you have no account yet, sign up for our <a href='http://en.wikipedia.org/wiki/SaaS'>SaaS</a>-solution or download DocMan. It's free."
+msgstr "DocMan ist eine Open Source-Dokumentenverwaltungssoftware. Falls du noch keinen Account hast, melde dich für unsere <a href='http://en.wikipedia.org/wiki/SaaS'>SaaS</a>-Lösung an oder lade DocMan herunter. Kostenlos."
+
+#: templates/login.html:95
+msgid "Learn more about DocMan"
+msgstr "Mehr über DocMan erfahren"
+
+#: templates/login.html:99
+msgid "DocMan was realized using:"
+msgstr "DocMan wurde realisiert mit Hilfe von:"
+
+#: templates/pad.html:28
+msgid "Edit pad"
+msgstr "Bearbeiten"
+
+#: templates/pad.html:28
+msgid "Please fill out the following form to edit this pad."
+msgstr "Bitte füll' folgende Felder aus, um das Pad zu bearbeiten."
+
+#: templates/pad.html:63
+msgid "Created:"
+msgstr "Erstellt:"
+
+#: templates/pad.html:67
+msgid "No description stored for this document."
+msgstr "Bisher wurde keine Beschreibung gespeichert."
+
+#: templates/pad.html:79
+msgid "No tags assigned to this document."
+msgstr "Bisher wurden keine Stichwörter gespeichert."
+
+#: templates/pad.html:84
+msgid "Download as .txt"
+msgstr "Download als .txt"
+
+#: templates/pad.html:90
+msgid "Edit this pad"
+msgstr "Pad bearbeiten"
+
+#: templates/pad.html:94
+msgid "Are you sure, you want to delete the pad?"
+msgstr "Sicher, dass du das Pad löschen willst?"
+
+#: templates/pad.html:94
+msgid "Delete this pad"
+msgstr "Pad löschen"
+
+#: templates/press.html:5
+msgid "The press about DocMan"
+msgstr "Die Presse über DocMan"
+
+#: templates/press.html:6
+msgid "What the world wide web thinks.."
+msgstr "Was das Internet denkt.."
+
+#: templates/press.html:12
+msgid "Radio"
+msgstr "Radio"
+
+#: templates/scope_info.html:4
+msgid "Scope info:"
+msgstr "Geltungsbereich:"
+
+#: templates/scope_info.html:8
+msgid "Users assigned to this scope can access all documents of courses which are connected to it."
+msgstr "Benutzer dieses Geltungsbereichs können alle Dokumente der Kurse sehen, die ihm zugewiesen sind."
+
+#: templates/scope_info.html:23
+#: templates/organisation/lecturer_mgmt_edit.html:52
+#: templates/organisation/user_mgmt.html:89
+#: templates/organisation/user_mgmt_create.html:20
+#: templates/organisation/user_mgmt_edit.html:31
+msgid "First name"
+msgstr "Vorname"
+
+#: templates/scope_info.html:24
+#: templates/organisation/lecturer_mgmt_edit.html:55
+#: templates/organisation/user_mgmt.html:90
+#: templates/organisation/user_mgmt_create.html:23
+#: templates/organisation/user_mgmt_edit.html:34
+msgid "Last name"
+msgstr "Nachname"
+
+#: templates/user.html:11
+#, python-format
+msgid " Last login: %(logintime)s %(logintime2)s"
+msgstr "Letzter Login: %(logintime)s um %(logintime2)s Uhr"
+
+#: templates/user.html:13
+msgid "User profile"
+msgstr "Benutzerprofil"
+
+#: templates/user.html:22
+msgid "Recently uploaded documents"
+msgstr "Zuletzt hochgeladene Dokumente"
+
+#: templates/user.html:31
+#: templates/user.html.py:72
+#, python-format
+msgid "%(filesize)s - %(since)s ago"
+msgstr "%(filesize)s - vor %(since)s"
+
+#: templates/user.html:55
+msgid "No documents were uploaded by this user so far."
+msgstr "Bisher wurden keine Dokumente von diesem Benutzer hochgeladen."
+
+#: templates/user.html:64
+msgid "Last documents the user commented on."
+msgstr "Zuletzt kommentierte Dokumente"
+
+#: templates/user.html:90
+msgid "The user has not commented on any document yet."
+msgstr "Bisher hat der Benutzer keine Kommentare geschrieben."
+
+#: templates/core/base.html:112
+#: templates/search/search.html:4
+#: templates/search/search.html.py:7
+msgid "Full Text Search"
+msgstr "Volltextsuche"
+
+#: templates/core/base.html:113
+msgid "Tag Cloud"
+msgstr "Stichwörter"
+
+#: templates/core/base.html:115
+msgid "My Account"
+msgstr "Mein Zugang"
+
+#: templates/core/base.html:118
+msgid "Manage Organisations"
+msgstr "Organisationen verwalten"
+
+#: templates/core/base.html:121
+msgid "Logout"
+msgstr "Ausloggen"
+
+#: templates/core/base.html:123
+msgid "Home"
+msgstr "Start"
+
+#: templates/core/base.html:124
+msgid "Login"
+msgstr "Login"
+
+#: templates/core/base.html:125
+msgid "Get DocMan"
+msgstr "Hol' dir DocMan"
+
+#: templates/core/base.html:141
+msgid "Lecturer account"
+msgstr "Dozentenzugang"
+
+#: templates/core/base.html:154
+msgid "1st Term"
+msgstr "1. Semester"
+
+#: templates/core/base.html:156
+msgid "2nd Term"
+msgstr "2. Semester"
+
+#: templates/core/base.html:158
+msgid "3rd Term"
+msgstr "3. Semester"
+
+#: templates/core/base.html:160
+msgid "4th Term"
+msgstr "4. Semester"
+
+#: templates/core/base.html:162
+msgid "5th Term"
+msgstr "5. Semester"
+
+#: templates/core/base.html:164
+msgid "6th Term"
+msgstr "6. Semester"
+
+#: templates/core/base.html:182
+msgid "Press"
+msgstr "Presse"
+
+#: templates/core/base.html:183
+msgid "About"
+msgstr "Über"
+
+#: templates/core/base.html:188
+msgid "Report issue"
+msgstr "Fehler melden"
+
+#: templates/core/base.html:189
+msgid "SSL encrypted connection"
+msgstr "SSL-gesicherte Verbindung"
+
+#: templates/core/base.html:189
+msgid "Insecure connection"
+msgstr "Unsichere Verbindung"
+
+#: templates/core/base.html:190
+msgid "&copy; 2011-2012 DocMan"
+msgstr "&copy; 2011-2012 DocMan"
+
+#: templates/misc/no-sorry.html:22
+msgid "We are sorry!"
+msgstr "Es tut uns sehr leid!"
+
+#: templates/misc/no-sorry.html:24
+msgid "DocMan does not work properly in Internet Explorer."
+msgstr "DocMan funktioniert nicht korrekt im Internet Explorer."
+
+#: templates/misc/no-sorry.html:25
+#, python-format
+msgid ""
+"\n"
+"\t\tPlease upgrade to a modern web browser like <br /><a href=\"%(safari)s\">Safari</a>, <a href=\"%(chrome)s\">Google Chrome</a> or <a href=\"%(firefox)s\">Mozilla Firefox</a> in order to use DocMan.\n"
+"\t\t"
+msgstr ""
+"\n"
+"\t\tBitte installier' dir einen modernen Webbrowser wie<br /><a href=\"%(safari)s\">Safari</a>, <a href=\"%(chrome)s\">Google Chrome</a> oder <a href=\"%(firefox)s\">Mozilla Firefox</a>, wenn du DocMan benutzen möchtest.\n"
+"\t\t"
+
+#: templates/misc/no-sorry.html:27
+msgid "Thank you!"
+msgstr "Vielen Dank!"
+
+#: templates/organisation/course_mgmt.html:5
+msgid "Course Management"
+msgstr "Kurs-Verwaltung"
+
+#: templates/organisation/course_mgmt.html:22
+#: templates/organisation/lecturer_mgmt.html:22
+#: templates/organisation/scope_mgmt.html:22
+#: templates/organisation/user_mgmt.html:22
+msgid "Filter by any field.."
+msgstr "Filtern.."
+
+#: templates/organisation/course_mgmt.html:73
+msgid "Create new course"
+msgstr "Neuen Kurs erstellen"
+
+#: templates/organisation/course_mgmt.html:81
+msgid "Semester "
+msgstr "Semester"
+
+#: templates/organisation/course_mgmt.html:82
+#: templates/organisation/course_mgmt_create.html:24
+#: templates/organisation/course_mgmt_edit.html:27
+#: templates/organisation/lecturer_mgmt.html:91
+#: templates/organisation/lecturer_mgmt_create.html:17
+#: templates/organisation/scope_mgmt.html:79
+#: templates/organisation/scope_mgmt_create.html:17
+#: templates/organisation/scope_mgmt_edit.html:28
+msgid "Name"
+msgstr "Name"
+
+#: templates/organisation/course_mgmt.html:83
+#: templates/organisation/course_mgmt_create.html:27
+#: templates/organisation/course_mgmt_edit.html:30
+msgid "Category"
+msgstr "Kategorie"
+
+#: templates/organisation/course_mgmt.html:84
+#: templates/organisation/course_mgmt_create.html:35
+#: templates/organisation/course_mgmt_edit.html:37
+#: templates/organisation/scope_mgmt_edit.html:44
+msgid "Lecturer"
+msgstr "Dozent"
+
+#: templates/organisation/course_mgmt.html:85
+#: templates/organisation/course_mgmt_create.html:58
+#: templates/organisation/course_mgmt_edit.html:70
+#: templates/organisation/lecturer_mgmt_edit.html:151
+#: templates/organisation/user_mgmt_create.html:45
+#: templates/organisation/user_mgmt_edit.html:95
+msgid "Scopes"
+msgstr "Geltungsbereiche"
+
+#: templates/organisation/course_mgmt.html:107
+msgid "No course created yet. "
+msgstr "Bisher wurden keine Kurse erstellt."
+
+#: templates/organisation/course_mgmt.html:108
+msgid "Create new course."
+msgstr "Neuen Kurs erstellen"
+
+#: templates/organisation/course_mgmt_create.html:5
+msgid "Create course "
+msgstr "Kurs erstellen"
+
+#: templates/organisation/course_mgmt_create.html:6
+#: templates/organisation/scope_mgmt.html:5
+#: templates/organisation/scope_mgmt_create.html:6
+#: templates/organisation/scope_mgmt_edit.html:6
+msgid "Scope Management"
+msgstr "Geltungsbereich-Verwaltung"
+
+#: templates/organisation/course_mgmt_create.html:14
+msgid "Ooops"
+msgstr "Whoops!"
+
+#: templates/organisation/course_mgmt_create.html:15
+msgid "You need to create at least one lecturer in order to create a course."
+msgstr "Du musst wenigstens einen Dozenten erstellen, bevor du einen Kurs anlegen kannst."
+
+#: templates/organisation/course_mgmt_create.html:43
+#: templates/organisation/course_mgmt_edit.html:44
+msgid "Semester"
+msgstr "Semester"
+
+#: templates/organisation/course_mgmt_create.html:47
+#: templates/organisation/course_mgmt_edit.html:47
+msgid "All semesters "
+msgstr "Alle Semester"
+
+#: templates/organisation/course_mgmt_create.html:50
+msgid "Create course"
+msgstr "Kurs erstellen"
+
+#: templates/organisation/course_mgmt_create.html:56
+#: templates/organisation/lecturer_mgmt_create.html:31
+#: templates/organisation/scope_mgmt_create.html:26
+#: templates/organisation/user_mgmt_create.html:43
+msgid "Help"
+msgstr "Hilfe"
+
+#: templates/organisation/course_mgmt_create.html:59
+msgid "After you created the course, you are able to assign scopes to it."
+msgstr "Du kannst diesen Kurs Geltungsbereichen zuweisen, nachdem du ihn erstellt hast."
+
+#: templates/organisation/course_mgmt_edit.html:6
+#: templates/organisation/user_mgmt.html:5
+#: templates/organisation/user_mgmt_create.html:6
+#: templates/organisation/user_mgmt_edit.html:6
+msgid "User Management"
+msgstr "Benutzer-Verwaltung"
+
+#: templates/organisation/course_mgmt_edit.html:51
+msgid "Save course"
+msgstr "Kurs speichern"
+
+#: templates/organisation/course_mgmt_edit.html:57
+#: templates/organisation/course_mgmt_edit.html:62
+msgid "Delete course"
+msgstr "Kurs löschen"
+
+#: templates/organisation/course_mgmt_edit.html:58
+msgid "If you are sure you want to delete this course, please click here."
+msgstr "Wenn du diesen Kurs löschen möchtest, klick' hier."
+
+#: templates/organisation/course_mgmt_edit.html:58
+msgid "Warning! All documents, comments, votes, etc. of this course will be deleted!"
+msgstr "Achtung! Alle Dokumente, Kommentare, Bewertungen etc. aus diesem Kurs werden gelöscht!"
+
+#: templates/organisation/course_mgmt_edit.html:61
+#: templates/organisation/lecturer_mgmt_edit.html:115
+#: templates/organisation/scope_mgmt_edit.html:67
+#: templates/organisation/user_mgmt_edit.html:84
+msgid "Yes, I'm sure"
+msgstr "Ja, sicher"
+
+#: templates/organisation/course_mgmt_edit.html:79
+#: templates/organisation/lecturer_mgmt_edit.html:159
+#: templates/organisation/user_mgmt_edit.html:103
+msgid "Show courses"
+msgstr "Kurse anzeigen"
+
+#: templates/organisation/course_mgmt_edit.html:80
+#: templates/organisation/lecturer_mgmt_edit.html:160
+#: templates/organisation/user_mgmt_edit.html:104
+msgid "Hide courses"
+msgstr "Kurse verbergen"
+
+#: templates/organisation/course_mgmt_edit.html:84
+#: templates/organisation/lecturer_mgmt_edit.html:164
+#: templates/organisation/scope_mgmt_edit.html:47
+#: templates/organisation/scope_mgmt_edit.html:86
+#: templates/organisation/user_mgmt_edit.html:108
+msgid "Remove user from scope"
+msgstr "Benutzer entfernen"
+
+#: templates/organisation/course_mgmt_edit.html:100
+#: templates/organisation/lecturer_mgmt_edit.html:180
+#: templates/organisation/user_mgmt_edit.html:124
+msgid "Add scope"
+msgstr "Hinzufügen"
+
+#: templates/organisation/default.html:5
+#: templates/organisation/organisation.html:6
+msgid "Organisation Management"
+msgstr "Organisationsverwaltung"
+
+#: templates/organisation/default.html:9
+msgid "You are manager of the following organisations. Please select one to continue."
+msgstr "Du bist Verwalter der folgenden Organisationen. Bitte wähle zum Fortfahren eine Organisation aus."
+
+#: templates/organisation/lecturer_mgmt.html:5
+#: templates/organisation/lecturer_mgmt_create.html:6
+#: templates/organisation/lecturer_mgmt_edit.html:6
+msgid "Lecturer Management"
+msgstr "Dozenten-Verwaltung"
+
+#: templates/organisation/lecturer_mgmt.html:83
+msgid "Create new lecturer"
+msgstr "Neuen Dozent erstellen"
+
+#: templates/organisation/lecturer_mgmt.html:93
+#: templates/organisation/user_mgmt.html:92
+msgid "Last login"
+msgstr "Letzter Login"
+
+#: templates/organisation/lecturer_mgmt.html:94
+msgid "Has account / Active"
+msgstr "Zugang / Aktiv"
+
+#: templates/organisation/lecturer_mgmt_create.html:5
+#: templates/organisation/lecturer_mgmt_create.html:23
+msgid "Create lecturer"
+msgstr "Dozent erstellen"
+
+#: templates/organisation/lecturer_mgmt_create.html:34
+msgid "After you created a new lecturer, you can create new courses and assign them to him."
+msgstr "Du kannst neue Kurse erstellen und sie diesem Dozenten zuweisen, nachdem du ihn erstellt hast."
+
+#: templates/organisation/lecturer_mgmt_create.html:37
+msgid "If you want the lecturer to be able to login, create an account for this lecturer afterwards."
+msgstr "Wenn der Dozent sich einloggen können soll, musst du im nächsten Schritt einen Zugang für ihn erstellen."
+
+#: templates/organisation/lecturer_mgmt_edit.html:30
+msgid "Display name"
+msgstr "Anzeigename"
+
+#: templates/organisation/lecturer_mgmt_edit.html:36
+msgid "Save lecturer"
+msgstr "Dozent speichern"
+
+#: templates/organisation/lecturer_mgmt_edit.html:45
+#: templates/organisation/lecturer_mgmt_edit.html:102
+msgid "Account information"
+msgstr "Zugangsinformationen"
+
+#: templates/organisation/lecturer_mgmt_edit.html:61
+msgid "Save account data"
+msgstr "Zugangsdaten speichern"
+
+#: templates/organisation/lecturer_mgmt_edit.html:67
+#: templates/organisation/user_mgmt_edit.html:47
+msgid "Reset password"
+msgstr "Passwort zurücksetzen"
+
+#: templates/organisation/lecturer_mgmt_edit.html:68
+msgid "For security reasons, you are not able to change a lecturer's password. However, you can send him an email with a new generated password."
+msgstr "Aus Sicherheitsgründen bist du nicht in der Lage, das Passwort zu ändern. Du kannst ein neues Passwort generieren lassen, welches dem Dozenten per E-Mail zugesendet wird."
+
+#: templates/organisation/lecturer_mgmt_edit.html:72
+#: templates/organisation/user_mgmt_edit.html:52
+msgid "Generate new password"
+msgstr "Neues Passwort generieren"
+
+#: templates/organisation/lecturer_mgmt_edit.html:80
+#: templates/organisation/lecturer_mgmt_edit.html:86
+msgid "Disable lecturer"
+msgstr "Dozenten deaktivieren"
+
+#: templates/organisation/lecturer_mgmt_edit.html:81
+msgid "If you are sure you want to disable this lecturer, please click here. The lecturer will no longer be able to login."
+msgstr "Klicke hier, um diesen Dozenten zu deaktivieren. Deaktiviere Dozenten können sich nicht mehr einloggen."
+
+#: templates/organisation/lecturer_mgmt_edit.html:90
+msgid "The lecturer has already been disabled. Click here to enable his account again."
+msgstr "Dieser Dozent wurde bereits deaktiviert. Klick' hier, um ihn wieder zu aktivieren."
+
+#: templates/organisation/lecturer_mgmt_edit.html:93
+msgid "Enable lecturer"
+msgstr "Dozenten aktivieren"
+
+#: templates/organisation/lecturer_mgmt_edit.html:103
+msgid "This lecturer has not yet an account, so he is not able to login and upload or view documents."
+msgstr "Dieser Dozent hat bisher noch keinen Zugang, und kann sich deshalb nicht einloggen und Dokumente hochladen oder einsehen."
+
+#: templates/organisation/lecturer_mgmt_edit.html:104
+msgid "Create account"
+msgstr "Zugang erstellen"
+
+#: templates/organisation/lecturer_mgmt_edit.html:111
+#: templates/organisation/lecturer_mgmt_edit.html:116
+msgid "Delete lecturer"
+msgstr "Dozent löschen"
+
+#: templates/organisation/lecturer_mgmt_edit.html:112
+msgid "If you are sure you want to delete this lecturer, please click here."
+msgstr "Wenn du diesen Dozenten löschen möchtest, klick' hier."
+
+#: templates/organisation/lecturer_mgmt_edit.html:112
+msgid "Warning! All courses, documents, etc. of this lecturer and his connected account will be deleted!"
+msgstr "Achtung! Alle Kurse, Dokumente, etc. dieses Dozenten (inkl. seines Zugangs) werden gelöscht!"
+
+#: templates/organisation/lecturer_mgmt_edit.html:141
+msgid "This lecturer is not assigned to any course."
+msgstr "Dieser Dozent ist keinem Kurs zugewiesen."
+
+#: templates/organisation/navigation.html:5
+msgid "User management"
+msgstr "Benutzer-Verwaltung"
+
+#: templates/organisation/navigation.html:6
+msgid "Lecturer management"
+msgstr "Dozenten-Verwaltung"
+
+#: templates/organisation/navigation.html:7
+msgid "Course management"
+msgstr "Kurs-Verwaltung"
+
+#: templates/organisation/navigation.html:8
+msgid "Scope management"
+msgstr "Geltungsbereich-Verwaltung"
+
+#: templates/organisation/scope_mgmt.html:71
+msgid "Create new scope"
+msgstr "Neuen Geltungsbereich erstellen"
+
+#: templates/organisation/scope_mgmt.html:81
+#: templates/organisation/scope_mgmt_edit.html:38
+msgid "Users"
+msgstr "Benutzer"
+
+#: templates/organisation/scope_mgmt_create.html:5
+#: templates/organisation/scope_mgmt_create.html:20
+msgid "Create scope"
+msgstr "Geltungsbereich erstellen"
+
+#: templates/organisation/scope_mgmt_create.html:29
+msgid "After you created the scope, you are able to assign courses to it."
+msgstr "Du kannst Kurse zu diesem Geltungsbereich hinzufügen, nachdem du ihn erstellt hast."
+
+#: templates/organisation/scope_mgmt_edit.html:31
+msgid "Save scope"
+msgstr "Geltungsbereich speichern"
+
+#: templates/organisation/scope_mgmt_edit.html:54
+msgid "Add user"
+msgstr "Benutzer hinzufügen"
+
+#: templates/organisation/scope_mgmt_edit.html:63
+#: templates/organisation/scope_mgmt_edit.html:68
+msgid "Delete scope"
+msgstr "Geltungsbereich löschen"
+
+#: templates/organisation/scope_mgmt_edit.html:64
+msgid "If you are sure you want to delete this scope, please click here."
+msgstr "Wenn du diesen Geltungsbereich löschen möchtest, klick' hier."
+
+#: templates/organisation/scope_mgmt_edit.html:93
+msgid "Add course"
+msgstr "Kurs hinzufügen"
+
+#: templates/organisation/user_mgmt.html:80
+msgid "Create new user"
+msgstr "Neuen Benutzer erstellen"
+
+#: templates/organisation/user_mgmt.html:93
+msgid "Active"
+msgstr "Aktiv"
+
+#: templates/organisation/user_mgmt_create.html:5
+msgid "Create lecturer account"
+msgstr "Neuen Dozentenzugang erstellen"
+
+#: templates/organisation/user_mgmt_create.html:29
+msgid "Create user"
+msgstr "Benutzer erstellen"
+
+#: templates/organisation/user_mgmt_create.html:38
+#, python-format
+msgid "You are going to create an account for the lecturer <strong>%(lname)s</strong>."
+msgstr "Du bist dabei, einen Zugang für den Dozenten <strong>%(lname)s</strong> zu erstellen."
+
+#: templates/organisation/user_mgmt_create.html:46
+msgid "After you created the user, you will be redirected to his profile. There you are able to connect the user to scopes."
+msgstr "Du gelangst zum Profil dieses Benutzers, nachdem du ihn erstellt hast. Dort kannst du ihn zu Geltungsbereichen zuweisen."
+
+#: templates/organisation/user_mgmt_create.html:49
+msgid "For security reasons, you are not able to set a password for this user. The user will get an email with his login details."
+msgstr "Aus Sicherheitsgründen kannst du kein Passwort für den Benutzer angeben. Er erhält eine E-Mail mit seinen Zugangsdaten."
+
+#: templates/organisation/user_mgmt_edit.html:40
+msgid "Save user"
+msgstr "Benutzer speichern"
+
+#: templates/organisation/user_mgmt_edit.html:48
+msgid "For security reasons, you are not able to change a user's password. However, you can send him an email with a new generated password."
+msgstr "Aus Sicherheitsgründen bist du nicht in der Lage, das Passwort zu ändern. Du kannst ein neues Passwort generieren lassen, welches dem Benutzer per E-Mail zugesendet wird."
+
+#: templates/organisation/user_mgmt_edit.html:60
+#: templates/organisation/user_mgmt_edit.html:66
+msgid "Disable user"
+msgstr "Benutzer deaktivieren"
+
+#: templates/organisation/user_mgmt_edit.html:61
+msgid "If you are sure you want to disable this user, please click here. The user will no longer be able to login."
+msgstr "Klicke hier, um diesen Benutzer zu deaktivieren. Deaktiviere Benutzer können sich nicht mehr einloggen."
+
+#: templates/organisation/user_mgmt_edit.html:70
+msgid "The user has already been disabled. Click here to enable his account again."
+msgstr "Dieser Benutzer wurde bereits deaktiviert. Klick' hier, um ihn wieder zu aktivieren."
+
+#: templates/organisation/user_mgmt_edit.html:73
+msgid "Enable user"
+msgstr "Benutzer aktivieren"
+
+#: templates/organisation/user_mgmt_edit.html:80
+#: templates/organisation/user_mgmt_edit.html:85
+msgid "Delete user"
+msgstr "Benutzer löschen"
+
+#: templates/organisation/user_mgmt_edit.html:81
+msgid "If you are sure you want to delete this user, please click here."
+msgstr "Wenn du diesen Benutzer löschen möchtest, klick' hier."
+
+#: templates/organisation/user_mgmt_edit.html:81
+msgid "Warning! All documents, comments, votes, etc. of this user will be deleted!"
+msgstr "Achtung! Alle Dokumente, Kommentare, Bewertungen etc. dieses Benutzers werden gelöscht!"
+
+#: templates/registration/password_reset.html:5
+msgid "Forgot your password?"
+msgstr "Password vergessen?"
+
+#: templates/registration/password_reset.html:6
+msgid "We can send you a new, promised!"
+msgstr "Wir senden dir ein neues, versprochen!"
+
+#: templates/registration/password_reset.html:10
+msgid "In the case you forgot your password, you may enter your email address and DocMan will send you a link with instructions how to reset your password."
+msgstr "Falls du dein Passwort vergessen hast, fülle bitte dieses Formular aus und du wirst weitere Anweisungen per E-Mail erhalten."
+
+#: templates/registration/password_reset.html:23
+#: templates/registration/password_reset_confirm.html:27
+msgid "Request new password <span>it's easy!</span>"
+msgstr "Neues Passwort anfordern <span>das ist einfach!</span>"
+
+#: templates/registration/password_reset.html:35
+msgid "Email address:"
+msgstr "E-Mail Adresse:"
+
+#: templates/registration/password_reset.html:37
+msgid "New password"
+msgstr "Neues Passwort"
+
+#: templates/registration/password_reset_complete.html:5
+msgid "Successfully changed your password!"
+msgstr "Password erfolgreich geändert!"
+
+#: templates/registration/password_reset_complete.html:6
+msgid "Login and have fun!"
+msgstr "Log dich ein und los geht's!"
+
+#: templates/registration/password_reset_complete.html:14
+msgid "Here we go!"
+msgstr "Alles klar!"
+
+#: templates/registration/password_reset_complete.html:15
+#, python-format
+msgid "Your password has been changed successfully, you may login now on the <u><a href=\"%(def)s\">homepage</a></u>."
+msgstr "Dein Passwort wurde erfolgreich geändert. Du kannst dich nun auf der <u><a href=\"%(def)s\">Startseite</a></u> anmelden."
+
+#: templates/registration/password_reset_confirm.html:6
+msgid "Set your new password"
+msgstr "Neues Passwort speichern"
+
+#: templates/registration/password_reset_confirm.html:7
+msgid "And don't forget it again, please."
+msgstr "Bitte vergiss' es nicht wieder."
+
+#: templates/registration/password_reset_confirm.html:14
+msgid "Please enter your new password: "
+msgstr "Bitte gib' hier dein neues Passwort ein:"
+
+#: templates/registration/password_reset_confirm.html:43
+msgid "Save"
+msgstr "Speichern"
+
+#: templates/registration/password_reset_confirm.html:52
+msgid "There is a problem!"
+msgstr "Fehler aufgetreten!"
+
+#: templates/registration/password_reset_confirm.html:55
+#, python-format
+msgid "Your reset link is incorrect. Please check your email for line breaks in the link, request a new reset link or write an email to <a href=\"mailto:%(support_email)s\">%(support_email)s</a>."
+msgstr "Leider ist dein Reset-Link nicht korrekt. Bitte kontrolliere die E-Mail auf Zeilenumbrüche im Link, fordere erneut einen Reset-Link an oder schreibe eine E-Mail an <a href=\"mailto:%(support_email)s\">%(support_email)s</a>."
+
+#: templates/registration/password_reset_done.html:5
+msgid "Successfully sent the email!"
+msgstr "E-Mail erfolgreich versendet!"
+
+#: templates/registration/password_reset_done.html:6
+msgid "I could take up to 5 minutes for the mail to be delivered."
+msgstr "Es kann bis zu 5 Minuten dauern, bis die E-Mail zugestellt wurde."
+
+#: templates/registration/password_reset_done.html:11
+msgid "Go see your Inbox!"
+msgstr "Schau in deinen Posteingang!"
+
+#: templates/registration/password_reset_done.html:12
+msgid "In an instant you will receive an email with instructions and a link to reset your password."
+msgstr "Du erhältst in dieser Minute eine E-Mail mit weiteren Anweisungen und einem Link, mit dessen Hilfe du dein Passwort zurücksetzen kannst."
+
+#: templates/registration/password_reset_email.html:3
+#, python-format
+msgid ""
+"Hello %(first_name)s,\n"
+"\n"
+"you requested a new password for DocMan. You can set a new pasword using the following link.\n"
+"\n"
+"%(protocol)s://%(domain)s%(reset_url)s\n"
+"\n"
+"Your username is %(username)s.\n"
+"\n"
+"If you didn't request a new password please ignore this email or contact DocMan.\n"
+"\n"
+"Enjoy document management with DocMan!\n"
+msgstr ""
+"Hallo %(first_name)s,\n"
+"\n"
+"Du hast ein neues Passwort angefordert. Mit Hilfe des folgenden Links kannst du dir selbstständig ein neues Passwort setzen.\n"
+"\n"
+"%(protocol)s://%(domain)s%(reset_url)s\n"
+"\n"
+"Dein Benutzername lautet: %(username)s.\n"
+"\n"
+"Falls du kein neues Passwort angefordert hast, kannst du diese E-Mail ignorieren oder DocMan kontaktieren.\n"
+"\n"
+"Wir wünschen weiterhin viel Spaß mit DocMan!\n"
+
+#: templates/search/search.html:8
+msgid "Feed the search spider with your query."
+msgstr "Fütter' die Suche mit deiner Anfrage."
+
+#: templates/search/search.html:13
+msgid "Please enter a search key to start the search."
+msgstr "Bitte gib einen Suchbegriff ein, um die Suche zu starten."
+
+#: templates/search/search.html:18
+msgid "Whooops!"
+msgstr "Whoops!"
+
+#: templates/search/search.html:19
+msgid "Sadly, the full text search has been disabled for your account. If you feel inconvenient, please refer to our <a href=\"mailto:support@docman.me\">Support-Team</a>!"
+msgstr "Leider wurde die Volltextsuche für deinen Account deaktiviert. Falls du die Suche benötigen solltest, sprich' doch mit unserem <a href=\"mailto:support@docman.me\">Support-Team</a>!"
+
+#: templates/search/search.html:26
+msgid "Search key"
+msgstr "Suchbegriff"
+
+#: templates/search/search.html:29
+msgid "and feel free to use the common search query language."
+msgstr "und benutz' die allgemeine Suchmaschinensprache."
+
+#: templates/search/search.html:41
+msgid "Search Results"
+msgstr "Suchergebnisse"
+
+#: templates/search/search.html:52
+#, python-format
+msgid " %(filesize)s - %(ago)s ago by %(uploader)s"
+msgstr " %(filesize)s - vor %(ago)s von %(uploader)s"
+
+#: templates/search/search.html:54
+#, python-format
+msgid " %(ago)s ago by %(uploader)s"
+msgstr "vor  %(ago)s von %(uploader)s"
+
+#: templates/search/search.html:80
+msgid "Unfortunateley your search did not return any results."
+msgstr "Leider keine Suchergebnisse gefunden."
+
+#: templates/tags/tag-cloud.html:5
+#: templates/tags/tag-cloud.html.py:9
+msgid "Tagcloud"
+msgstr "Stichwörter"
+
+#: templates/tags/tag-cloud.html:10
+msgid "Although the sun is shining, we have clouds."
+msgstr "Wir haben Wolken obwohl die Sonne scheint."
+
+#: templates/tags/tag-cloud.html:21
+msgid "No tags are assigned yet."
+msgstr "Bisher wurden keine Tags gespeichert."
+
+#: templates/tags/tag.html:4
+msgid "Tag"
+msgstr "Stichwort"
+
+#: templates/tags/tag.html:7
+msgid "Tag:"
+msgstr "Stichwort:"
+
+#: templates/tags/tag.html:8
+msgid "Come see a list of all documents assigned to this tag."
+msgstr "Schau dir die Liste aller Tags dieses Dokuments an."
+
+#: templates/tags/tag.html:22
+#, python-format
+msgid " %(filesize)s - %(ago)s ago"
+msgstr "%(filesize)s - vor %(ago)s"
+
+#: templates/tags/tag.html:24
+#, python-format
+msgid " %(ago)s ago"
+msgstr "vor  %(ago)s"
+
+#: templates/tags/tag.html:46
+msgid "No documents have been uploaded so far."
+msgstr "Bisher wurden keine Dokumente hochgeladen."
+
+#~ msgid "DocMan Closed Beta"
+#~ msgstr "DocMan - Geschlossene Beta"
+
+#~ msgid "Overview with latest uploads, comments and direct download."
+#~ msgstr "Übersicht mit letzten Uploads, Kommentaren und direktem Download."
+
+#~ msgid "Zoomable preview images of PDF and image uploads."
+#~ msgstr "Zoombare Vorschaubilder von PDFs und Bildern."
+
+#~ msgid "Document history all way back."
+#~ msgstr "Übersicht aller bisher hochgeladenen Dokumente."
+
+#~ msgid ""
+#~ ".. many more translations possible due to the fact that DocMan is open "
+#~ "source :)"
+#~ msgstr ".. viele weitere Übersetzungen möglich, da OpenSource"
+
+#~ msgid ""
+#~ "Nice! Feel free to drop us a line at <a href=\"mailto:beta@docman.me"
+#~ "\">beta@docman.me</a> or just fill in your email in the form below. We "
+#~ "will come back to you very soon!"
+#~ msgstr ""
+#~ "Super! Schreib' uns einfach eine E-mail an <a href=\"mailto:beta@docman.me"
+#~ "\">beta@docman.me</a> oder füll' einfach das Formular unten aus. Wir "
+#~ "melden uns bald bei dir!"
+
+#~ msgid "Thanks!"
+#~ msgstr "Vielen Dank!"
+
+#~ msgid "Limited beta offer"
+#~ msgstr "Limitiertes Beta-Angebot"
+
+#~ msgid ""
+#~ "During our closed beta stage, we will host your DocMan installation on "
+#~ "our intrastructure. <strong>For free.</strong>"
+#~ msgstr ""
+#~ "Während unserer geschlossenen Beta-Phase hosten wir deine DocMan-"
+#~ "Installation auf unserer Infrastruktur. <strong>Kostenlos.</strong>"
+
+#~ msgid "Beta"
+#~ msgstr "Beta"
+
+#~ msgid "We are preparing screencasts. Expect them here soom!"
+#~ msgstr "Wir bereiten derzeit Screencasts vor. Bald hier!"
+
+#~ msgid "Report issue or malfunction"
+#~ msgstr "Problem oder Fehlfunktion melden"
+
+#~ msgid "&copy; 2011 DocMan (All rights reserved)"
+#~ msgstr "&copy; 2011 DocMan (Alle Rechte vorbehalten)"
+
+#~ msgid "Internet Explorer does not support uploads"
+#~ msgstr "Leider keine Uploads im Internet Explorer"
+
+#~ msgid "There is a problem with your error description."
+#~ msgstr "Die Fehlerbeschreibung ist zu kurz oder zu lang."
+
+#~ msgid "There is a problem with the session - please log out and back in!"
+#~ msgstr "Die Session konnte nicht aufgelöst werden - bitte erneut einloggen!"
+
+#~ msgid "The file type %s is not supported."
+#~ msgstr "Der Dateityp %s wird nicht unterstützt!"
+
+#~ msgid ""
+#~ "The password has been successfully generated, an email has been sent!"
+#~ msgstr ""
+#~ "Das Passwort wurde erfolgreich zurückgesetzt, eine E-Mail an den Benutzer "
+#~ "wurde versendet!"
+
+#~ msgid "The username is too short or too long."
+#~ msgstr "Der Benutzername ist zu kurz oder zu lang."
+
+#~ msgid "The first name is too short or too long."
+#~ msgstr "Der Vorname ist zu kurz oder zu lang."
+
+#~ msgid "The last name is too short or too long."
+#~ msgstr "Der Nachname ist zu kurz oder zu lang."
+
+#~ msgid "Oops - Error 404!"
+#~ msgstr "Whoops - Fehler 404!"
+
+#~ msgid ""
+#~ "The execution of DocMan unexpectedly failed. The administrator will be "
+#~ "informed."
+#~ msgstr ""
+#~ "Die Ausführung der Anwendung wurde unerwartet abgebrochen. Der "
+#~ "Administrator wurde informiert."
+
+#~ msgid "Change password"
+#~ msgstr "Passwort ändern"
+
+#~ msgid "Settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Term"
+#~ msgstr "Semester"
+
+#~ msgid "Uploaded by %(uploader)s - updated %(since)s ago"
+#~ msgstr "Hochgeladen von %(uploader)s - vor %(since)s aktualisiert"
+
+#~ msgid "Page"
+#~ msgstr "Seite"
+
+#~ msgid "of"
+#~ msgstr "von"
+
+#~ msgid "Courses held by this Lecturer"
+#~ msgstr "Kurse dieses Dozenten"
+
+#~ msgid "New comment"
+#~ msgstr "Neuer Kommentar"
+
+#~ msgid "Unsubscribe"
+#~ msgstr "Abbestellen"
+
+#~ msgid "Subscribe"
+#~ msgstr "Abonnieren"
+
+#~ msgid "Refresh"
+#~ msgstr "Aktualisieren"
+
+#~ msgid "Welcome to DocMan."
+#~ msgstr "Willkommen bei DocMan."
+
+#~ msgid "Please login with your username and password:"
+#~ msgstr "Bitte melde dich mit deinen Benutzerdaten an:"
+
+#~ msgid ""
+#~ "Stop! You are browsing via Internet Explorer. This website has only been "
+#~ "tested with all up to date web browsers, so we cannot guarantee it will "
+#~ "work with Internet Explorer. Use at your own risk!"
+#~ msgstr ""
+#~ "HALT STOP! Du nutzt den Internet Explorer - Schande über dein Haupt. "
+#~ "DocMan wurde mit allen aktuellen Webbrowsern getestet, deshalb kann dir "
+#~ "leider niemand versprechen, ob auch im Internet Explorer alles richtig "
+#~ "funktioniert. Benutzung auf eigene Gefahr!"
+
+#~ msgid ""
+#~ " Please note: You cannot sign up for DocMan on your own. Please contact "
+#~ "%(support_email)s in case of problems."
+#~ msgstr ""
+#~ "Hinweis: DocMan ist ein geschlossenes System. Bei Login-Problemen wende "
+#~ "dich bitte an %(support_email)s."
+
+#~ msgid "updated %(since)s ago"
+#~ msgstr "vor %(since)s aktualisiert"
+
+#~ msgid "Admin"
+#~ msgstr "Admin"
+
+#~ msgid "Blog"
+#~ msgstr "Blog"
+
+#~ msgid ""
+#~ "We are sorry for any kind of inconvenience. Please specify the "
+#~ "malfunction below and we will get on it as fast as possible."
+#~ msgstr ""
+#~ "Es tut uns leid, dass DocMan nicht wie erwartet funktioniert hat. Bitte "
+#~ "beschreibe die aufgetretene Fehlfunktion in diesem Formular und wir "
+#~ "kümmern uns so schnell wie möglich um das Problem."
+
+#~ msgid "Include screenshot of current page?"
+#~ msgstr "Screenshot der aktuellen Seite mitsenden?"
+
+#~ msgid ""
+#~ "Otherwise, you can create a more detailed ticket in our issue tracking "
+#~ "system: %(issue_tracker_url)s (No signup required)"
+#~ msgstr ""
+#~ "Anderenfalls kannst du ein detaillierteres Ticket in unserem Issue "
+#~ "Tracking System erstellen: %(issue_tracker_url)s (Keine Anmeldung "
+#~ "notwendig)"
+
+#~ msgid "Upload new document"
+#~ msgstr "Neues Dokument hochladen"
+
+#~ msgid "Please wait while your file is beeing processed..."
+#~ msgstr "Bitte warte einen Moment, während deine Datei verarbeitet wird..."
+
+#~ msgid "Enter as many tags as you like divided by spaces."
+#~ msgstr "Beliebig viele Schlagwörter mit Leerzeichen trennen."
+
+#~ msgid "optional"
+#~ msgstr "Optional"
+
+#~ msgid "Finished? Don't forget to save!"
+#~ msgstr "Fertig? Speichern nicht vergessen!"
+
+#~ msgid ""
+#~ "You have no <a href='/admin/app/scope/'>scopes</a> created yet. Please "
+#~ "use the admin interface linked to create a scope."
+#~ msgstr ""
+#~ "Bisher wurden keine <a href='/admin/app/scope/'>Scopes</a> erstellt. "
+#~ "Bitte benutze die Admin-Oberfläche um einen Scope zu erstellen."
+
+#, fuzzy
+#~ msgid "Email:"
+#~ msgstr "E-Mail Adresse:"
+
+#~ msgid "You can assign more scopes to the user once he's created."
+#~ msgstr ""
+#~ "Sobald der Benutzer erstellt wurde kann er weiteren Scopes zugewiesen "
+#~ "werden."
+
+#~ msgid "The credentials will be sent to the user by email."
+#~ msgstr "Die Benutzerdaten werden per E-Mail an den Benutzer versandt."
+
+#~ msgid "Reset password for this user"
+#~ msgstr "Passwort für diesen Benutzer zurücksetzen"
+
+#~ msgid "The new credentials will be sent to the user by email."
+#~ msgstr "Die neuen Benutzerdaten werden dem Benutzer per E-Mail gesendet."
+
+#~ msgid "Data is missing!"
+#~ msgstr "Keine Daten übergeben!"

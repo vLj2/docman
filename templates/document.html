@@ -1,0 +1,246 @@
+{% extends "core/base.html" %}
+{% load i18n truncatewords_by_chars call_method upto fileicon multiply %}
+
+{% block title %}{{document.name}}{% endblock %}
+
+{% block js %}
+jsCourse = {{document.course.pk}};
+jsDocument = {{document.pk}};
+{% endblock %}
+
+{% block headtitle %}
+	<h1>{{document.name}}</h1>
+	<p>{% trans "You are here" %}: <a href="/">{{category.name}}</a> &raquo; <a href="{% url course course.pk %}">{{course.name}}</a> &raquo; {{document.name|truncatewords_by_chars:30}}</p>
+{% endblock %}
+
+{% block content %}
+
+{% if internet_explorer_warning %}
+<div class="overlay" id="IEoverlay" style="display:none;">
+	<div class="oContent"><h3></h3><p></p>
+	<div class="progress"></div>	
+	<div class="progressbar"></div>
+	<div class="progressDetail"></div>
+	
+	<div class="uploadDetails" style="display:none;">
+		<form action="{% url ie-upload %}" name="IEuploadDetails" method="post" enctype="multipart/form-data">	
+			<fieldset>
+				{% csrf_token %}
+				<input type="hidden" name="document_id" value="{{document.pk}}" />
+				<input type="hidden" name="course_id" value="{{document.course.pk}}" />
+				<div style="float:inherit;">
+				<label for="documentFile">{% trans "Select new revision.." %}</label>
+				<input tabindex="1" id="documentFile" name="file" type="file" />
+				</div>
+				<input type="submit" value="{% trans "Upload file" %}" /> {% trans "or <a href='javascript:void(0)' id='resetIEUploadWindow'>close</a>" %}<img class="loader" src="{{MEDIA_URL}}img/new/loader_fafafa.gif" alt="{% trans "Loading.." %}" />
+			</fieldset>
+		</form>		
+	</div>
+	
+	</div>
+	<div class="oOverlay"></div>
+</div>
+{% endif %}
+
+<div id="overlay" class="overlay" style="display:none;">
+	<div class="oContent"><h3></h3><p></p>
+	<div class="progress"></div>	
+	<div class="progressbar"></div>
+	<div class="progressDetail"></div>
+	</div>
+	<div class="oOverlay"></div>
+</div>
+
+<div id="editOverlay" class="overlay modal fade" style="display:none;">
+	<div class="oContent"><h3>{% trans "Edit document" %}</h3><p>{% trans "Please fill out the following form to edit this document."%}</p>
+	<div class="uploadDetails" style="display:block;">
+		<form action="javascript:void(0);" name="uploadDetails">	
+			<fieldset>
+				{% csrf_token %}
+				<input type="hidden" name="documentId" value="{{document.pk}}" />
+				<div>
+				<label for="documentName">{% trans "Document Name" %}</label>
+				<input tabindex="1" value="{{document.name}}" id="documentName" name="name" type="text" maxlength="255" />
+				</div>
+				<div class="right">
+				<label for="documentTags">{% trans "Tags" %}</label>
+				<input tabindex="2" value="{% for tag in document.get_tags %}{{tag}}{% if not forloop.last %}, {% endif %}{% endfor %}" id="documentTags" name="tags" type="text" /><small>{% trans "Seperate tags with commas (,)" %}</small>
+				</div>
+				<label for="documentDesc">{% trans "Description" %}</label>
+				<textarea id="documentDesc" name="desc">{{document.desc}}</textarea>
+				<input type="submit" value="{% trans "Save Details" %}" /> {% trans "or <a href='javascript:void(0)' id='resetEditWindow'>close</a>"%} <img class="loader" src="{{MEDIA_URL}}img/new/loader_fafafa.gif" alt="{% trans "Loading.." %}" /> 
+				{% if not request.user.get_profile.is_lecturer %}
+				<div class="lecturerVisible"><input type="checkbox" {% if document.is_lecturer_visible %}checked{%endif%} name="is_lecturer_visible" value="yes" /> {% trans "Visible for lecturers?" %}</div>
+				{% endif %}				
+			</fieldset>
+		</form>		
+	</div>
+	
+	</div>
+	<div class="oOverlay"></div>
+</div>
+
+<span id="documentId" style="display:none;">{{document.pk}}</span>
+
+{% if not request.user.get_profile.is_lecturer %}
+<span id="documentRating" style="display:none;">{{document.rating.get_rating}}</span>
+{% endif %}
+
+
+<div class="documentRight">
+	<div class="toolbox">
+		<div class="download" onclick="$(location).attr('href','{% url download document.pk %}');">{% trans "Download" %}</div>
+		<div class="downloadZipped" onclick="$(location).attr('href','{% url download document.pk %}?zipped=True');">{% trans "Download <span style='font-size:small'>as .zip</span>" %}</div>
+	</div>
+	
+	<div id="otherToolbox">
+		<strong>{% trans "Other options" %}</strong>
+		{% if document|args:request.user.pk|call:"get_subscription" %}
+			<a class="unsubscribe" href="{% url unsubscribe document.pk %}">{% trans "Unsubscribe this document" %}</a>
+		{% else %}
+			<a class="subscribe" href="{% url subscribe document.pk %}">{% trans "Subscribe this document" %}</a>
+		{% endif %}	
+		
+		{% if request.user.is_staff or request.user == document.author %}
+			<a class="edit" href="javascript:void(0);" onclick="editMode();">{% trans "Edit this document" %}</a>
+		{% endif %}
+		
+		{% if request.user.is_staff or request.user == document.author %}
+			<a class="delete" href="javascript:void(0);" onclick="if(confirm('{% trans "Are you sure, you want to delete the document and all its comments?" %}')) $(location).attr('href','{% url delete-doc document.pk %}');">{% trans "Delete this document" %}</a>
+		{% endif %}
+
+		{% if revisions %}
+		{% if request.user.is_staff or request.user == document.getLatestRevision.uploaded_by %}
+			<a class="delete" href="javascript:void(0);" onclick="if(confirm('{% trans "Are you sure, you want to delete the current revision?" %}')) $(location).attr('href','{% url delete-rev document.getLatestRevision.pk %}');">{% trans "Delete current revision" %}</a>
+		{% endif %}		
+		{% endif %}
+	</div>
+	
+	{% if not internet_explorer_warning %}
+	<div id="dropZone" style="top: 340px;">
+		{% trans "Drop new revision here" %}
+	</div> 
+	{% else %}
+	<div id="IEdropZone" style="top: 340px;">
+		{% trans "Click to upload new revision" %}
+	</div> 
+	{% endif %}
+	
+	<strong>{% trans "Basic information" %}</strong><br />
+	<div class="infobox">
+		<p><strong>{% trans "Uploaded by:"%}</strong> {{document.author.get_profile.profile|safe}}</p>
+		{% if not request.user.get_profile.is_lecturer %}
+		<p><strong>{% trans "Rating:" %}</strong> <span class="rating"></span></p>
+		{% if not request.user.get_profile.is_lecturer %}
+			{% if document.is_lecturer_visible %}
+				<p><strong>{% trans "This document is visible for lecturers." %}</strong></p>
+			{% endif %}
+		{% endif %}
+		{% endif %}
+	</div>
+
+	<strong>{% trans "Current revision" %}</strong><br />
+	<div class="currentRevision">
+		<p><span class="revision" style="background-image:url({{document.getLatestRevision.type|fileicon}}.png)">{{document.getLatestRevision.file.size|filesizeformat}} - {% blocktrans with since=document.getLatestRevision.pub_date|timesince|upto:"," %}{{since}} ago{% endblocktrans %}
+		{% if document.getLatestRevision.get_uploader %} {% trans "by" %} {{document.getLatestRevision.get_uploader|safe}}{% endif %}
+		</span></p>
+	</div>
+
+	{% if document.desc %}
+	<div class="description">
+	{{document.desc|urlize|linebreaksbr}}
+	</div>
+	{% endif %}
+
+	{% if cloud %}
+	<div class="tags">
+			<div class="tagcloud">
+				{% for tag in cloud %}
+					{% if tag in document.get_tags %}
+						<span style="font-size:{{ tag.font_size|multiply:100 }}%;"><a style="color:{% cycle '#06C' '#94B0CC' '#3781CC' '#4A8BCC' '#6F9DCC' '#2578CC' %};" class="tag" href="{% url tags tag %}">{{tag}}</a></span>
+					{% endif %}
+				{% endfor %}
+			</div>		
+	</div>	
+	{% endif %}	
+	
+	{% if not request.user.get_profile.is_lecturer %}
+	<div class="comments">
+		<h2>{% trans "Comments " %}</h2>
+		
+		{% if comments %}
+		<div class="commentBox">
+			{% for comment in comments %}
+				<div class="comment {% if forloop.last %}last{% endif %}">
+					{{comment.author.get_profile.profile|safe}} {% blocktrans with since=comment.pub_date|timesince %}{{since}} ago{% endblocktrans %} {% if request.user.is_staff or request.user == comment.author %} - <a href="{% url comment-delete comment.pk %}');">{% trans "Delete" %}</a>{% endif %}
+					<p>{{comment.text|escape|urlize|linebreaks}}</p> 
+				</div>
+			{% endfor %}
+		</div>
+		{% endif %}
+		
+		<div class="commentForm"> 
+			<form action="{% url comment-save document.pk %}" method="post" id="commentform" name="commentform"> 
+				<fieldset>
+					{%csrf_token%}
+					<textarea name="comment" id="comment" cols="40" rows="10" ></textarea> 
+					<input type="submit" value="" />
+				</fieldset>
+			</form> 
+		</div>		
+	</div>
+	{% endif %}
+</div>
+
+<div class="preview">
+<div class="fileicon" style="background-image:url({{document.getLatestRevision.type|fileicon:1}}.png);"></div>
+{% if document.getLatestRevision.get_large_preview %}
+	<div class="hasPreview">
+		<a class="magnifier" href="{{document.getLatestRevision.get_large_preview}}" onclick="return false;">
+			<img src="{{document.getLatestRevision.get_preview}}" alt="{% trans "Preview" %}" />
+		</a>
+	</div>
+	
+	<div class="previewHint">
+		<p>{% blocktrans %}Move your mouse over the preview image.{% endblocktrans %}</p>
+	</div>
+{% else %}
+	{% if document.getLatestRevision.get_preview %}	
+	<div class="hasPreview"><img src="{{document.getLatestRevision.get_preview}}" alt="{% trans "Preview" %}" /></div>
+	{% else %}
+		{% if document.getLatestRevision.get_alternative_preview %}
+			<div class="altPreview"><pre>{{document.getLatestRevision.get_alternative_preview}}</pre></div>
+		{% else %}
+			<div class="noPreview">{% trans "No preview available" %}</div>
+		{% endif %}
+	{% endif %}
+{% endif %}	
+</div>
+
+{% if revisions.count > 0 %}
+<div class="revisions" />
+<h2>{% trans "Revision history" %}</h2>
+<div class="documentList" style="margin-top: 10px;width: 290px;">
+	<ul>
+		{% for revision in revisions %}
+			<li style="background-position:0px 5px;background-image:url({{revision.type|fileicon}}.png);" class="{% if forloop.last %}last{% endif %}">
+				<span style="font-size:small;">{{revision.pub_date|date:"D, d.m.Y - H:i:s \U\h\r"}}</span>
+				<span class="tools">
+					{% if request.user.is_staff or request.user == revision.uploaded_by %}
+						<a class="delete" href="javascript:void(0);" onclick="if(confirm('{% trans "Are you sure, you want to delete this revision?" %}')) $(location).attr('href','{% url delete-rev revision.pk %}');"><img src="{{MEDIA_URL}}img/icons/delete.png" /></a>
+					{% endif %}				
+					<a href="{% url download revision.document.pk %}?rev={{revision.pk}}"><img src="{{MEDIA_URL}}img/icons/disk.png" /></a>
+					<a href="{% url download revision.document.pk %}?zipped=true&rev={{revision.pk}}"><img src="{{MEDIA_URL}}img/icons/compress.png" /></a>
+				</span>
+				{% if revision.get_uploader %}
+				<div style="line-height:0.6em"><span style="font-size:x-small;"> {% trans "by" %} {{revision.get_uploader|safe}}</span></div>{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endif %}
+
+</div>
+<br style="clear:both;" /><br />
+
+{% endblock %}

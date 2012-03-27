@@ -1,0 +1,5 @@
+{% extends "email/base.html" %}
+
+{%block title%}Neue Revision bei "{{document.name}}"{%endblock%}
+
+{%block content%}Hallo {{user.first_name}},</p><p>es gibt eine neue Revision von {{author.first_name}} {{author.last_name}} bei einem Dokument, was du abonniert hast.</p><p>Direkt zum Dokument: <a href="{{domain}}{% url document document.pk%}">{{document.name}}</a></p>{%endblock%}

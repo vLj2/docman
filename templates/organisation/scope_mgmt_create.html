@@ -1,0 +1,34 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "Create scope" %}</h1>
+	<p>{% trans "Scope Management" %}</p>
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+<div style="width:25%;padding-top:0px;float:left;" class="well">
+<h3>{% trans "Basic information" %}</h3>
+	<form method="post" action="{% url organisation-scope-mgmt-create organisation.id %}">
+	<fieldset>
+		{% csrf_token %}
+		<label for="name">{% trans "Name" %}:</label>
+		<input tabindex="1" id="name" name="name" type="text" maxlength="255" value="{{name}}" />
+
+		<input type="submit" value="{% trans "Create scope" %}" />
+	</fieldset>
+	</form>
+</div>
+
+<div style="width:60%;padding-top:0px;float:right;" class="well">
+	<h3>{% trans "Help" %}</h3>
+	<dl>
+		<dt>{% blocktrans %}Courses{% endblocktrans %}</dt>
+		<dd>{% blocktrans %}After you created the scope, you are able to assign courses to it.{% endblocktrans %}</dd>
+</div>
+
+<br style="clear:both;" />
+
+{% endblock %}

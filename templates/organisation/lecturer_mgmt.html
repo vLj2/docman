@@ -1,0 +1,111 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "Lecturer Management" %}</h1>
+	<p>{{organisation.name}}</p>
+{% endblock %}
+
+{% block js %}
+$(document).ready(function(){
+	$("table#lecturerManagementTable").tablesorter({ sortList: [[0,0]], headers: {4:{sorter: false}}});
+});
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.tablesorter.min.js"></script>
+
+<div style="margin-bottom:10px;float:left">
+<fieldset style="padding:0px;">
+<input type="text" style="width:200px;" id="filter" value="{% trans "Filter by any field.."  %}" />
+</input>
+</fieldset>
+</div>
+
+<script type="text/javascript">
+	cache = [];
+	cache['_all'] = $.parseJSON('{{json_cache|safe}}');
+	cache['terms'] = []
+
+	updateTable = function(response, all) {
+		$('table#lecturerManagementTable tbody').html('');
+		$.each(response, function(index, obj){
+			var html = '<tr style="cursor:pointer;" onclick="document.location=\'/_/organisation/{{organisation.pk}}/lecturer_mgmt/'+obj.pk+'\';">';
+			html+= '<td>'+obj.pk+'</td>';
+			html+= '<th>'+obj.name+'</td>';
+			html+= '<td>'+obj.email+'</td>';
+			html+= '<td>'+obj.last_login+'</td>';
+			html+= '<td>';
+			if (obj.has_account) {
+				html+= '<img src="{{MEDIA_URL}}img/icons/tick.png" alt="True" /> / ';
+				if (obj.is_active) {
+					html+= '<img src="{{MEDIA_URL}}img/icons/tick.png" alt="True" />';
+				} else {
+					html+= '<img src="{{MEDIA_URL}}img/icons/delete.png" alt="False" />';
+				}
+			} else {
+				html+= '<img src="{{MEDIA_URL}}img/icons/delete.png" alt="False" />';
+			}
+			html+= '</td>';
+			html+= '</tr>';
+			$('table#lecturerManagementTable tbody').append(html);
+		});
+	};
+
+	$('#filter').click(function() {
+		$(this).val('');
+	}).keyup(function() {
+		term_value = $(this).val();
+
+		if (term_value == '') {
+			updateTable(cache['_all'], true);
+			return;
+		}
+
+		if (typeof(cache['terms'][term_value]) != 'undefined') {
+			updateTable(cache['terms'][term_value]);
+		} else {
+			$.ajax({
+				url: '{% url organisation-lecturer-mgmt-filter organisation.pk %}',
+				dataType: 'json',
+				data: 'term='+term_value,
+				success: function(response) {
+					cache['terms'][term_value] = response
+					updateTable(response);
+				}
+			});
+		}
+	});
+</script>
+
+<div style="margin-bottom:10px;float:right;"><a class="btn" href="{% url organisation-lecturer-mgmt-create organisation.pk %}">{% trans "Create new lecturer" %}</a></div>
+
+<br style="clear:both" />
+
+<table class="zebra-striped condensed-table" id="lecturerManagementTable">
+	<thead>
+		<tr>
+			<th style="width:15px" class="header">#</th>
+			<th class="blue header">{% trans "Name" %}</th>
+			<th class="blue header">{% trans "Email address" %}</th>
+			<th class="blue header">{% trans "Last login" %}</th>
+			<th class="blue" style="width:150px">{% trans "Has account / Active" %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for lecturer in lecturers %}
+		<tr style="cursor:pointer;" onclick="document.location='{% url organisation-lecturer-mgmt-edit organisation.pk lecturer.pk %}';">
+			<td>{{lecturer.pk}}</td>
+			<th>{{lecturer.name}}</th>
+			<td>{{lecturer.email}}</td>
+			<td>{{lecturer.getUser.last_login|date:"Y-m-d H:i:s"|default:"Never"}}</td>
+			<td>{% if lecturer.has_account %}<img src="{{MEDIA_URL}}img/icons/tick.png" alt="True" /> / {% if lecturer.is_active %}<img src="{{MEDIA_URL}}img/icons/tick.png" alt="True" />{% else %}<img src="{{MEDIA_URL}}img/icons/delete.png" alt="True" />{% endif %}{% else %}<img src="{{MEDIA_URL}}img/icons/delete.png" alt="False" />
+			{% endif %}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

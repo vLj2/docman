@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+{% load i18n truncatewords_by_chars call_method %}
+
+{% block title %}{{docent.name}}{% endblock %}
+
+{% block headtitle %}
+	<h1>{{docent.name}} <span style="font-size:small;"><a href="mailto:{{docent.email}}">{{docent.email}}</a></span></h1>
+	<p>{% trans "Lecturer profile" %}</p>
+{% endblock %}
+
+{% block content %}
+
+<div class="course" style="margin-left:0px;margin-right:0px;">
+<h2>{% trans "Courses" %}</h2>
+<div class="documentList">
+<ul>
+	{% for c in courses %}
+		{% if c|args:request.user|call:"hasMatchingScope" %}
+			<li style="background-image:url({{ MEDIA_URL}}img/icons/report.png)">
+				<a href="{% url course c.pk %}">{{c.name}}</a>
+				<span style="color:rgb(200,200,200)">({{c.getSemester}})</span>
+			</li>
+		{% endif %}
+	{% empty %}	
+		<li class="info">{% trans "No courses are assigned to this lecturer." %}<li>
+	{% endfor %}
+</ul>
+</div>
+</div>
+
+{% endblock %}

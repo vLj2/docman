@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+{% load i18n multiply truncatewords_by_chars %}
+
+{% block title %}
+{% trans "Tagcloud" %}
+{% endblock %}
+
+{% block headtitle %}
+	<h1>{% trans "Tagcloud" %}</h1>
+	<p>{% trans "Although the sun is shining, we have clouds." %}</p>
+{% endblock %}
+
+{% block content %}
+{% if cloud %}
+	<div class="tagcloud">
+		{% for item in cloud %}
+	 		<span style="font-size:{{ item.font_size|multiply:100 }}%;"><a style="color:{% cycle '#06C' '#94B0CC' '#3781CC' '#4A8BCC' '#6F9DCC' '#2578CC' %};" class="tag" href="{% url tags item %}">{{item}}</a></span>
+		{% endfor %}
+	</div>
+	{% else %}
+		<div style="text-align:center;margin:50px;">{% trans "No tags are assigned yet." %}</div>
+	{% endif %}		
+	</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+# Disable these in productive environment
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+INTERNAL_IPS = ('127.0.0.1')
+
+# Specify an email backend here. If you want to sent real email,
+# you may want to checkout app.sendmail
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+### The domain will be used mainly in emails to the users:
+DOMAIN = 'http://your.docman.domain'
+### Please note that you must also set the domain on Django's django.contrib.admin
+### interface on http://your.docman.domain/admin/sites/site/1/
+
+### Adjust this path to the absolute path of the docman media directory:
+MEDIA_ROOT = '/path/to/docman/media/'
+### Adjust this path to the docman templates directory:
+TEMPLATE_DIRS = ( "path/to/docman/templates", )
+
+### Where will the Whoosh search indexes be stored?
+### This should be an empty directory with write access (not the document root):
+### cf. <http://docs.haystacksearch.org/dev/settings.html>
+HAYSTACK_WHOOSH_PATH = '/path/to/whoosh_index'
+
+DATABASES = {
+	'default': {
+		'NAME': 'database',
+		'ENGINE': 'django.db.backends.mysql',
+		'USER': 'user',
+		'PASSWORD': 'password',
+		'HOST': '',
+	}
+}
+
+### Languages you want DocMan to display its messages in:
+LANGUAGES = (
+	('de', 'German'),
+	('en', 'English'),
+)
+
+### Information for the Imprint of DocMan ( /about site)
+IMPRINT = { 'name': 'John Doe',
+		'address1': '1600 Pennsylvania Avenue NW',
+		'address2': 'Washington, DC 20500',
+		'phone': '202-456-1414',
+		'email': 'your.name@example.com'
+}
+
+### Admin name and email addresses
+ADMINS = (
+	#('Name', 'email@example.com'),
+)
+
+DEFAULT_FROM_EMAIL = "DocMan <no-reply@docman>"
+### Some functions on the site mention a site administrator with this email address:
+SUPPORT_EMAIL = "support@your.docman.domain"
+
+### Seed in hashing algorithms. Set this to a random string - the longer, the better
+### cf. <https://docs.djangoproject.com/en/dev/ref/settings/#secret-key>
+SECRET_KEY = 'YOUR SECRET KEY'
+
+### Facebook Settings
+FACEBOOK_API_KEY = ''
+FACEBOOK_APP_ID = ''
+FACEBOOK_APP_SECRET = ''
+
+RAW_FORMATS = ['txt', 'html', 'taskpaper', 'php', 'java', 'sql']
+
+FILEICONS = ['doc','7z','audio','cfm','cs',' doc','gif','image', 'jpg','mov','odg','ogg','png','rar','sig','sxi','txt','wma','xvid','bin','chm','css','dot','gz','iso','js','mp3','odi','pdf','ppt','rb','sql','sxw','vcf','wmv','zip','ai','bz2','class','csv','eml','hlp','jar','lua','mpg','odp','pgp','ps','rm','swf','tar','video','xls','aiff  c',' conf  deb','enc','htm','java','m','odc','ods','php','py','rpm','sxc','tex','vsd','xml','asc','cfc','cpp','divx','file','html','jpeg','mm','odf','odt','pl','ram','rtf','sxd','tgz','wav','xpi', 'etherpad']
+
+# Large file icons
+FILEICONS_LARGE = ['aac','avi','chm','divx','dwt','ie7','jpg','mp2','music','pptx','search','txt','wmv','zap','ac3','bak','cmd','diz','emf','ifo','js',' mp2v','nfo','print','sql','uis','wpl','zip','ace','bat','css','dll','exc','inf','log','mp3','one','psd','swf','upload','wri','ade','bin','csv','doc','fav','ini','m4a','mp4','pdd','rar','sys','url','wtx','adp','blue-ray cue','docx','fla','iso','m4p','mpe','pdf','rb',' theme','vcr','wzv','ai',' bmp','dat','dos','font','isp','mmf','mpeg','php','reg','tif','video','xls','aiff','bup','default','download gif','java','mmm','mpg','png','rtf','tiff','vob','xlsx','aspx','cab','der','dvd','hlp','jfif','mov','mpv2','pps','safari','tmp','wba','xml','au',' cat','dic','dwg','html','jpeg','movie','msi','ppt','scp','ttf','wma','xsl', 'image', 'audio']

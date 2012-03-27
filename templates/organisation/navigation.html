@@ -1,0 +1,9 @@
+{% load i18n %}
+
+<ul class="tabs">
+	<li{% if active_page = 'overview' %} class="active"{%endif%}><a href="{% url organisation-organisation organisation.pk%}">{% trans "Overview" %}</a></li>
+	<li{% if active_page = 'user_management' %} class="active"{%endif%}><a href="{% url organisation-user-mgmt organisation.pk%}">{% trans "User management" %}</a></li>
+	<li{% if active_page = 'lecturer_management' %} class="active"{%endif%}><a href="{% url organisation-lecturer-mgmt organisation.pk %}">{% trans "Lecturer management" %}</a></li>
+	<li{% if active_page = 'course_management' %} class="active"{%endif%}><a href="{% url organisation-course-mgmt organisation.pk %}">{% trans "Course management" %}</a></li>
+	<li{% if active_page = 'scope_management' %} class="active"{%endif%}><a href="{% url organisation-scope-mgmt organisation.pk %}">{% trans "Scope management" %}</a></li>
+</ul>

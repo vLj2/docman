@@ -1,0 +1,9 @@
+Hallo {{user.first_name}},
+
+es gibt einen neuen Kommentar von {{author.first_name}} {{author.last_name}} bei einem Dokument, was du abonniert hast.
+
+==============================
+{{text|escape}}
+==============================
+
+Direkt zum Dokument: {{domain}}{% url document document.pk%}

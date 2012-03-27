@@ -1,0 +1,55 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% if lecturer %}{% trans "Create lecturer account"%}{% else %}Create user{%endif%}</h1>
+	<p>{% trans "User Management" %}</p>
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+<div style="width:25%;padding-top:0px;float:left;" class="well">
+<h3>{% trans "Basic information" %}</h3>
+	<form method="post" action="{% url organisation-user-mgmt-create organisation.id %}{% if lecturer %}?lecturer={{lecturer.pk}}{%endif%}">
+	<fieldset>
+		{% csrf_token %}
+		<label for="username">{% trans "Username" %}:</label>
+		<input tabindex="1" id="username" name="username" type="text" maxlength="255" value="{{username}}" />
+
+		<label for="first_name">{% trans "First name" %}:</label>
+		<input tabindex="2" id="first_name" name="first_name" type="text" maxlength="255" value="{{first_name}}" />
+		
+		<label for="last_name">{% trans "Last name" %}:</label>
+		<input tabindex="3" id="last_name" name="last_name" type="text" maxlength="255" value="{{last_name}}" />
+
+		<label for="email">{% trans "Email address" %}:</label>
+		<input tabindex="4" id="email" name="email" type="text" maxlength="255" value="{{email}}" />
+
+		<input type="submit" value="{% trans "Create user" %}" />
+	</fieldset>
+	</form>
+</div>
+
+<div style="width:65%;float:right;">
+
+{% if lecturer %}
+<div class="well danger" style="padding:0px 10px;">
+<p>{% blocktrans with lname=lecturer.name %}You are going to create an account for the lecturer <strong>{{lname}}</strong>.{% endblocktrans %}
+</div>
+{% endif %}
+
+<div style="padding-top:0px;" class="well">
+	<h3>{% trans "Help" %}</h3>
+	<dl>
+		<dt>{% blocktrans %}Scopes{% endblocktrans %}</dt>
+		<dd>{% blocktrans %}After you created the user, you will be redirected to his profile. There you are able to connect the user to scopes.{% endblocktrans %}</dd>
+
+		<dt>{% blocktrans %}Password{% endblocktrans %}</dt>
+		<dd>{% blocktrans %}For security reasons, you are not able to set a password for this user. The user will get an email with his login details.{% endblocktrans %}</dd>		
+</div>
+</div>
+
+<br style="clear:both;" />
+
+{% endblock %}

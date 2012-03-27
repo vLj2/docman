@@ -1,0 +1,103 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{{scope.name}}</h1>
+	<p>{% trans "Scope Management" %}</p>
+{% endblock %}
+
+{% block js %}
+$(document).ready(function(){
+	django.autocomplete("#add_user", {"source": "{% url organisation-autocomplete-scope-user organisation.pk scope.pk %}", "multiple": false, "force_selection": true});
+	django.autocomplete("#add_course", {"source": "{% url organisation-autocomplete-scope-course organisation.pk scope.pk %}", "multiple": false, "force_selection": true});
+});
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.autocomplete.js"></script>
+
+<div style="width:45%;float:left;">
+
+<div style="padding:5px;" class="well">
+<form method="post" action="">
+	<form method="post" action="{% url organisation-scope-mgmt-edit organisation.id scope.id %}">
+	<fieldset>
+		{% csrf_token %}
+		<label style="display:inline" for="name"><strong>{% trans "Name" %}:</strong></label> 
+		<input style="width:56%" tabindex="1" id="name" name="name" type="text" maxlength="255" value="{{scope.name}}" />
+
+		<input type="submit" value="{% trans "Save scope" %}" />
+	</fieldset>
+	</form>
+</form>
+</div>
+
+<div style="padding-top:0px;" class="well">
+<h3>{% trans "Users" %}</h3>
+	<form method="post" action="{% url organisation-scope-mgmt-adduser organisation.id scope.id %}">
+	<fieldset style="padding:0">
+	<table class="zebra-striped condensed-table">
+		{% for user in scope.users.all %}
+			<tr style="cursor:pointer;" onclick="document.location='{% url organisation-user-mgmt-edit organisation.pk user.pk %}';">
+				<td><strong>{{user.first_name}} {{user.last_name}}</strong> ({{user.username}}{% if user.get_profile.is_lecturer %}, <em>{% trans "Lecturer" %}</em>{% endif %})</td>
+				<td style="width:25px;text-align:right;">
+						<a href="{% url organisation-scope-mgmt-deleteuser organisation.pk scope.pk user.pk %}">
+							<img src="{{MEDIA_URL}}img/icons/delete.png" alt="{% trans "Remove user from scope" %}" /></a>
+				</td>
+			</tr>
+		{% endfor %}
+		<tr>
+			<td colspan="2">
+				<input style="margin-top:5px;width:65%" tabindex="5" id="add_user" name="user" type="text" maxlength="255" />
+				<input style="font-size:11px" type="submit" value="{% trans "Add user" %}" />
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+	</form>
+</div>
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well danger">
+	<h3>{% trans "Delete scope" %}</h3>
+	<p>{% trans "If you are sure you want to delete this scope, please click here." %}</p>
+	<form method="post" action="{% url organisation-scope-mgmt-delete organisation.id scope.id %}">
+	<fieldset>
+		<input type="checkbox" value="1" name="sure_flag" /> {% trans "Yes, I'm sure" %}&nbsp;&nbsp;
+		<input style="font-size:11px;margin:0px;" type="submit" class="danger" value="{% trans "Delete scope" %}" />
+	</fieldset>
+	</form>
+</div>
+
+</div>
+
+<div style="width:45%;padding-top:0px;float:right;" class="well">
+<h3>{% trans "Courses" %}</h3>
+	<form method="post" action="{% url organisation-scope-mgmt-addcourse organisation.id scope.id %}">
+	<fieldset style="padding:0">
+	<table class="zebra-striped condensed-table">
+		{% for course in scope.getCourses %}
+			<tr style="cursor:pointer;" onclick="document.location='{% url organisation-course-mgmt-edit organisation.pk course.pk %}';">
+				<td><strong>{{course.name}}</strong> ({{course.getSemester}})</td>
+				<td>{{course.category.name}}</td>
+				<td style="width:25px;text-align:right;">
+					<a href="{% url organisation-scope-mgmt-deletecourse organisation.pk scope.pk course.pk %}">
+						<img src="{{MEDIA_URL}}img/icons/delete.png" alt="{% trans "Remove user from scope" %}" /></a>
+				</td>
+			</tr>
+		{% endfor %}
+		<tr>
+			<td colspan="3">
+				<input style="margin-top:5px;width:65%" tabindex="5" id="add_course" name="course" type="text" maxlength="255" />
+				<input style="font-size:11px" type="submit" value="{% trans "Add course" %}" />
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+	</form>
+</div>
+
+<br style="clear:both" />
+
+{% endblock %}

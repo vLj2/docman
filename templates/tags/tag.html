@@ -1,0 +1,52 @@
+{% extends "core/base.html" %}
+{% load i18n truncatewords_by_chars call_method upto fileicon %}
+
+{% block title %}{% trans "Tag" %}: {{tag.name}}{% endblock %}
+
+{% block headtitle %}
+	<h1>{% trans "Tag:" %} {{tag.name}}</h1>
+	<p>{% trans "Come see a list of all documents assigned to this tag." %}</p>
+{% endblock %}
+
+{% block content %}
+<div class="course" style="margin-left:0px;margin-right:0px;">
+<h2>{% trans "Documents" %}</h2>
+<div class="documentList">
+<ul>
+	{% for doc in documents.object_list %}
+		{% if doc.course|args:request.user|call:"hasMatchingScope" %}
+			<li style="background-image:url({{doc.getLatestRevision.type|fileicon}}.png)">
+				<a href="{% url document doc.pk %}">{{doc.name|truncatewords_by_chars:40}}</a>
+				<span class="fileinfo">
+				{% if not doc.is_etherpad %}
+					{% blocktrans with ago=doc.getLatestRevision.pub_date|timesince|upto:',' filesize=doc.getLatestRevision.file.size|filesizeformat %} {{filesize}} - {{ago}} ago{% endblocktrans %} 
+				{% else %}
+					{% blocktrans with ago=doc.getLatestRevision.pub_date|timesince|upto:',' %} {{ago}} ago{% endblocktrans %}
+				{% endif %}
+					in <a href="{% url course doc.course.pk %}">{{doc.course.name}}</a>
+					{% if request.user.get_profile.semester != doc.course.semester %}
+						<span style="color:rgb(200,200,200)">({{doc.course.getSemester}})</span>
+					{% endif %}
+				</span>
+				<span class="tools">
+					{% if doc|args:request.user.pk|call:"get_subscription" %}
+						<img title="{% trans "You subscribed for updates for this document." %}" alt="{% trans "You subscribed for updates for this document." %}" src="{{MEDIA_URL}}img/icons/feed.png" /> 
+					{% endif %}
+						{% if doc.get_comments_count > 0 %}
+							<div class="comments"><a href="{% url document doc.pk %}#comments">{{doc.get_comments_count}}</a></div>
+						{% endif %}		
+					{% if not doc.is_etherpad %}	
+					<a href="{% url download doc.pk %}"><img src="{{MEDIA_URL}}img/icons/disk.png" /></a>
+					<a href="{% url download doc.pk %}?zipped=true"><img src="{{MEDIA_URL}}img/icons/compress.png" /></a>
+					{% endif %}
+				</span>
+			</li>
+		{% endif %}
+	{% empty %}	
+		<li class="info">{% trans "No documents have been uploaded so far." %}</li>
+	{% endfor %}
+
+</ul>
+</div>
+</div>
+{% endblock %}

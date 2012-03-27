@@ -1,0 +1,200 @@
+{% extends "core/base.html" %}
+{% load i18n truncatewords_by_chars call_method upto fileicon %}
+
+{% block title %}{% trans "Overview" %}{% endblock %}
+
+{% block headtitle %}
+	<h1>{% trans "Overview" %}</h1>
+	<p>{% trans "Welcome to DocMan, the collaborative document management system. All new." %}</p>
+{% endblock %}
+
+{% block content %}
+
+{% if show_survey and not request.user.get_profile.is_lecturer %}
+
+<div class="overlay" id="surveyOverlay" style="display:block;">
+	<div class="oContent"><h3>{% trans "Howdy, mate!" %}</h3><p></p>
+	<p style="font-size:medium;">{% blocktrans %}How's going? You are using DocMan for a while now. We would like to ask you a few questions about DocMan. Please, take your time to fill out the following brief survey to help us to make DocMan even better!{% endblocktrans %}
+	<span style="font-size:small;">{% blocktrans %}Note: Please use school grades to rate. Thanks!{% endblocktrans %}</span></p>
+	
+	<form action="javascript:void(0);" name="evaluation">	
+		<fieldset style="padding:0px">
+			{% csrf_token %}
+
+
+			<div style="float:none;width:100%;margin-bottom: 5px;">
+			<label style="display:inline;" for="grade">{% trans "What do you think about DocMan in general?" %}</label>			
+			<select name="grade" tabindex="1">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3" selected>3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</select>
+			</div>			
+			
+			<div style="float:none;width:100%;margin-bottom: 5px;">
+			<label style="display:inline;" for="upload">{% trans "What's your opinion about the drop-to-upload thing?" %}</label>			
+			<select name="upload" tabindex="1">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3" selected>3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</select>			
+			</div>
+			
+			<div style="float:none;width:100%;margin-bottom: 5px;">
+			<label style="display:inline;" for="layout">{% trans "How's the layout?" %}</label>			
+			<select name="layout" tabindex="1">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3" selected>3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</select>			
+			</div>
+			
+			<div style="float:none;width:100%;margin-bottom: 5px;">
+			<label style="display:inline;" for="zip">{% trans "Did you sometimes download .zip archives?" %}</label>			
+			<select name="zip" tabindex="1">
+				<option value="no" selected>{% trans "no" %}</option>
+				<option value="once">{% trans "only once" %}</option>
+				<option value="sometimes">{% trans "sometimes" %}</option>
+			</select>			
+			</div>	
+			
+			<div style="float:none;width:100%;margin-bottom: 5px;">
+			<label style="display:inline;" for="text">{% trans "Any great, revolutionary ideas?" %}</label>			
+			<textarea id="documentDesc" name="text" style="width:90%">{{document.desc}}</textarea>
+			</div>								
+
+			<input type="submit" value="{% trans "Finish survey!" %}" /> {% trans "Thanks, you rock!" %} <img class="loader" src="{{MEDIA_URL}}img/new/loader_fafafa.gif" alt="{% trans "Loading.." %}" /> 
+		</fieldset>
+	</form>		
+
+	
+	</div>
+	<div class="oOverlay"></div>
+</div>
+
+{% endif %}
+
+{% if not request.user.get_profile.is_lecturer and feed and feed.count > 0 %}
+
+<div class="course" style="margin-left:0px;margin-right:0px;" id="latestUploadsBox">
+<h2>{% trans "Latest Uploads" %} <img id="closeLatestUploads" src="{{MEDIA_URL}}img/new/drawn_error_small.png" style="cursor:pointer;float:right;margin-top: 7px;" alt="{% trans "Hide latest uploades" %}" /></h2>
+<div class="documentList">
+<ul>
+	{% for doc in feed %}
+	<li style="background-image:url({{doc.getLatestRevision.type|fileicon}}.png)">
+		<a href="{% url document doc.pk %}">{{doc.name|truncatewords_by_chars:40}}</a>
+		<span class="fileinfo">			
+			{% if not doc.is_etherpad %}
+				{% blocktrans with since=doc.getLatestRevision.pub_date|timesince|upto:',' filesize=doc.getLatestRevision.file.size|filesizeformat %}
+					{{filesize}} - {{since}} ago
+				{% endblocktrans %}
+			{% else %}
+				{% blocktrans with since=doc.getLatestRevision.pub_date|timesince|upto:',' %}
+					{{since}} ago
+				{% endblocktrans %}
+			{% endif %}
+			in <a href="{% url course doc.course.pk %}">{{doc.course.name}}</a>
+			{% if request.user.get_profile.semester != doc.course.semester %}
+				<span style="color:rgb(200,200,200)">({{doc.course.getSemester}})</span>
+			{% endif %}
+		</span>
+		<span class="tools">
+			{% if doc|args:request.user.pk|call:"get_subscription" %}
+				<img title="{% trans "You subscribed for updates for this document." %}" alt="{% trans "You subscribed for updates for this document." %}" src="{{MEDIA_URL}}img/icons/feed.png" /> 
+			{% endif %}
+				{% if doc.get_comments_count > 0 %}
+					<div class="comments"><a href="{% url document doc.pk %}#comments">{{doc.get_comments_count}}</a></div>
+				{% endif %}
+			{% if not doc.is_etherpad %}
+			<a href="{% url download doc.pk %}"><img src="{{MEDIA_URL}}img/icons/disk.png" /></a>
+			<a href="{% url download doc.pk %}?zipped=true"><img src="{{MEDIA_URL}}img/icons/compress.png" /></a>
+			{% endif %}
+		</span>
+	</li>
+	{% empty %}	
+		<li class="info">{% trans "Until now no documents have been uploaded." %}</li>
+	{% endfor %}
+
+</ul>
+</div>
+</div>
+{% endif %}
+
+{% if categories %}
+	{% for cat in categories %}
+		{% if cat|args:request.user|call:"getCourses" %}
+		<div class="category">
+			<h2>{{cat.name}}</h2>
+		</div>	
+		<div class="categoryBorder"> </div>
+		{% if cat|args:request.user|call:"getCourses" %}
+			{% for c in cat|args:request.user|call:"getCourses" %}
+				<div class="course">
+				<h2>
+					<a href="{% url course c.pk %}">{{c.name}}</a>
+					{% if request.user.get_profile.is_lecturer %}
+					<span>{{c.getSemester}}, {% for scope in c.get_scopes %}{{scope}}{% if forloop.last%}{%else%}, {%endif%}{% endfor %}</span>
+					{% else %}
+					<span>{% trans "held by" %} <a href="{% url docent c.docent.pk %}">{{c.docent.name}}</a></span>
+					{% endif %}
+					{% if c|args:request.user.pk|call:"get_subscription" %}
+						<span class="subscription"><img title="{% trans "You subscribed for updates for this course." %}" alt="{% trans "You subscribed for updates for this course." %}" src="{{MEDIA_URL}}img/icons/feed.png"</span>
+					{% endif %}
+				</h2>
+				<div class="documentList">
+				<ul>
+					{% if c|args:request.user|call:"getLastDocuments" %}
+						{% for d in c|args:request.user|call:"getLastDocuments" %}
+							<li style="background-image:url({{d.getLatestRevision.type|fileicon}}.png)">
+								<a href="{% url document d.pk %}">{{d.name|truncatewords_by_chars:40}}</a>
+								<span class="fileinfo">
+								{% if not d.is_etherpad %}
+									{% blocktrans with uploader=d.author.get_profile.profile|safe since=d.getLatestRevision.pub_date|timesince|upto:',' filesize=d.getLatestRevision.file.size|filesizeformat %}
+										{{filesize}} - {{since}} ago by {{uploader}}
+									{% endblocktrans %}
+								{% else %}
+									{% blocktrans with uploader=d.author.get_profile.profile|safe since=d.getLatestRevision.pub_date|timesince|upto:',' %}
+										{{since}} ago by {{uploader}} 
+									{% endblocktrans %}
+								{% endif %}
+								</span>
+								<span class="tools">
+									{% if d|args:request.user.pk|call:"get_subscription" %}
+										<img title="{% trans "You subscribed for updates for this document." %}" alt="{% trans "You subscribed for updates for this document." %}" src="{{MEDIA_URL}}img/icons/feed.png" /> 
+									{% endif %}
+									{% if d.get_comments_count > 0 %}
+										<div class="comments"><a href="{% url document d.pk %}#comments">{{d.get_comments_count}}</a></div>
+									{% endif %}			
+									{% if not d.is_etherpad %}						
+									<a href="{% url download d.pk %}"><img src="{{MEDIA_URL}}img/icons/disk.png" /></a>
+									<a href="{% url download d.pk %}?zipped=true"><img src="{{MEDIA_URL}}img/icons/compress.png" /></a>
+									{% endif %}
+								</span>
+							</li>
+						{% endfor %}
+					{% else %}
+						<li class="info">{% trans "Until now no documents have been uploaded." %}</li>
+					{% endif %}
+				</ul>
+				</div>
+				</div>	
+			{% endfor %}
+		{% else %}
+			<p>{% trans "No courses in this category (for this term)." %}</p>
+		{% endif %}		
+		{% endif %}
+	{% endfor %}
+{% else %}
+	<p>{% trans "No Categories set up yet." %}</p>
+{% endif %}
+
+{% endblock %}

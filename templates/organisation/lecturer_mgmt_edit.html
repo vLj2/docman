@@ -1,0 +1,193 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{{lecturer.name}}</h1>
+	<p>{% trans "Lecturer Management" %}</p>
+{% endblock %}
+
+{% block js %}
+$(document).ready(function(){
+	{% if lecturer.getUser %}
+	django.autocomplete("#add_scope", {"source": "{% url organisation-autocomplete organisation.pk lecturer.getUser.pk %}", "multiple": false, "force_selection": true});
+	{% endif %}
+});
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.autocomplete.js"></script>
+
+<div style="width:35%;float:left">
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well">
+<h3>{% trans "Basic information" %}</h3>
+<form method="post" action="">	
+	<form method="post" action="{% url organisation-lecturer-mgmt-edit organisation.id lecturer.id %}">
+	<fieldset>
+		{% csrf_token %}
+		<label for="name">{% trans "Display name" %}:</label>
+		<input tabindex="1" id="name" name="name" type="text" maxlength="255" value="{{lecturer.name}}" />
+
+		<label for="email">{% trans "Email address" %}:</label>
+		<input tabindex="2" id="email" name="email" type="text" maxlength="255" value="{{lecturer.email}}" />
+		
+		<input type="submit" value="{% trans "Save lecturer" %}" />
+	</fieldset>
+	</form>
+</form>
+</div>
+
+{% if lecturer.getUser %}
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well">
+<h3>{% trans "Account information" %}</h3>
+	<form method="post" action="{% url organisation-user-mgmt-edit organisation.id lecturer.getUser.pk %}?lecturer=True">
+	<fieldset>
+		{% csrf_token %}
+		<label for="username">{% trans "Username" %}:</label>
+		<input tabindex="1" id="username" name="username" type="text" maxlength="255" value="{{lecturer.getUser.username}}" />
+
+		<label for="first_name">{% trans "First name" %}:</label>
+		<input tabindex="2" id="first_name" name="first_name" type="text" maxlength="255" value="{{lecturer.getUser.first_name}}" />
+		
+		<label for="last_name">{% trans "Last name" %}:</label>
+		<input tabindex="3" id="last_name" name="last_name" type="text" maxlength="255" value="{{lecturer.getUser.last_name}}" />
+
+		<label for="email">{% trans "Email address" %}:</label>
+		<input tabindex="4" id="email" name="email" type="text" maxlength="255" value="{{lecturer.getUser.email}}" />
+
+		<input type="submit" value="{% trans "Save account data" %}" />
+	</fieldset>
+	</form>
+</div>
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well">
+	<h3>{% trans "Reset password" %}</h3>
+	<p>{% trans "For security reasons, you are not able to change a lecturer's password. However, you can send him an email with a new generated password." %}</p>
+
+	<form method="post" action="{% url organisation-user-mgmt-newpassword organisation.id lecturer.getUser.id %}?lecturer=True">
+	<fieldset>
+		<input style="font-size:11px;margin:0px;" type="submit" value="{% trans "Generate new password" %}" />
+	</fieldset>
+	</form>
+</div>
+
+{% if request.user.pk != lecturer.getUser.pk %}
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well">
+	<h3>{% trans "Disable lecturer" %}</h3>
+	<p>{% trans "If you are sure you want to disable this lecturer, please click here. The lecturer will no longer be able to login." %}</p>
+
+	{% if lecturer.getUser.is_active %}
+		<form method="post" action="{% url organisation-user-mgmt-disable organisation.id lecturer.getUser.id %}?lecturer=true">
+		<fieldset>
+			<input style="font-size:11px;margin:0px;" type="submit" class="danger" value="{% trans "Disable lecturer" %}" />
+		</fieldset>
+		</form>
+	{% else %}
+		<p>{% trans "The lecturer has already been disabled. Click here to enable his account again." %}</p>
+		<form method="post" action="{% url organisation-user-mgmt-enable organisation.id lecturer.getUser.id %}?lecturer=true">
+		<fieldset>
+			<input style="font-size:11px;margin:0px;" type="submit" value="{% trans "Enable lecturer" %}" />
+		</fieldset>
+		</form>
+	{% endif %}	
+</div>
+
+{% endif %}
+{% else %}
+<div style="padding-top:0px;padding-bottom:10px;" class="well">
+<h3>{% trans "Account information" %}</h3>
+	<p>{% trans "This lecturer has not yet an account, so he is not able to login and upload or view documents." %}</p>
+	<p><a class="btn" href="{% url organisation-user-mgmt-create organisation.pk %}?lecturer={{lecturer.pk}}&amp;email={{lecturer.email}}">{% trans "Create account" %}</a></p>
+</div>
+{% endif %}
+
+{% if request.user.pk != lecturer.getUser.pk %}
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well danger">
+	<h3>{% trans "Delete lecturer" %}</h3>
+	<p>{% trans "If you are sure you want to delete this lecturer, please click here." %} <strong>{% trans "Warning! All courses, documents, etc. of this lecturer and his connected account will be deleted!" %}</strong></p>
+	<form method="post" action="{% url organisation-lecturer-mgmt-delete organisation.id lecturer.pk %}">
+	<fieldset>
+		<input type="checkbox" value="1" name="sure_flag" /> {% trans "Yes, I'm sure" %}&nbsp;&nbsp;
+		<input style="font-size:11px;margin:0px;" type="submit" class="danger" value="{% trans "Delete lecturer" %}" />
+	</fieldset>
+	</form>
+</div>
+</div>
+
+{% else %}
+</div>
+{% endif %}
+
+
+<div style="width:60%;float:right">
+
+<div style="padding-top:0px;" class="well">
+<h3>{% trans "Courses" %}</h3>
+	<form method="post" action="">
+	<fieldset style="padding:0">
+	<table class="zebra-striped condensed-table">
+		{% for course in lecturer.getCourses %}
+			<tr style="cursor:pointer;" onclick="document.location='{% url organisation-course-mgmt-edit organisation.pk course.pk %}';">
+				<td><strong>{{course.name}}</strong> ({{course.getSemester}})</td>
+				<td>{{course.category.name}}</td>
+			</tr>
+		{% empty %}
+			<tr>
+				<td colspan="2">{% trans "This lecturer is not assigned to any course." %}</td>
+			</tr>
+		{% endfor %}
+	</table>
+	</fieldset>
+	</form>
+</div>
+
+{% if lecturer.getUser %}
+<div style="padding-top:0px;" class="well">
+<h3>{% trans "Scopes" %}</h3>
+	<form method="post" action="{% url organisation-user-mgmt-addscope organisation.id lecturer.getUser.pk %}?lecturer=True">
+	<fieldset style="padding:0">
+	<table class="zebra-striped condensed-table">
+		{% for scope in scopes %}
+			<thead>
+				<tr>
+					<th style="font-size:14px;"><a style="color:inherit;" href="{% url organisation-scope-mgmt-edit organisation.pk scope.pk %}">{{scope.name}}</a> <span style="font-weight:normal;font-size:x-small;">(
+					<a id="show-{{scope.pk}}" href="javascript:$('#show-{{scope.pk}}').hide();$('#tbody-{{scope.pk}}').fadeIn();$('#hide-{{scope.pk}}').show();">{% trans "Show courses" %}</a>
+					<a id="hide-{{scope.pk}}" href="javascript:$('#hide-{{scope.pk}}').hide();$('#tbody-{{scope.pk}}').fadeOut();$('#show-{{scope.pk}}').show();" style="display:none;">{% trans "Hide courses" %}</a>
+					)</span></th>
+					<th style="width:25px;text-align:right;">
+						<a href="{% url organisation-user-mgmt-deletescope organisation.pk lecturer.getUser.pk scope.pk %}?lecturer=True">
+							<img src="{{MEDIA_URL}}img/icons/delete.png" alt="{% trans "Remove user from scope" %}" /></a>
+					</td>
+				</tr>
+			</thead>
+			<tbody style="display:none;" id="tbody-{{scope.pk}}">
+			{% for course in scope.getCourses %}
+				<tr style="cursor:pointer;" onclick="document.location='{% url organisation-course-mgmt-edit organisation.pk course.pk %}';">
+					<td style="padding-left:20px;"><strong>{{course.name}}</strong> ({{course.getSemester}})</td>
+					<td>{{course.category.name}}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		{% endfor %}
+		<tr>
+			<td colspan="2">
+				<input style="margin-top:5px;width:65%" tabindex="5" id="add_scope" name="scope" type="text" maxlength="255" />
+				<input style="font-size:11px" type="submit" value="{% trans "Add scope" %}" />
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+	</form>
+</div>
+{% endif %}
+
+</div>
+
+<br style="clear:both" />
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "Create lecturer"%}</h1>
+	<p>{% trans "Lecturer Management" %}</p>
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+<div style="width:25%;padding-top:0px;float:left;" class="well">
+<h3>{% trans "Basic information" %}</h3>
+	<form method="post" action="{% url organisation-lecturer-mgmt-create organisation.id %}">
+	<fieldset>
+		{% csrf_token %}
+		<label for="username">{% trans "Name" %}:</label>
+		<input tabindex="1" id="name" name="name" type="text" maxlength="255" value="{{name}}" />
+
+		<label for="email">{% trans "Email address" %}:</label>
+		<input tabindex="4" id="email" name="email" type="text" maxlength="255" value="{{email}}" />
+
+		<input type="submit" value="{% trans "Create lecturer" %}" />
+	</fieldset>
+	</form>
+</div>
+
+<div style="width:65%;float:right;">
+
+<div style="padding-top:0px;" class="well">
+	<h3>{% trans "Help" %}</h3>
+	<dl>
+		<dt>{% blocktrans %}Courses{% endblocktrans %}</dt>
+		<dd>{% blocktrans %}After you created a new lecturer, you can create new courses and assign them to him.{% endblocktrans %}</dd>
+
+		<dt>{% blocktrans %}Account{% endblocktrans %}</dt>
+		<dd>{% blocktrans %}If you want the lecturer to be able to login, create an account for this lecturer afterwards.{% endblocktrans %}</dd>		
+</div>
+</div>
+
+<br style="clear:both;" />
+
+{% endblock %}

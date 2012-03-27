@@ -1,0 +1,38 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Scope info:" %} {{scope.name}}{% endblock %}
+
+{% block headtitle %}
+	<h1>{{scope.name}}</h1>
+	<p>{% trans "Users assigned to this scope can access all documents of courses which are connected to it." %}</p>
+{% endblock %}
+
+{% block js %}
+$(document).ready(function(){
+	$("table#scopeInfoTable").tablesorter({ sortList: [[0,0]], headers: {4:{sorter: false}}});
+});
+{% endblock %}
+
+{% block content %}
+	<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.tablesorter.min.js"></script>
+
+	<table class="zebra-striped condensed-table" id="scopeInfoTable">
+	<thead>
+		<tr>
+			<th class="blue header">{% trans "First name" %}</th>
+			<th class="blue header">{% trans "Last name" %}</th>
+			<th class="blue header">{% trans "Email address" %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in scope.users.all %}
+		<tr style="cursor:pointer;" onclick="document.location='{% url user-profile user.pk %}';">
+			<td>{{user.first_name}}</td>
+			<td>{{user.last_name}}</td>
+			<td>{{user.email}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

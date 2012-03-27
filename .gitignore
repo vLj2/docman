@@ -1,0 +1,9 @@
+*.DStore
+settings_local.py
+media/preview/*
+media/hdd/*
+*.pyc
+*/*.pyc
+whoosh_index
+database
+.docman_hash

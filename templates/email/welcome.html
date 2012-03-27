@@ -1,0 +1,5 @@
+{% extends "email/base.html" %}
+
+{%block title%}Willkommen bei DocMan!{%endblock%}
+
+{%block content%}Hallo {{user.first_name}},</p><p>dein Account bei DocMan wurde erfolgreich angelegt! Deine Benutzerdaten lauten wie folgt:</p><p><strong>Benutzername:</strong> {{user.username}}<br /><strong>Passwort:</strong> {{password}}</p><p>Direkt zu DocMan: <a href="{{domain}}">{{domain}}</a></p>{%endblock%}

@@ -1,0 +1,96 @@
+{% extends "core/base.html" %}
+{% load i18n call_method truncatewords_by_chars upto fileicon %}
+
+{% block title %}{% trans "Full Text Search" %}{% endblock %}
+
+{% block headtitle %}
+	<h1>{% trans "Full Text Search" %}</h1>
+	<p>{% trans "Feed the search spider with your query." %}</p>
+{% endblock %}
+
+{% block content %}
+
+<p>{% trans "Please enter a search key to start the search." %}</p>
+
+{% if  request.user.get_profile.is_lecturer %}
+
+<div class="drawnError">
+<h2>{% trans "Whooops!" %}</h2>
+<p>{% blocktrans %}Sadly, the full text search has been disabled for your account. If you feel inconvenient, please refer to our <a href="mailto:support@docman.me">Support-Team</a>!{% endblocktrans %}</p>
+</div>
+
+{% else %}
+<div id="searchBox">
+<form method="get" action=".">
+	<fieldset>
+		<label for="id_q">{% trans "Search key" %}:</label>
+		{{form.q}}
+		<br />
+		<input type="submit" value="Search" /> {% trans "and feel free to use the common search query language." %}
+	</fieldset>
+</form>
+</div>
+
+{% endif %}
+
+
+
+{% if query %}
+
+<div class="course" style="margin-left:0px;margin-right:0px;">
+<h2>{% trans "Search Results" %}</h2>
+<div class="documentList">
+<ul>
+	{% for result in page.object_list %}
+		{% if result.object.pk %}
+			{% if result.object.course|args:user|call:"hasMatchingScope" %}
+				{% if result.object.course|args:request.user|call:"hasMatchingScope" %}
+					<li style="background-image:url({{result.object.getLatestRevision.type|fileicon}}.png)">
+						<a href="{% url document result.object.pk %}">{{result.object.name|truncatewords_by_chars:40}}</a>
+						<span class="fileinfo">
+						{% if not result.object.is_etherpad %}
+							{% blocktrans with ago=result.object.getLatestRevision.pub_date|timesince|upto:',' filesize=result.object.getLatestRevision.file.size|filesizeformat uploader=result.object.author.get_profile.profile|safe %} {{filesize}} - {{ago}} ago by {{uploader}}{% endblocktrans %} 
+						{% else %}
+							{% blocktrans with ago=result.object.getLatestRevision.pub_date|timesince|upto:',' filesizeuploader=result.object.author.get_profile.profile|safe %} {{ago}} ago by {{uploader}}{% endblocktrans %} 
+						{% endif %}
+
+							in <a href="{% url course result.object.course.pk %}">{{result.object.course.name}}</a>							
+							
+							{% if request.user.get_profile.semester != result.object.course.semester %}
+								<span style="color:rgb(200,200,200)">({{result.object.course.getSemester}})</span>
+							{% endif %}
+						</span>
+						<span class="tools">
+							{% if result.object|args:request.user.pk|call:"get_subscription" %}
+								<img title="{% trans "You subscribed for updates for this document." %}" alt="{% trans "You subscribed for updates for this document." %}" src="{{MEDIA_URL}}img/icons/feed.png" /> 
+							{% endif %}
+								{% if result.object.get_comments_count > 0 %}
+									<div class="comments"><a href="{% url document result.object.pk %}#comments">{{result.object.get_comments_count}}</a></div>
+								{% endif %}
+								{% if not result.object.is_etherpad %}	
+								<a href="{% url download result.object.pk %}"><img src="{{MEDIA_URL}}img/icons/disk.png" /></a>
+								<a href="{% url download result.object.pk %}?zipped=true"><img src="{{MEDIA_URL}}img/icons/compress.png" /></a>
+								{% endif %}
+						</span>
+					</li>
+				{% endif %}
+			{% endif %}
+		{% endif %}				
+	{% empty %}	
+		<li class="info">{% trans "Unfortunateley your search did not return any results." %}</li>
+	{% endfor %}
+</ul>
+</div>
+</div>
+
+{% endif %}
+
+{% if page.has_previous or page.has_next %}
+<div class="pagination">
+	{% for p in page.paginator.page_range %}
+		<a class="{% if p == documents.number %}active{% endif %}" href="?p={{p}}">{{p}}</a> 
+	{% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

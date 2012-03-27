@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "Organisation Management" %}</h1>
+{% endblock %}
+
+{% block content %}
+<p>{%blocktrans%}You are manager of the following organisations. Please select one to continue.{%endblocktrans%}
+
+<ul class="organisations">
+{% for organisation in organisations %}
+	<li><a href="{% url organisation-organisation organisation.pk %}">{{organisation.name}}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

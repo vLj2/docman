@@ -1,0 +1,114 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "Course Management" %}</h1>
+	<p>{{organisation.name}}</p>
+{% endblock %}
+
+{% block js %}
+$(document).ready(function(){
+	$("table#courseManagementTable").tablesorter({ sortList: [[0,0]], headers: {4:{sorter: false}}});
+});
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.tablesorter.min.js"></script>
+
+<div style="margin-bottom:10px;float:left">
+<fieldset style="padding:0px;">
+<input type="text" style="width:200px;" id="filter" value="{% trans "Filter by any field.."  %}" />
+</input>
+</fieldset>
+</div>
+
+<script type="text/javascript">
+	cache = [];
+	cache['_all'] = $.parseJSON('{{json_cache|safe}}');
+	cache['terms'] = []
+
+	updateTable = function(response, all) {
+		$('table#courseManagementTable tbody').html('');
+		$.each(response, function(index, obj){
+			var html = '<tr style="cursor:pointer;" onclick="document.location=\'/_/organisation/{{organisation.pk}}/course_mgmt/'+obj.pk+'/edit/\';">';
+			html+= '<td>'+obj.pk+'</td>';
+			html+= '<td>'+obj.semester+'</td>';
+			html+= '<th>'+obj.name+'</td>';			
+			html+= '<td>'+obj.category+'</td>';
+			html+= '<td>'+obj.lecturer+'</td>';
+			html+= '<td>'+obj.scopes+'</td>';
+			html+= '</tr>';
+			$('table#courseManagementTable tbody').append(html);
+		});
+	};
+
+	$('#filter').click(function() {
+		$(this).val('');
+	}).keyup(function() {
+		term_value = $(this).val();
+
+		if (term_value == '') {
+			updateTable(cache['_all'], true);
+			return;
+		}
+
+		if (typeof(cache['terms'][term_value]) != 'undefined') {
+			updateTable(cache['terms'][term_value]);
+		} else {
+			$.ajax({
+				url: '{% url organisation-course-mgmt-filter organisation.pk %}',
+				dataType: 'json',
+				data: 'term='+term_value,
+				success: function(response) {
+					cache['terms'][term_value] = response
+					updateTable(response);
+				}
+			});
+		}
+	});
+</script>
+
+<div style="margin-bottom:10px;float:right;"><a class="btn" href="{% url organisation-course-mgmt-create organisation.pk %}">{% trans "Create new course" %}</a></div>
+
+<br style="clear:both" />
+
+<table class="zebra-striped condensed-table" id="courseManagementTable">
+	<thead>
+		<tr>
+			<th style="width:15px" class="header">#</th>
+			<th class="header blue">{% trans "Semester "%}</th>
+			<th class="blue header">{% trans "Name" %}</th>
+			<th class="blue header">{% trans "Category" %}</th>
+			<th class="blue header">{% trans "Lecturer" %}</th>
+			<th class="blue header">{% trans "Scopes" %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for course in courses %}
+		<tr style="cursor:pointer;" onclick="document.location='{% url organisation-course-mgmt-edit organisation.pk course.pk %}';">
+			<td>{{course.pk}}</td>
+			<td>{{course.getSemester}}</td>
+			<th>{{course.name}}</th>
+			<td>{{course.category.name}}</td>
+			<td>{{course.docent.name}}</td>
+			<td style="font-size:small">
+				{% for scope in course.get_scopes %}
+					{{scope.name}}{% if not forloop.last %}, {% endif %}
+				{% empty %}
+					-
+				{% endfor %}
+			</td>
+		</tr>
+		{% empty %}
+		<tr>
+			<td colspan="6">
+				{% trans "No course created yet. " %}
+				<a href="{% url organisation-course-mgmt-create organisation.pk %}">{% trans "Create new course." %}</a>
+			</td>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{{user.first_name}} {{user.last_name}}</h1>
+	<p>{% trans "User Management" %}</p>
+{% endblock %}
+
+{% block js %}
+$(document).ready(function(){
+	django.autocomplete("#add_scope", {"source": "{% url organisation-autocomplete organisation.pk user.pk %}", "multiple": false, "force_selection": true});
+});
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.autocomplete.js"></script>
+
+<div style="width:30%;float:left">
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well">
+<h3>{% trans "Basic information" %}</h3>
+<form method="post" action="">	
+	<form method="post" action="{% url organisation-user-mgmt-edit organisation.id user.id %}">
+	<fieldset>
+		{% csrf_token %}
+		<label for="username">{% trans "Username" %}:</label>
+		<input tabindex="1" id="username" name="username" type="text" maxlength="255" value="{{user.username}}" />
+
+		<label for="first_name">{% trans "First name" %}:</label>
+		<input tabindex="2" id="first_name" name="first_name" type="text" maxlength="255" value="{{user.first_name}}" />
+		
+		<label for="last_name">{% trans "Last name" %}:</label>
+		<input tabindex="3" id="last_name" name="last_name" type="text" maxlength="255" value="{{user.last_name}}" />
+
+		<label for="email">{% trans "Email address" %}:</label>
+		<input tabindex="4" id="email" name="email" type="text" maxlength="255" value="{{user.email}}" />
+
+		<input type="submit" value="{% trans "Save user" %}" />
+	</fieldset>
+	</form>
+</form>
+</div>
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well">
+	<h3>{% trans "Reset password" %}</h3>
+	<p>{% trans "For security reasons, you are not able to change a user's password. However, you can send him an email with a new generated password." %}</p>
+
+	<form method="post" action="{% url organisation-user-mgmt-newpassword organisation.id user.id %}">
+	<fieldset>
+		<input style="font-size:11px;margin:0px;" type="submit" value="{% trans "Generate new password" %}" />
+	</fieldset>
+	</form>
+</div>
+
+{% if request.user.pk != user.pk %}
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well">
+	<h3>{% trans "Disable user" %}</h3>
+	<p>{% trans "If you are sure you want to disable this user, please click here. The user will no longer be able to login." %}</p>
+
+	{% if user.is_active %}
+		<form method="post" action="{% url organisation-user-mgmt-disable organisation.id user.id %}">
+		<fieldset>
+			<input style="font-size:11px;margin:0px;" type="submit" class="danger" value="{% trans "Disable user" %}" />
+		</fieldset>
+		</form>
+	{% else %}
+		<p>{% trans "The user has already been disabled. Click here to enable his account again." %}</p>
+		<form method="post" action="{% url organisation-user-mgmt-enable organisation.id user.id %}">
+		<fieldset>
+			<input style="font-size:11px;margin:0px;" type="submit" value="{% trans "Enable user" %}" />
+		</fieldset>
+		</form>
+	{% endif %}	
+</div>
+
+<div style="padding-top:0px;padding-bottom:10px;" class="well danger">
+	<h3>{% trans "Delete user" %}</h3>
+	<p>{% trans "If you are sure you want to delete this user, please click here." %} <strong>{% trans "Warning! All documents, comments, votes, etc. of this user will be deleted!" %}</strong></p>
+	<form method="post" action="{% url organisation-user-mgmt-delete organisation.id user.id %}">
+	<fieldset>
+		<input type="checkbox" value="1" name="sure_flag" /> {% trans "Yes, I'm sure" %}&nbsp;&nbsp;
+		<input style="font-size:11px;margin:0px;" type="submit" class="danger" value="{% trans "Delete user" %}" />
+	</fieldset>
+	</form>
+</div>
+
+{% endif %}
+
+</div>
+
+<div style="width:60%;padding-top:0px;float:right;" class="well">
+<h3>{% trans "Scopes" %}</h3>
+	<form method="post" action="{% url organisation-user-mgmt-addscope organisation.id user.id %}">
+	<fieldset style="padding:0">
+	<table class="zebra-striped condensed-table">
+		{% for scope in scopes %}
+			<thead>
+				<tr>
+					<th style="font-size:14px;"><a style="color:inherit;" href="{% url organisation-scope-mgmt-edit organisation.pk scope.pk %}">{{scope.name}}</a> <span style="font-weight:normal;font-size:x-small;">(
+					<a id="show-{{scope.pk}}" href="javascript:$('#show-{{scope.pk}}').hide();$('#tbody-{{scope.pk}}').fadeIn();$('#hide-{{scope.pk}}').show();">{% trans "Show courses" %}</a>
+					<a id="hide-{{scope.pk}}" href="javascript:$('#hide-{{scope.pk}}').hide();$('#tbody-{{scope.pk}}').fadeOut();$('#show-{{scope.pk}}').show();" style="display:none;">{% trans "Hide courses" %}</a>
+					)</span></th>
+					<th style="width:25px;text-align:right;">
+						<a href="{% url organisation-user-mgmt-deletescope organisation.pk user.pk scope.pk %}">
+							<img src="{{MEDIA_URL}}img/icons/delete.png" alt="{% trans "Remove user from scope" %}" /></a>
+					</td>
+				</tr>
+			</thead>
+			<tbody style="display:none;" id="tbody-{{scope.pk}}">
+			{% for course in scope.getCourses %}
+				<tr style="cursor:pointer;" onclick="document.location='{% url organisation-course-mgmt-edit organisation.pk course.pk %}';">
+					<td style="padding-left:20px;"><strong>{{course.name}}</strong> ({{course.getSemester}})</td>
+					<td>{{course.category.name}}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		{% endfor %}
+		<tr>
+			<td colspan="2">
+				<input style="margin-top:5px;width:65%" tabindex="5" id="add_scope" name="scope" type="text" maxlength="255" />
+				<input style="font-size:11px" type="submit" value="{% trans "Add scope" %}" />
+			</td>
+		</tr>
+	</table>
+	</fieldset>
+	</form>
+</div>
+
+<br style="clear:both" />
+
+{% endblock %}

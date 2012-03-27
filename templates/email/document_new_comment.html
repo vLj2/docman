@@ -1,0 +1,5 @@
+{% extends "email/base.html" %}
+
+{%block title%}Neuer Kommentar bei "{{document.name}}"{%endblock%}
+
+{%block content%}Hallo {{user.first_name}},</p><p>es gibt einen neuen Kommentar von {{author.first_name}} {{author.last_name}} bei einem Dokument, was du abonniert hast.</p><div class="box" style="border: 1px solid rgb(200,200,200);-moz-border-radius: 5px;border-radius: 5px;	padding: 5px 5px;margin-top: 0px;color: rgb(90,90,90);	font-size: 0.9em;">{{text|escape|linebreaks|urlize}}</div><p>Direkt zum Dokument: <a href="{{domain}}{% url document document.pk%}">{{document.name}}</a></p>{%endblock%}

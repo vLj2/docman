@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "Application error" %}</h1>
+	<p>{% trans "Whoops!" %}</p>
+{% endblock %}
+
+{% block content %}
+<div class="e500">
+<p>{% trans "We're very sorry, but something went terribly wrong with your account.<br />It seems that you are not connected to any organisation." %}</p>
+<p style="font-style:italic">{% trans "Our technical support has already been informed. We will come back to you asap!" %}</p>
+</div>
+{% endblock %}

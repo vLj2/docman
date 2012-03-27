@@ -1,0 +1,48 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "About DocMan" %}</h1>
+	<p>{% trans "It's beautiful, cool and fun!" %}</p>
+{% endblock %}
+
+{% block content %}
+
+<h2>{% trans "Imprint" %}</h2>
+<p>{% trans "The operator of this DocMan website cannot be taken responsible for uploaded files. The respective uploader is resonsible for the uploaded files and their content. The Copyrights of the original authors remains unchanged." %}</p>
+
+<p>{{ imprint.name }}<br />{{ imprint.address1 }}<br />{{ imprint.address2 }}<br />{{ imprint.phone }}<br />
+<a href="mailto:{{ imprint.email }}">{{ imprint.email }}</a></p>
+
+<h2>{% trans "DocMan is Open Source" %}</h2>
+<p>{% trans "DocMan is an Open Source document management software." %} <a href="http://get.docman.me">{% trans "Learn more" %}</a>.</p>
+
+<h2>{% trans "Technical Details" %}</h2>
+<p>{% trans "This software has been developed with the help of:" %}</p>
+<table style="font-size:small;width:60%" cellspacing="10">
+<tr style="vertical-align:middle;">
+<td style="vertical-align:middle;"><a class="noimg" href="http://djangoproject.com"><img src="{{MEDIA_URL}}img/djangopowered126x54.gif" /></a></td>
+<td style="vertical-align:middle;">&laquo;Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.&raquo;</td>
+</tr>
+
+<tr style="vertical-align:middle;">
+<td style="vertical-align:middle;"><a class="noimg" href="http://piratesolutions.org"><img class="ps" src="{{MEDIA_URL}}img/pslogo.jpg" /></a></td>
+<td style="vertical-align:middle;">{% trans "Technical Implementation, Hosting and Support" %}</td>
+</tr>
+
+<tr style="vertical-align:middle;">
+<td style="vertical-align:middle;"><a class="noimg" href="http://cherokee-project.com"><img class="cherokee" src="{{MEDIA_URL}}img/powered_by_cherokee-2.gif" /></a></td>
+<td style="vertical-align:middle;">&laquo;Cherokee is a very fast, flexible and easy to configure Web Server.&raquo;</td>
+<tr style="vertical-align:middle;">
+<td style="vertical-align:middle;"><a class="noimg" href="http://github.com/tjosten/docman"><img src="{{MEDIA_URL}}img/github.png" /></a></td><td style="vertical-align:middle;">
+  {% trans "DocMan is an open source project and can be downloaded at GitHub." %}</td>
+</tr>
+</table>
+
+<br style="clear:both;" />
+
+<h2>{% trans "Statistics" %}</h2>
+<p>{% blocktrans with space=stats.space|filesizeformat number=stats.count %}Until now, a total number of {{number}} documents have been uploaded to DocMan, that take up {{space}} of file system storage.{% endblocktrans %}</p>
+
+
+{% endblock %}

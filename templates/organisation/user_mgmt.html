@@ -1,0 +1,110 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{% block headtitle %}
+	<h1>{% trans "User Management" %}</h1>
+	<p>{{organisation.name}}</p>
+{% endblock %}
+
+{% block js %}
+$(document).ready(function(){
+	$("table#userManagementTable").tablesorter({ sortList: [[0,0]], headers: {4:{sorter: false}}});
+});
+{% endblock %}
+
+{% block content %}
+{% include "organisation/navigation.html" %}
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.tablesorter.min.js"></script>
+
+<div style="margin-bottom:10px;float:left">
+<fieldset style="padding:0px;">
+<input type="text" style="width:200px;" id="filter" value="{% trans "Filter by any field.."  %}" />
+</input>
+</fieldset>
+</div>
+
+<script type="text/javascript">
+	cache = [];
+	cache['_all'] = $.parseJSON('{{json_cache|safe}}');
+	cache['terms'] = []
+
+	updateTable = function(response, all) {
+		$('table#userManagementTable tbody').html('');
+		$.each(response, function(index, obj){
+			var html = '<tr style="cursor:pointer;" onclick="document.location=\'/_/organisation/{{organisation.pk}}/user_mgmt/'+obj.pk+'/\';">';
+			html+= '<td>'+obj.pk+'</td>';
+			if (typeof(all) != 'undefined')
+				obj = obj.fields;			
+			html+= '<th>'+obj.first_name+'</td>';
+			html+= '<th>'+obj.last_name+'</td>';
+			html+= '<td>'+obj.email+'</td>';
+			html+= '<td>'+obj.last_login+'</td>';
+			if (obj.is_active) {
+				html+= '<td><img src="{{MEDIA_URL}}img/icons/tick.png" alt="True" /></td>';
+			} else {
+				html+= '<td><img src="{{MEDIA_URL}}img/icons/delete.png" alt="False" /></td>';
+			}
+			html+= '</tr>';
+			$('table#userManagementTable tbody').append(html);
+		});
+	};
+
+	$('#filter').click(function() {
+		$(this).val('');
+	}).keyup(function() {
+		term_value = $(this).val();
+
+		if (term_value == '') {
+			updateTable(cache['_all'], true);
+			return;
+		}
+
+		if (typeof(cache['terms'][term_value]) != 'undefined') {
+			updateTable(cache['terms'][term_value]);
+		} else {
+			$.ajax({
+				url: '{% url organisation-user-mgmt-filter organisation.pk %}',
+				dataType: 'json',
+				data: 'term='+term_value,
+				success: function(response) {
+					cache['terms'][term_value] = response
+					updateTable(response);
+				}
+			});
+		}
+	});
+</script>
+
+<div style="margin-bottom:10px;float:right;">
+<a class="btn" style="margin-left:10px;" href="{% url organisation-user-mgmt-create organisation.pk %}">{% trans "Create new user" %}</a>
+</div>
+
+<br style="clear:both" />
+
+<table class="zebra-striped condensed-table" id="userManagementTable">
+	<thead>
+		<tr>
+			<th style="width:15px" class="header">#</th>
+			<th class="blue header">{% trans "First name" %}</th>
+			<th class="blue header">{% trans "Last name" %}</th>
+			<th class="blue header">{% trans "Email address" %}</th>
+			<th class="blue header">{% trans "Last login" %}</th>
+			<th class="blue">{% trans "Active" %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for user in users %}
+		<tr style="cursor:pointer;" onclick="document.location='{% url organisation-user-mgmt-edit organisation.pk user.pk %}';">
+			<td>{{user.pk}}</td>
+			<th>{{user.first_name}}</th>
+			<th>{{user.last_name}}</th>
+			<td>{{user.email}}</td>
+			<td>{{user.last_login|date:"Y-m-d H:i:s"}}</td>
+			<td>{% if user.is_active %}<img src="{{MEDIA_URL}}img/icons/tick.png" alt="True" />{% else %}<img src="{{MEDIA_URL}}img/icons/delete.png" alt="False" />{% endif %}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock %}
