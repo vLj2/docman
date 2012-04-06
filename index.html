@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>DocMan by tjosten</title>
+    
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>DocMan</h1>
+        <p>Collaborative Document Management written in Python (Django) - Open Source</p>
+        <p class="view"><a href="https://github.com/tjosten/docman">View the Project on GitHub <small>tjosten/docman</small></a></p>
+        <ul>
+          <li><a href="https://github.com/tjosten/docman/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tjosten/docman/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tjosten/docman">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>DocMan</h2>
+
+<p>DocMan is a collaborative document management software, powered by <a href="http://djangoproject.org">Django</a>. </p>
+
+<p>This software has been written to create a space for easy document management and sharing. You are able to create categories and assign them to a specific (or none) semester. Within this categories, there can be lectures or pseudo lectures where documents can be uploaded to. Documents can be commented, rated, tagged and of course be downloaded in original file format or zipped. You can follow a lecture or document and get notified if something changes. Also, a kind of revision management for each document. DocMan has a powerful rights management system.</p>
+
+<p>Read more about DocMan on <a href="http://get.docman.me">get.docman.me</a>.</p>
+
+<p><em>Please note: This is the open source version of DocMan which is missing some features offered on <a href="http://get.docman.me">get.docman.me</a>.</em></p>
+
+<h3>Learn more about our SaaS solution</h3>
+
+<p>Interested in using DocMan but no idea what to do? We offer DocMan hosting on our infrastructure, directly offered by the developers of DocMan! <a href="http://get.docman.me">Read more</a></p>
+
+<h3>Requirements</h3>
+
+<p>DocMan requires several modules to be installed:</p>
+
+<ul>
+<li>
+<a href="http://djangoproject.org">python-django</a> -- at least Django 1.3</li>
+<li>
+<a href="http://sourceforge.net/projects/mysql-python/">mysql-python</a> when using MySQL database backend</li>
+<li><a href="http://labix.org/python-dateutil">python-dateutil</a></li>
+<li><a href="http://code.google.com/p/django-registration/">django-registration</a></li>
+<li><a href="https://bitbucket.org/mchaput/whoosh/wiki/Home">whoosh</a></li>
+<li><a href="https://github.com/dcramer/django-ratings">django-ratings</a></li>
+<li><a href="http://code.google.com/p/django-tagging/">django-tagging</a></li>
+<li><a href="http://pybrary.net/pyPdf/">pyPdf</a></li>
+<li><a href="http://haystacksearch.org/">django-haystack</a></li>
+<li><a href="http://code.playfire.com/django-bcrypt//">py-bcrypt</a></li>
+<li><a href="http://www.pythonware.com/products/pil/">PIL</a></li>
+<li><a href="https://github.com/tschellenbach/Django-facebook">django-facebook</a></li>
+</ul><p>Also, your webserver needs needs to know about <a href="https://tn123.org/mod_xsendfile/">X-SENDFILE</a>.</p>
+
+<h3>Setup</h3>
+
+<p>First, copy <code>settings_local.py-dist</code> to <code>settings_local.py</code> and edit the file to suit your needs.</p>
+
+<p>Then, it is just a regular django application setup: </p>
+
+<pre><code>$ ./manage.py syncdb
+$ ./manage.py runserver
+</code></pre>
+
+<p>and you should be done with your testing environment.</p>
+
+<h3>Rebuild full text search index</h3>
+
+<p>To rebuild your search index, please run the following command:</p>
+
+<pre><code>$ python manage.py rebuild_index --noinput 2&gt;&amp;1 &gt;/dev/null &amp;
+</code></pre>
+
+<p>The best idea is to run this via crond to rebuild the index once or twice per hour.</p>
+
+<h3>Contribute to the translation</h3>
+
+<p>If you want to contribute to the translation, you can improve the current translations
+or start a new translation into a different language. To do so, you need xgettext/gettext
+which you can install using e.g. <code>sudo apt-get install gettext</code> on Ubuntu/Debian systems.
+Then go to the DocMan folder and create/update the .po file for you language.
+For German (<code>de</code>) the command would be:</p>
+
+<pre><code>$ cd docman
+$ django-admin.py makemessages -l de
+</code></pre>
+
+<p>When you're done translating the strings in the file <em>locale/de/LC_MESSAGES/django.po</em>,
+run </p>
+
+<pre><code>$ django-admin.py compilemessages
+</code></pre>
+
+<p>and test if everything works as expected.</p>
+
+<h3>Icon copyright</h3>
+
+<p>Icons powered by iconfinder.com, most of them free for commercial use.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/tjosten">tjosten</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>
