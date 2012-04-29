@@ -66,9 +66,9 @@ jsCourse = {{course.pk}};
 
 <div class="overlay modal fade" id="overlay" style="display:none;">
 	<div class="oContent"><h3></h3><p></p>
-	<div class="progress"></div>	
-	<div class="progressbar"></div>
-	<div class="progressDetail"></div>
+	<div style="display:none;" class="progress"></div>
+	<div style="display:none;" class="progressbar"></div>
+	<div style="display:none;" class="progressDetail"></div>
 	
 	<div class="uploadDetails" style="display:none;">
 		<form action="javascript:void(0);" name="uploadDetails">	
@@ -87,7 +87,7 @@ jsCourse = {{course.pk}};
 				<textarea tabindex="3" id="documentDesc" name="desc"></textarea>
 				<input type="submit" value="{% trans "Save Details" %}" /> {% trans "or <a href='javascript:void(0)' id='resetUploadWindow'>close</a>" %}<img class="loader" src="{{MEDIA_URL}}img/new/loader_fafafa.gif" alt="{% trans "Loading.." %}" /> 
 				{% if not request.user.get_profile.is_lecturer %}
-				<div class="lecturerVisible"><input type="checkbox" checked name="is_lecturer_visible" /> {% trans "Visible for lecturers?" %}</div>
+				<div class="lecturerVisible"><input type="checkbox" name="is_lecturer_visible" /> {% trans "Visible for lecturers?" %}</div>
 				{% endif %}
 			</fieldset>
 		</form>		

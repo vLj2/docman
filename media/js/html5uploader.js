@@ -4,6 +4,7 @@ function uploader(place, status, targetPHP) {
 		// Firefox 3.6, Chrome 6, WebKit
 		
 		// show overlay
+		$('div#overlay').show();
 		$('div#overlay').removeClass('oSuccess oFailure');  					
 		$('div#overlay div.oContent h3').html('Please wait, starting upload.. <img class="loader" style="margin-left: 5px;display:inline;" src="'+MEDIA_URL+'img/new/loader_fafafa.gif" /> ');
 		$('div#overlay div.oContent p:first').html('We should be starting soon! (If your browser sucks, we are already uploading. Please give me a second!)');											
@@ -16,12 +17,21 @@ function uploader(place, status, targetPHP) {
 			this.loadEnd = function() {
 				bin = reader.result;
 				if (bin == '' || !bin) {
+
+					$('div#overlay').removeClass('oSuccess oFailure');
+					$('div#overlay').addClass('oFailure');
+					$('div#overlay div.oContent h3').html('An error occurred');
+					$('div#overlay div.oContent p:first').html('You tried to upload an invalid file. Most often, your file is empty or not accessible. <a href="javascript:;" onclick="resetUploadWindow()">Cancel</a>');
+					$('div#overlay div.oContent div.progressbar').hide();
+					$('div#overlay div.oContent div.progress').hide();
+					$("div#overlay div.oContent div.progressDetail").hide();
+
 					return false;
 				}
 
 				xhr = new XMLHttpRequest();
 
-				xhr.upload.addEventListener('progress', loadProgress, false);				
+				xhr.upload.addEventListener('progress', loadProgress, false);
 				
 				xhr.open('POST', targetPHP+'?up=true&base64=true', true);
 				xhr.setRequestHeader('UP-FILENAME', file.name);

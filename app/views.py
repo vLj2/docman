@@ -196,7 +196,7 @@ def ie_upload_view(request):
 			document.pub_date = datetime.datetime.now()
 			document.save()
 			revision = DocumentRevision(document=document, pub_date=datetime.datetime.now(), uploaded_by=request.user)
-			revision.file.save(slugify(document.name) + '.' + document.name.rpartition('.')[len(document.name.rpartition('.'))-1], contentFile)
+			revision.file.save(slugify(contentFile.name) + '.' + contentFile.name.rpartition('.')[len(contentFile.name.rpartition('.'))-1], contentFile)
 			for subscriber in document.subscribers.all():
 				if subscriber.pk != request.user.pk:
 					docmail.docmail(subscriber.email, "[%s] Neue Revision" % document.name, "document_new_revision", Context({ 'user': subscriber, 'document': document, 'author' : request.user, 'domain': settings.DOMAIN }));
@@ -394,7 +394,7 @@ def test_upload_view(request):
 			document.pub_date = datetime.datetime.now()
 			document.save()
 			revision = DocumentRevision(document=document, pub_date=datetime.datetime.now(), uploaded_by=request.user)
-			revision.file.save(slugify(document.name) + '.' + document.name.rpartition('.')[len(document.name.rpartition('.'))-1], contentFile)
+			revision.file.save(slugify(contentFile.name) + '.' + contentFile.name.rpartition('.')[len(contentFile.name.rpartition('.'))-1], contentFile)
 			for subscriber in document.subscribers.all():
 				if subscriber.pk != request.user.pk:
 					docmail.docmail(subscriber.email, "[%s] Neue Revision" % document.name, "document_new_revision", Context({ 'user': subscriber, 'document': document, 'author' : request.user, 'domain': settings.DOMAIN }));

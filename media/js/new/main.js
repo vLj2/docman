@@ -42,10 +42,14 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('a#resetUploadWindow').click(function(){
+	resetUploadWindow = function() {
 		$(':input', 'form[name=uploadDetails]').not(':button, :submit, :reset, :hidden').val('');
 		$('div#overlay div.uploadDetails, div#overlay').hide();
 		$('div#overlay h3, div#overlay p').html('');
+	};
+
+	$('a#resetUploadWindow').click(function(){
+		resetUploadWindow();
 	});
 
 	$('a#resetIEUploadWindow').click(function(){
