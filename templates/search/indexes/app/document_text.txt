@@ -1,2 +1,2 @@
-{{ object.name }} {{ object.tags }} {{ object.desc }} 
+{{ object.name }} {{ object.tags }} {{ object.desc }} {{ object.get_author }}
 {{ object.get_raw }}

@@ -245,6 +245,9 @@ class Document(models.Model):
 		except:
 			return False
 	
+	def get_author(self):
+		return "%s %s" % (self.author.first_name, self.author.last_name)
+
 	def get_tags(self):
 		return Tag.objects.get_for_object(self)
 		
