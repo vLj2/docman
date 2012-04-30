@@ -88,7 +88,7 @@
 {% if page.has_previous or page.has_next %}
 <div class="pagination">
 	{% for p in page.paginator.page_range %}
-		<a class="{% if p == documents.number %}active{% endif %}" href="?p={{p}}">{{p}}</a> 
+		<a class="{% if p == page.number %}active{% endif %}" href="?page={{p}}&amp;q={{form.q.value}}">{{p}}</a>
 	{% endfor %}
 </div>
 {% endif %}
